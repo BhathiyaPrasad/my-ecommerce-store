@@ -1,14 +1,14 @@
-import AdminLayout from '../../components/layout/AdminLayout';
-import AuthGuard from '../../components/AuthGuard';
-import Dashboard from '../../components/admin/Dashboard';
+import AdminLayout from '../layout/AdminLayout';
+// import AuthGuard from '../../components/AuthGuard';
+import Dashboard from './Dashboard';
 
 const AdminDashboard = () => {
   return (
-    <AuthGuard>
+    // <AuthGuard>
       <AdminLayout>
         <Dashboard />
       </AdminLayout>
-    </AuthGuard>
+    // </AuthGuard>
   );
 };
 

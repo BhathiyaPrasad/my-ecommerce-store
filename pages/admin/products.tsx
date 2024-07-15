@@ -1,14 +1,14 @@
 import AdminLayout from '../../components/layout/AdminLayout';
-import AuthGuard from '../../components/AuthGuard';
+// import AuthGuard from '../../components/AuthGuard';
 import ProductManagement from '../../components/admin/ProductManagement';
 
 const ProductManagementPage = () => {
   return (
-    <AuthGuard>
+    // <AuthGuard>
       <AdminLayout>
         <ProductManagement />
       </AdminLayout>
-    </AuthGuard>
+    // </AuthGuard>
   );
 };
 
