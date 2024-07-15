@@ -6,6 +6,8 @@ type Product = {
   id: string;
   name: string;
   price: number;
+  firstName: string;
+  email: string;
 };
 
 const ProductList = () => {
@@ -29,7 +31,7 @@ const ProductList = () => {
       <h1>Product List</h1>
       <ul>
         {products.map(product => (
-          <li key={product.id}>{product.name} - ${product.price}</li>
+          <li key={product.id}>{product.firstName} - ${product.email}</li>
         ))}
       </ul>
     </div>
