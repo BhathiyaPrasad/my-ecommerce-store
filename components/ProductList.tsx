@@ -1,4 +1,3 @@
-// components/ProductList.tsx
 import { useEffect, useState } from 'react';
 import { collection, getDocs } from 'firebase/firestore';
 import { db } from '../utils/firebase';
@@ -14,7 +13,7 @@ const ProductList = () => {
 
   useEffect(() => {
     const fetchProducts = async () => {
-      const querySnapshot = await getDocs(collection(db, 'products'));
+      const querySnapshot = await getDocs(collection(db, 'users'));
       const productsArray = querySnapshot.docs.map(doc => ({
         id: doc.id,
         ...doc.data()
