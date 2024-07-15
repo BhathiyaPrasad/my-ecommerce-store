@@ -1,4 +1,4 @@
-
+// components/layout/AdminLayout.tsx
 import React, { ReactNode } from 'react';
 import Header from '../common/Header';
 import Footer from '../common/Footer';
