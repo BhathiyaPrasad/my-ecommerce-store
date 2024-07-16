@@ -5,7 +5,7 @@ import Header from "@components/common/Header";
 export default function Home() {
   return (
     <MainLayout>
-    <button className="btn btn-primary">Primary</button>
+   <Header/>
     </MainLayout>
   );
 }

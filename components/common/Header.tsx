@@ -3,7 +3,6 @@ import React from 'react';
 import Link from 'next/link';
 
 const Header = () => (
-
   <div className="navbar bg-base-100">
     <div className="navbar-start">
       <div className="dropdown">
