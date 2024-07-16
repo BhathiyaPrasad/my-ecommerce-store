@@ -27,21 +27,23 @@ const Header = () => (
           className="menu menu-sm dropdown-content bg-base-100 rounded-box z-[1] mt-3 w-52 p-2 shadow">
           
           <li>
-            <a>Men</a>
+            <a>MEN</a>
             <ul className="p-2">
               <li><a>Shirts</a></li>
               <li><a>Trousers</a></li>
             </ul>
           </li>
           <li>
-            <a>Women</a>
+            <a>WOMEN</a>
             <ul className="p-2">
               <li><a>Skirts</a></li>
               <li><a>Pants</a></li>
             </ul>
           </li>
           
-          <li><a>Item 3</a></li>
+          <li><a>THIS WEEK</a></li><li>
+          <a>SALE</a></li>
+
         </ul>
       </div>
       <a className="btn btn-ghost text-xl">Saluni Fashion</a>
@@ -51,7 +53,7 @@ const Header = () => (
      
         <li>
           <details>
-            <summary>Men</summary>
+            <summary>MEN</summary>
             <ul className="p-2">
               <li><a>Shirts</a></li>
               <li><a>Trousers</a></li>
@@ -59,14 +61,14 @@ const Header = () => (
           </details>
         </li>
         <li> <details>
-            <summary>Women</summary>
+            <summary>WOMEN</summary>
             <ul className="p-2">
               <li><a>Pants</a></li>
               <li><a>Skirts</a></li>
             </ul>
           </details></li>
-        <li><a>Item 3</a></li><li>
-          <a>Item 3</a></li>
+        <li><a>THIS WEEK</a></li><li>
+          <a>SALE</a></li>
 
       </ul>
     </div>
