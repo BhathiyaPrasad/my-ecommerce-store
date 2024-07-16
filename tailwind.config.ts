@@ -2,10 +2,12 @@ import type { Config } from "tailwindcss";
 
 const config: Config = {
   content: [
-    "./src/pages/**/*.{js,ts,jsx,tsx,mdx}",
-    "./src/components/**/*.{js,ts,jsx,tsx,mdx}",
-    "./src/app/**/*.{js,ts,jsx,tsx,mdx}",
-    "./components/**/*.{ts,js,jsx,tsx,mdx}"
+    "./src/**/*.{js,ts,jsx,tsx,mdx}",    // All JavaScript, TypeScript, JSX, TSX, and MDX files in src and its subdirectories
+    "./components/**/*.{js,ts,jsx,tsx,mdx}",  // All JavaScript, TypeScript, JSX, TSX, and MDX files in components and its subdirectories
+    "./pages/**/*.{js,ts,jsx,tsx,mdx}",  // All JavaScript, TypeScript, JSX, TSX, and MDX files in pages and its subdirectories
+    "./app/**/*.{js,ts,jsx,tsx,mdx}",    // All JavaScript, TypeScript, JSX, TSX, and MDX files in app and its subdirectories
+    "./admin/**/*.{js,ts,jsx,tsx,mdx}"   // All JavaScript, TypeScript, JSX, TSX, and MDX files in admin and its subdirectories
+    
   ],
   theme: {
     extend: {
