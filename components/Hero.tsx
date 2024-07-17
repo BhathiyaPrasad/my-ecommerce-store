@@ -2,15 +2,69 @@ import React from "react";
 import { collection, getDocs } from 'firebase/firestore';
 import { db } from '../utils/firebase';
 import Image from "next/image";
-import sliderOne from '../assests/images/COVER WEB.jpg'
+import sliderOne from '../assests/images/test.webp'
 
 function Hero () {
     return (
 
 
-<div className="hero bg-base-150 min-h-screen" >
-<figure>
-    <Image className = "hero bg-base-150 min-h-screen" src={sliderOne} alt="" />
+<div className="hero bg-base-150 min-h-screen" style={{
+  WebkitTextSizeAdjust: '100%',
+  textTransform: 'none',
+  WebkitFontSmoothing: 'antialiased',
+  listStyle: 'none',
+  textAlign: 'center',
+  color: '#000',
+ 
+  padding: '0',
+  border: '0',
+  font: 'inherit',
+  transition: 'opacity .2s linear',
+  opacity: '1',
+  maxWidth: '100%',
+  display: 'block',
+  height: 'auto',
+  margin: '0 auto',
+  width: '100%'
+}}>
+  <figure style={{
+    WebkitTextSizeAdjust: '100%',
+    textTransform: 'none',
+    WebkitFontSmoothing: 'antialiased',
+    listStyle: 'none',
+    textAlign: 'center',
+    color: '#000',
+   
+    padding: '0',
+    border: '0',
+    font: 'inherit',
+    transition: 'opacity .2s linear',
+    opacity: '1',
+    maxWidth: '100%',
+    display: 'block',
+    height: 'auto',
+    margin: '0 auto',
+    width: '100%'
+  }}>
+    <Image src={sliderOne} alt="" style={{
+      WebkitTextSizeAdjust: '100%',
+      textTransform: 'none',
+      WebkitFontSmoothing: 'antialiased',
+      listStyle: 'none',
+      textAlign: 'center',
+      color: '#000',
+     
+      padding: '0',
+      border: '0',
+      font: 'inherit',
+      transition: 'opacity .2s linear',
+      opacity: '1',
+      maxWidth: '100%',
+      display: 'block',
+      height: 'auto',
+      margin: '0 auto',
+      width: '100%'
+    }} />
   </figure>
   <div className="hero-content text-center">
     <div className="max-w-md">
@@ -23,6 +77,7 @@ function Hero () {
     </div>
   </div>
 </div>
+
     )}
 
 export default Hero;    
