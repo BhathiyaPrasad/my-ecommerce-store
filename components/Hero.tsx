@@ -3,7 +3,7 @@ import { collection, getDocs } from 'firebase/firestore';
 import { db } from '../utils/firebase';
 import Image from "next/image";
 import sliderOne from '../assests/images/test.webp';
-import "./hero.css";
+import "./Styles/hero.css";
 
 
 function Hero() {
