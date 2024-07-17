@@ -1,13 +1,17 @@
 import React from "react";
 import { collection, getDocs } from 'firebase/firestore';
 import { db } from '../utils/firebase';
-
+import Image from "next/image";
+import sliderOne from '../assests/images/COVER WEB.jpg'
 
 function Hero () {
     return (
 
 
-<div className="hero bg-base-200 min-h-screen">
+<div className="hero bg-base-150 min-h-screen" >
+<figure>
+    <Image className = "hero bg-base-150 min-h-screen" src={sliderOne} alt="" />
+  </figure>
   <div className="hero-content text-center">
     <div className="max-w-md">
       <h1 className="text-5xl font-bold">Hello there</h1>
