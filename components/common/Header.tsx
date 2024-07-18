@@ -26,36 +26,37 @@ const Header = () => (
         <ul
           tabIndex={0}
           className="menu menu-sm dropdown-content bg-base-100 rounded-box z-[1] mt-3 w-52 p-2 shadow">
-          <li><a href='./'>HOME</a></li>
           <li>
-            <a href='./home'>MEN</a>
-            <ul className="p-2">
-              <li><a>Shirts</a></li>
-              <li><a>Trousers</a></li>
-            </ul>
+            <Link href={'/'}>HOME</Link></li>
+          <li>
+            <Link href={'/product/men'}>MEN</Link>
+              <ul className="p-2">
+                 <li><a>Shirts</a></li>
+                 <li><a>Trousers</a></li>
+              </ul>
           </li>
           <li>
-            <a>WOMEN</a>
-            <ul className="p-2">
-              <li><a>Skirts</a></li>
-              <li><a>Pants</a></li>
-            </ul>
+          <Link href={'/product/women'}>WOMEN</Link>
+              <ul className="p-2">
+                <li><a>Skirts</a></li>
+                <li><a>Pants</a></li>
+              </ul>
           </li>
 
-          <li><a>THIS WEEK</a></li><li>
-            <a>SALE</a></li>
+          <li><Link href={'/'}>THIS WEEK</Link></li><li>
+          <Link href={'/'}>SALE</Link></li>
           <li>
-            <a>CONTACT</a></li>
+          <Link href={'/'}>CONTACT</Link></li>
         </ul>
       </div>
-      <a className="btn btn-ghost text-xl" href='./'>SALUNI FASHION</a>
+      <a className="btn btn-ghost text-xl" href='/'>SALUNI FASHION</a>
     </div>
     <div className="navbar-center hidden lg:flex">
       <ul className="menu menu-horizontal px-1">
-        <li><a>HOME</a></li>
+        <li><Link href={'/'}>HOME</Link></li>
         <li>
           <details>
-            <summary>MEN</summary>
+            <summary><Link href={'/product/men'}>MEN</Link></summary>
             <ul className="p-2">
               <li><a href='./home'>Shirts</a></li>
               <li><a>Trousers</a></li>
@@ -63,16 +64,17 @@ const Header = () => (
           </details>
         </li>
         <li> <details>
-          <summary>WOMEN</summary>
+          <summary><Link href={'/product/women'}>WOMEN</Link></summary>
           <ul className="p-2">
             <li><a>Pants</a></li>
             <li><a>Skirts</a></li>
           </ul>
         </details></li>
-        <li><a>THIS WEEK</a></li><li>
-          <a>SALE</a></li>
+        <li><Link href={'/'}>THIS WEEK</Link></li><li>
+        <Link href={'/'}>SALE</Link></li>
         <li>
-          <a>CONTACT</a></li>
+        <Link href={'/'}>CONTACT</Link></li>
+          <li><a href=""></a></li>
       </ul>
     </div>
     <div className="navbar-end">
