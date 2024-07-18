@@ -10,7 +10,7 @@ function Hero() {
   return (
     <div>
       <figure className="herofigure">
-        <Image src={sliderOne} alt="" className="slider" />
+        <Image src={sliderOne} alt="" className="slider" loading="lazy" priority={false}/>
       </figure>
     </div>
 
