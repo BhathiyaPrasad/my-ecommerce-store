@@ -2,7 +2,8 @@ import { useEffect, useState } from 'react';
 import { collection, getDocs, where, doc, query, orderBy } from 'firebase/firestore';
 import { ref, getStorage, getDownloadURL } from 'firebase/storage'
 import { db } from '../utils/firebase';
-
+import ProductCard from './common/ProductCard';
+import './Styles/productlist.css'
 type Product = {
   id: string;
   name: string;
@@ -72,16 +73,23 @@ const ProductList = () => {
   }
 
   return (
-    <div>
-      <h1>Product List</h1>
-      <ul>
-        {products.map(product => (
-          <li key={product.id}>
-            {product.Eng_Name} - ${product.Sales_Price}
-          </li>
-        ))}
-      </ul>
-    </div>
+    <div className="card-container">
+    {products.map(product => (
+      <ProductCard
+        key={product.id}
+        
+        
+        Sales_Price={product.Sales_Price}
+        Eng_Name={product.Eng_Name}
+        
+        // imageUrl={product.imageUrl}
+      />
+    ))}
+  </div>
+       
+
+    
+     
   );
 };
 
