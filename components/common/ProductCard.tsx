@@ -6,7 +6,7 @@ function ProductCard() {
     return (
         <div className="card glass w-96">
             <figure>
-                <Image src={product} alt="" / >
+                <Image src={product} alt="" loading="lazy" priority={false}/ >
             </figure>
             <div className="card-body">
                 <h2 className="card-title">Life hack</h2>
