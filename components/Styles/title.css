@@ -1,0 +1,20 @@
+.title {
+    -webkit-text-size-adjust: 100%;
+    -webkit-font-smoothing: antialiased;
+    text-transform: uppercase;
+    letter-spacing: 3px;
+    text-rendering: optimizeLegibility;
+    border: 0;
+    font: inherit;
+    touch-action: manipulation;
+    font-weight: inherit;
+    text-decoration: none;
+    outline: 0;
+    transition: color .1s linear;
+    padding: 0;
+    text-align: center;
+    margin: 15px 0;
+    color: #000;
+    font-size: 30px;
+    line-height: 1.5;
+}
