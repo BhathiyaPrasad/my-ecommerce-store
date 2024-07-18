@@ -1,0 +1,49 @@
+/* Card.css */
+.card-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+    margin-left: 2rem;
+    margin-right: 1rem; /* Adjust the gap between cards */
+  }
+  
+  .card {
+    background-color: var(--base-10, #ffffff);
+    width: calc(50% - 1rem); /* Adjust the width to fit two cards per row with a gap */
+    box-shadow: var(--shadow-xl, 0 4px 6px rgba(0, 0, 0, 0.1));
+    border-radius: 0.5rem;
+    overflow: hidden;
+    margin: 0.5rem 0; /* Adjust the margin for spacing */
+  }
+  
+  .card figure img {
+    width: 100%;
+    height: auto;
+  }
+  
+  .card-body {
+    padding: 1rem;
+  }
+  
+  .card-title {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    font-size: 1.25rem;
+    font-weight: 700;
+    margin-bottom: 0.5rem;
+  }
+  
+  /* Media Queries */
+  @media (min-width: 640px) {
+    .card {
+      width: calc(50% - 1rem); /* Two cards per row */
+    }
+  }
+  
+  @media (min-width: 768px) {
+    .card {
+      width: calc(33.33% - 1rem); /* Three cards per row */
+    }
+  }
+  

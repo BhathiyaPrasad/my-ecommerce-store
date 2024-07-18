@@ -12,8 +12,7 @@ export default function Home() {
       <Hero/>
       
       <Title text="New Arrivals" />
-       <ProductCard />
-     
+       
     
     
     </MainLayout>

@@ -2,16 +2,18 @@
 import React, { ReactNode } from 'react';
 import Header from '../common/Header';
 import Footer from '../common/Footer';
-
+import ProductCard from '@components/common/ProductCard';
 type MainLayoutProps = {
   children: ReactNode;
 };
 
 const MainLayout = ({ children }: MainLayoutProps) => {
   return (
-    <div data-theme="light">
+    <div data-theme="dracula">
       <Header />
       <main>{children}</main>
+      <ProductCard />
+     
       <Footer />
     </div>
   );
