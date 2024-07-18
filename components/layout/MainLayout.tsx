@@ -12,8 +12,8 @@ const MainLayout = ({ children }: MainLayoutProps) => {
     <div data-theme="light">
       <Header />
       <main>{children}</main>
-      <ProductCard />
-     
+      {/* <ProductCard />
+      */}
       <Footer />
     </div>
   );
