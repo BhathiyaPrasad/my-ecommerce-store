@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import { collection, getDocs, where, doc, query, orderBy } from 'firebase/firestore';
-import {ref,getStorage, getDownloadURL} from 'firebase/storage'
+import { ref, getStorage, getDownloadURL } from 'firebase/storage'
 import { db } from '../utils/firebase';
 
 type Product = {
@@ -21,7 +21,7 @@ async function getImageDownloadURL(imagePath) {
     return imageUrl;
   } catch (error) {
     console.error("Error getting image download URL:", error);
-    return  '.\assests\images\collection.jpg';  // Replace with the actual path to your default image
+    return '.\assests\images\collection.jpg';  // Replace with the actual path to your default image
   }
 }
 
@@ -64,7 +64,7 @@ const ProductList = () => {
   }, []);
 
   if (loading) {
-    return <div>Loading...</div>;
+    return <span className="loading loading-spinner loading-lg"></span>;
   }
 
   if (error) {
