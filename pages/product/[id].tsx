@@ -1,6 +1,7 @@
 import { useRouter } from 'next/router';
 import MainLayout from '../../components/layout/MainLayout';
 import ProductDetails from '../../components/ProductDetails';
+import '../../src/app/globals.css'
 
 const ProductDetailsPage = () => {
   const router = useRouter();
