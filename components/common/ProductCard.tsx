@@ -1,5 +1,5 @@
 import React from "react";
-import product from '../../assests/images/product13.13.png'
+import product from '../../assests/images/COVER WEB.jpg'
 import Image from "next/image";
 import '../Styles/productlist.css'
 
