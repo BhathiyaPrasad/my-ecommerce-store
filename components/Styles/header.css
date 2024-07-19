@@ -1,0 +1,27 @@
+.menu-sm.dropdown-content,
+.card.card-compact.dropdown-content,
+.menu-horizontal details[open] > ul {
+  z-index: 50; /* Ensure these elements have a high z-index */
+}
+
+.menu-sm.dropdown-content {
+  position: absolute; /* Ensures the dropdown is positioned absolutely */
+}
+
+.card.card-compact.dropdown-content {
+  position: absolute; /* Ensures the dropdown is positioned absolutely */
+}
+
+.menu-horizontal details[open] > ul {
+  position: absolute; /* Ensures the nested dropdown is positioned absolutely */
+}
+
+.dropdown-content {
+  background-color: #ffffff; /* Background color for the dropdown */
+  border: 1px solid #eaeaea; /* Border for the dropdown */
+  border-radius: 8px; /* Rounded corners */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Box shadow for dropdown */
+  margin-top: 1rem; /* Margin to separate dropdown from its trigger */
+  padding: 1rem; /* Padding inside the dropdown */
+  width: 200px; /* Width of the dropdown */
+}
