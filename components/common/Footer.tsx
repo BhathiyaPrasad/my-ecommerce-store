@@ -1,21 +1,30 @@
 // components/common/Footer.tsx
 import React from 'react';
+import Link from 'next/link';
 
 const Footer = () => (
+  <>
   <footer className="footer bg-base-300 text-base-content p-10">
   <nav>
     <h6 className="footer-title">Services</h6>
-    <a className="link link-hover">Branding</a>
-    <a className="link link-hover">Design</a>
-    <a className="link link-hover">Marketing</a>
-    <a className="link link-hover">Advertisement</a>
+    <Link href="" className="link link-hover">Branding</Link>
+    <Link href="" className="link link-hover">Design</Link>
+    <Link href="" className="link link-hover">Marketing</Link>
+    <Link href="" className="link link-hover">Advertisement</Link>
   </nav>
   <nav>
     <h6 className="footer-title">Company</h6>
-    <a className="link link-hover">About us</a>
-    <a className="link link-hover">Contact</a>
-    <a className="link link-hover">Jobs</a>
-    <a className="link link-hover">Press kit</a>
+    <Link href="" className="link link-hover">About us</Link>
+    <Link href="" className="link link-hover">Contact</Link>
+    <Link href="" className="link link-hover">Jobs</Link>
+    <Link href="" className="link link-hover">Press kit</Link>
+  </nav>
+  <nav>
+    <h6 className="footer-title">CONTACT</h6>
+    <Link href="" className="link link-hover">Address</Link>
+    <Link href="" className="link link-hover">Hotline</Link>
+    <Link href="" className="link link-hover">Email</Link>
+    
   </nav>
   <nav>
     <h6 className="footer-title">Social</h6>
@@ -55,7 +64,14 @@ const Footer = () => (
       </a>
     </div>
   </nav>
+  
 </footer>
+<footer className="footer footer-center bg-base-300 text-base-content p-4">
+  <aside>
+    <p>Copyright © {new Date().getFullYear()} - All right reserved by Bhathiya Prasad Industries Ltd</p>
+  </aside>
+</footer>
+</>
 );
 
 export default Footer;

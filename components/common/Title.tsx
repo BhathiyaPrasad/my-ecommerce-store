@@ -7,7 +7,8 @@ import '../Styles/title.css'
 function Title({text}) {
     return (
 <div className="title">
-       <h1 className="btn btn-ghost text-xl">NEW ARRIVALS</h1>
+<h1 className="btn btn-ghost text-3xl font-mono">{text}</h1>
+
        </div>       
     )
 }
