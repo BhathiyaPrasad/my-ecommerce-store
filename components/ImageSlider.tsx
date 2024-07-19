@@ -13,7 +13,7 @@ const images = [
   sliderTwo,
   sliderThree,
   sliderFour
-  // Add more images here
+  
 ];
 
 const ImageSlider = () => {
