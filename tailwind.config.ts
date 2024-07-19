@@ -54,7 +54,7 @@ const config: Config = {
       "winter",
       "dim",
       "nord",
-      "sunset",],
+      "sunset"],
   },
 };
 export default config;
