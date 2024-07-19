@@ -1,7 +1,7 @@
 import React from "react";
 import product from '../../assests/images/COVER WEB.jpg'
 import Image from "next/image";
-
+import '../Styles/productlist.css'
 
 
 function ProductCard({Sales_Price, Eng_Name}) {
