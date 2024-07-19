@@ -7,6 +7,7 @@ import ProductCard from "@components/common/ProductCard";
 import Title from "@components/common/Title";
 import Divider from "@components/common/Divider";
 import ProductList from "@components/ProductList";
+import './globals.css'
 
 export default function Home() {
   return (
