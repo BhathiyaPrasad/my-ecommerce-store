@@ -40,7 +40,7 @@ const Header = () => (
               </ul>
             </li>
             <li>
-              <Link href={'/product/women'}>WOMEN</Link>
+              <Link href={'/product/women '}>WOMEN</Link>
               <ul className="p-2">
                 <li><a>Skirts</a></li>
                 <li><a>Pants</a></li>
@@ -55,10 +55,10 @@ const Header = () => (
       </div>
       <div className="navbar-center hidden lg:flex">
         <ul className="menu menu-horizontal px-1">
-          <li><Link href={'/'} className='text font-bold font-mono'>HOME</Link></li>
+          <li><Link href={'/'} className='text font-bold font-mono text-base'>HOME</Link></li>
           <li>
             <details>
-              <summary><Link href={'/product/men'} className='text font-bold font-mono'>MEN</Link></summary>
+              <summary><Link href={'/product/men'} className='text font-bold font-mono text-base'>MEN</Link></summary>
               <ul className="p-2">
                 <li><a href='./home'>Shirts</a></li>
                 <li><a>Trousers</a></li>
@@ -67,16 +67,16 @@ const Header = () => (
           </li>
           <li>
             <details>
-              <summary><Link href={'/product/women'} className='text font-bold font-mono'>WOMEN</Link></summary>
+              <summary><Link href={'/product/women'} className='text font-bold font-mono text-base'>WOMEN</Link></summary>
               <ul className="p-2">
                 <li><a>Pants</a></li>
                 <li><a>Skirts</a></li>
               </ul>
             </details>
           </li>
-          <li><Link href={'/'} className='text font-bold font-mono'>THIS WEEK</Link></li>
-          <li><Link href={'/'} className='text font-bold font-mono'>SALE</Link></li>
-          <li><Link href={'/'} className='text font-bold font-mono'>CONTACT</Link></li>
+          <li><Link href={'/'} className='text font-bold font-mono text-base'>THIS WEEK</Link></li>
+          <li><Link href={'/'} className='text font-bold font-mono text-base'>SALE</Link></li>
+          <li><Link href={'/'} className='text font-bold font-mono text-base'>CONTACT</Link></li>
         </ul>
       </div>
       <div className="navbar-end">
