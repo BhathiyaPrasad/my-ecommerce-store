@@ -22,7 +22,7 @@ const ImageSlider = () => {
   useEffect(() => {
     const interval = setInterval(() => {
       setCurrentImageIndex((prevIndex) => (prevIndex + 1) % images.length);
-    },1000); 
+    }, 3000); // Change image every 3 seconds
     return () => clearInterval(interval);
   }, []);
 
@@ -32,9 +32,8 @@ const ImageSlider = () => {
         <Image
           src={images[currentImageIndex]}
           alt={`Slide ${currentImageIndex + 1}`}
-          className="slider"
+          className="slider active wipe-in-bottom-left"
           priority={true}
-          
         />
       </figure>
     </div>
