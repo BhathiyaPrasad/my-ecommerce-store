@@ -31,8 +31,7 @@ const ImageSlider = () => {
           src={images[currentImageIndex]}
           alt={`Slide ${currentImageIndex + 1}`}
           className="slider"
-          loading="lazy"
-          priority={false}
+          priority={true}
         />
       </figure>
     </div>
