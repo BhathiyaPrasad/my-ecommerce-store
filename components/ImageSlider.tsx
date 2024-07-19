@@ -2,13 +2,15 @@
 
 import React, { useState, useEffect } from 'react';
 import Image from 'next/image';
-import sliderOne from '../assests/images/COVER WEB.jpg';
-import sliderTwo from '../assests/images/test.webp'; // Add more images as needed
+import sliderOne from '../assests/images/test2.webp';
+import sliderTwo from '../assests/images/test.webp';
+import sliderThree from '../assests/images/test3.webp'; // Add more images as needed
 import './Styles/hero.css';
 
 const images = [
   sliderOne,
   sliderTwo,
+  sliderThree,
   // Add more images here
 ];
 
