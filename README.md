@@ -39,5 +39,5 @@ Check out our [Next.js deployment documentation](https://nextjs.org/docs/deploym
  /* styles.css */
 .custom-card {
   @apply card bg-base-100 shadow-xl;
-  width: calc(20.00% - 1rem); /* Apply custom width calculation */
+  width: calc(20.00% - 1rem); /* Apply custom width calculation 
 }
