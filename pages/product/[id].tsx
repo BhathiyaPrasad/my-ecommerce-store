@@ -9,7 +9,7 @@ const ProductDetailsPage = () => {
 
   return (
     <MainLayout>
-      {id ? <ProductDetails productId={id as string} /> : <p>Loading...</p>}
+      {id ? <ProductDetails productId={id as string} /> : <p>Loading......</p>}
     </MainLayout>
   );
 };
