@@ -1,19 +1,19 @@
 import React from "react";
-import product from '../../assests/images/Slider04.jpg'
+import product from '../../assests/images/COVER WEB.jpg'
 import Image from "next/image";
 import '../Styles/productlist.css'
 
 
 function ProductCard({Sales_Price, Eng_Name}) {
     return (
-        <div className="card bg-base-100 w-96 shadow-xl">
+        <div className="custom-card">
         <figure>
         <Image
              src={product}
                     alt="car!" priority={false} loading="lazy" />
         </figure>
-        <div className="card-body">
-          <h2 className="card-title">
+        <div className="custom-card-body">
+          <h2 className="custom-card-title">
           {Eng_Name}
             <div className="badge badge-secondary">NEW</div>
           </h2>

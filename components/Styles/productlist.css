@@ -1,66 +1,61 @@
 /* Card.css */
 .card-container {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 3rem;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 2rem;
+  /* margin-left: 2rem;
+     margin-right: 1rem; Adjust the gap between cards */
+}
+
+.custom-card {
+  @apply card bg-base-100 shadow-xl;
+  width: calc(20% - 1rem); /* Four cards per row on desktop */
+  background-color: var(--base-10, #ffffff);
+  box-shadow: var(--shadow-xl, 0 4px 6px rgba(0, 0, 0, 0.1));
+  border-radius: 0.5rem;
+  overflow: hidden;
+  margin: 0.5rem 0; /* Adjust the margin for spacing */
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.custom-card figure img {
+  width: 100%;
+  height: auto;
+}
+
+.custom-card-body {
+  padding: 1rem;
+}
+
+.custom-card-title {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-size: 1.25rem;
+  font-weight: 700;
+  margin-bottom: 0.5rem;
+}
+
+/* Media Queries */
+@media (max-width: 768px) {
+  .custom-card {
+    width: calc(50% - 1rem); /* Two cards per row on mobile */
+  }
+}
+
+@media (max-width: 425px) {
+  .custom-card {
+    width: calc(50% - 1rem); /* Two cards per row */
     margin-left: 2rem;
-    margin-right: 1rem; /* Adjust the gap between cards */
+    margin-right: 0;
   }
-  
-  .card {
-    background-color: var(--base-10, #ffffff);
-    width: calc(50% - 1rem); /* Adjust the width to fit two cards per row with a gap */
-    box-shadow: var(--shadow-xl, 0 4px 6px rgba(0, 0, 0, 0.1));
-    border-radius: 0.5rem;
-    overflow: hidden;
-    margin: 0.5rem 0; /* Adjust the margin for spacing */
+  .card-container {
+    width: fit-content;
+    margin-left: auto;
+    margin-right: auto;
   }
-  
-  .card figure img {
-    width: 100%;
-    height: auto;
+  .custom-card-title {
+    font-size: 0.8rem;
   }
-  
-  .card-body {
-    padding: 1rem;
-  }
-  
-  .card-title {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    font-size: 1.25rem;
-    font-weight: 700;
-    margin-bottom: 0.5rem;
-  }
-  
-  /* Media Queries */
-  @media (min-width: 640px) {
-    .card {
-      width: calc(50% - 1rem); /* Two cards per row */
-    }
-  }
-  
-  @media (max-width: 768px) {
-    .card {
-      width: calc(33.33% - 1rem); /* Three cards per row */
-    }
-  }
-  @media (max-width: 425px) {
-    .card {
-      width: calc(20.00% - 1rem); /* Three cards per row */
-    }
-    .card-container{
-      margin-right: 2rem;
-    }
-    .card-title {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      font-size: 0.25rem;
-      font-weight: 700;
-      margin-bottom: 0.5rem;
-    }
-  }
-
-
+}
