@@ -36,8 +36,8 @@ The easiest way to deploy your Next.js app is to use the [Vercel Platform](https
 Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details
 
 
- /* styles.css */
+ styles.css 
 .custom-card {
   @apply card bg-base-100 shadow-xl;
-  width: calc(20.00% - 1rem); /* Apply custom width calculation */
+  width: calc(20.00% - 1rem); /* Apply custom width calculation 
 }
