@@ -5,13 +5,7 @@ import Link from 'next/link';
 const Footer = () => (
   <>
   <footer className="footer bg-base-300 text-base-content p-10">
-  <nav>
-    <h6 className="footer-title">Services</h6>
-    <Link href="" className="link link-hover">Branding</Link>
-    <Link href="" className="link link-hover">Design</Link>
-    <Link href="" className="link link-hover">Marketing</Link>
-    <Link href="" className="link link-hover">Advertisement</Link>
-  </nav>
+
   <nav>
     <h6 className="footer-title">Company</h6>
     <Link href="" className="link link-hover">About us</Link>
