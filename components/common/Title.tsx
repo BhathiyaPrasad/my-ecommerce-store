@@ -6,10 +6,10 @@ import '../Styles/title.css'
 
 function Title({text}) {
     return (
-<div className="title">
-<h1 className="btn btn-ghost text-3xl font-mono">{text}</h1>
 
-       </div>       
+<h1 className="title">{text}</h1>
+
+           
     )
 }
 
