@@ -25,14 +25,21 @@
       ],
       "@utils/*": [
         "utils/*"
-      ]
+      ],
+    
     },
+   
+    "types":["node", "jest", "@testing-library/jest-dom"],
     "plugins": [
       {
         "name": "next"
       }
     ],
     "strictNullChecks": true // Enforces strict null checks.
+  },
+  "ts-node": {
+    "transpileOnly": true,
+    "files": true
   },
   "include": [
     "next-env.d.ts",
