@@ -6,9 +6,9 @@ import '../Styles/title.css'
 
 function Title({text}) {
     return (
-
+<div className="center">
 <h1 className="title">{text}</h1>
-
+</div>
            
     )
 }
