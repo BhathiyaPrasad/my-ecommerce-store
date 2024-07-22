@@ -1,3 +1,4 @@
 export default function handler(req, res) {
-    res.status(200).json({ text: 'Hello' });
+ const Reqbody =  req.body 
+    res.status(200).json({ text: 'Hello this is APi test' , Reqbody });
   }
