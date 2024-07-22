@@ -2,10 +2,10 @@
 
 import React, { useState, useEffect } from 'react';
 import Image from 'next/image';
-import sliderOne from '../assests/images/test2.webp';
-import sliderTwo from '../assests/images/test.webp';
-import sliderThree from '../assests/images/test3.webp';
-import sliderFour from '../assests/images/test4.webp';  // Add more images as needed
+import sliderOne from '../assests/images/Slider01.jpg';
+import sliderTwo from '../assests/images/Slider02.jpg';
+import sliderThree from '../assests/images/Slider03.jpg';
+import sliderFour from '../assests/images/Slider04.jpg';  // Add more images as needed
 import './Styles/hero.css';
 
 const images = [
