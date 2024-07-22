@@ -56,9 +56,7 @@ const ProductDetails = ({ productId }: ProductDetailsProps) => {
           </div>
           <p className="leading-relaxed mb-4">
             Fam locavore kickstarter distillery. Mixtape chillwave tumeric
-            sriracha taximy chia microdosing tilde DIY. XOXO fam inxigo juiceramps
-            cornhole raw denim forage brooklyn. Everyday carry +1 seitan poutine
-            tumeric. Gastropub blue bottle austin listicle pour-over, neutra jean.
+            sriracha taximy chia microdosing tilde DIY. 
           </p>
           <div className="flex border-t border-gray-200 py-2">
             <span className="text-gray-500">Color</span>
