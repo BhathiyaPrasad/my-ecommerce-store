@@ -15,7 +15,7 @@ function ProductCard({Sales_Price, Eng_Name}) {
         <div className="custom-card-body">
           <h2 className="custom-card-title">
           {Eng_Name}
-            <div className="badge badge-secondary">NEW</div>
+            <div className="tag">NEW</div>
           </h2>
           <p className="custom-card-sale-price">{Sales_Price}.00</p>
           {/* <div className="card-actions justify-end">
