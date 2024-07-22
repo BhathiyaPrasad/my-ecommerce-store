@@ -3,8 +3,6 @@
   display: flex;
   flex-wrap: wrap;
   gap: 2rem;
-  /* margin-left: 2rem;
-     margin-right: 1rem; Adjust the gap between cards */
 }
 
 .custom-card {
@@ -38,17 +36,25 @@
 }
 
 /* Media Queries */
-@media (max-width: 768px) {
+@media (min-width: 600px) and (max-width: 768px) {
   .custom-card {
-    width: calc(50% - 1rem); /* Two cards per row on mobile */
+    width: calc(33.33% - 1rem); /* Three cards per row for medium screens */
+    
+  }
+  .card-container {
+    width: fit-content;
+    
+  }
+  .custom-card-title {
+    font-size: 0.8rem;
   }
 }
 
-@media (max-width: 425px) {
+@media (max-width: 600px) {
   .custom-card {
-    width: calc(50% - 1rem); /* Two cards per row */
-    margin-left: 2rem;
-    margin-right: 0;
+    width: calc(47% - 1rem); /* Two cards per row for small screens */
+    margin-left: auto;
+    margin-right: auto;
   }
   .card-container {
     width: fit-content;
