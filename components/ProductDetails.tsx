@@ -41,16 +41,16 @@ const ProductDetails = ({ productId }: ProductDetailsProps) => {
     fetchProduct();
   }, [productId]);
 
-  if (!product) return <p>Loading...</p>;
+  if (!product) return <span className="loading loading-dots loading-md"></span>;
 
   return (
     (
       <section className="text-gray-600 body-font overflow-hidden">
-        
+
         <div className="container px-5 py-4 mx-auto">
-          
+
           <div className="lg:w-4/5 mx-auto flex flex-wrap">
-          <div className="lg:w-1/2 w-full mb-6 lg:mb-0">
+            <div className="lg:w-1/2 w-full mb-6 lg:mb-0">
               <Image
                 alt="ecommerce"
                 className="w-full sm:w-3/4 md:w-2/3 lg:w-full h-auto object-cover object-center rounded"
@@ -59,7 +59,7 @@ const ProductDetails = ({ productId }: ProductDetailsProps) => {
               />
               <div
                 className="mainDiv"
-                
+
               >
                 <Image
                   src={test}
@@ -110,15 +110,29 @@ const ProductDetails = ({ productId }: ProductDetailsProps) => {
                 Product Colour May Slightly vary Due to Photographic Lightning or your Device Settings
               </p>
               <div className="flex border-t border-gray-200 py-2">
-                <span className="text-gray-500 font-mono">Color</span>
+                <span className="text-gray-500 font-mono">Size</span>
                 <span className="ml-auto text-gray-900"><input type="radio" name="radio-7" className="radio radio-info" defaultChecked />
-                <input type="radio" name="radio-7" className="radio radio-info" /><input type="radio" name="radio-7" className="radio radio-info" defaultChecked />
-                <input type="radio" name="radio-7" className="radio radio-info" /></span>
+                  <input type="radio" name="radio-7" className="radio radio-info" /><input type="radio" name="radio-7" className="radio radio-info" defaultChecked />
+                  <input type="radio" name="radio-7" className="radio radio-info" /></span>
               </div>
               <div className="flex border-t border-gray-200 py-2">
-                <span className="text-gray-500 font-mono">Size</span>
-                <span className="ml-auto text-gray-900">{product.size}</span>
-              </div>
+  <span className="text-gray-500 font-mono">Color</span>
+  <span className="ml-auto text-gray-900 flex space-x-2">
+    <button
+      className="w-8 h-8 rounded-full border-2 border-gray-300 hover:border-black focus:outline-none focus:ring-2 focus:ring-black"
+      style={{ backgroundColor: "black" }}
+    ></button>
+    <button
+      className="w-8 h-8 rounded-full border-2 border-gray-300 hover:border-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-600"
+      style={{ backgroundColor: "blue" }}
+    ></button>
+    <button
+      className="w-8 h-8 rounded-full border-2 border-gray-300 hover:border-gray-200 focus:outline-none focus:ring-2 focus:ring-gray-200"
+      style={{ backgroundColor: "white" }}
+    ></button>
+  </span>
+</div>
+
               <div className="flex border-t border-b mb-6 border-gray-200 py-2">
                 <span className="text-gray-500 font-mono">Quantity</span>
                 <span className="ml-auto text-gray-900">{product.quantity}</span>
@@ -144,7 +158,7 @@ const ProductDetails = ({ productId }: ProductDetailsProps) => {
                 </button> */}
               </div>
             </div>
-           
+
           </div>
         </div>
       </section>
