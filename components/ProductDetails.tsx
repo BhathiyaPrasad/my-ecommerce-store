@@ -99,78 +99,80 @@ const ProductDetails = ({ productId }: ProductDetailsProps) => {
               </button>
             </div>
           </div>
+          <div className="col-md-6">
+
+<div
+  className="pro-img-list mt-2 d-flex justify-content-between"
+  style={{
+    overflowX: "auto",
+    whiteSpace: "nowrap",
+    padding: 8,
+    backgroundColor: "#FBFAF5",
+    height:500
+      }}
+>
+  <Image
+    src={test}
+    alt=""
+    id="sub01"
+    style={{
+      width: 100,
+      height: "auto",
+      cursor: "pointer",
+      border: "2px solid #ddd",
+      marginRight: 10,
+      borderRadius: 10
+    }}
+  />
+  <Image
+    src={test}
+    alt=""
+    id="sub02"
+    style={{
+      width: 100,
+      height: "auto",
+      cursor: "pointer",
+      border: "2px solid #ddd",
+      marginRight: 10,
+      
+    }}
+  />
+  <Image
+    src={test}
+    alt=""
+    id="sub03"
+    style={{
+      width: 100,
+      height: "auto",
+      cursor: "pointer",
+      border: "2px solid #ddd",
+      marginRight: 10,
+      
+    }}
+  />
+  <Image
+    src={test}
+    alt=""
+    id="sub04"
+    style={{
+      width: 100,
+      height: "auto",
+      cursor: "pointer",
+      border: "2px solid #ddd",
+      marginRight: 10,
+      
+    }}
+  />
+</div>
+</div>
           <Image
             alt="ecommerce"
             className="w-full sm:w-3/4 md:w-2/3 lg:w-1/2 xl:w-1/3 h-auto object-cover object-center rounded"
             src={test}
           />
 
-          <div className="col-md-6">
-
-            <div
-              className="pro-img-list mt-3 d-flex justify-content-between"
-              style={{
-                overflowX: "auto",
-                whiteSpace: "nowrap",
-                padding: 10,
-                backgroundColor: "#f1f1f1",
-                
-              }}
-            >
-              <Image
-                src={test}
-                alt=""
-                id="sub01"
-                style={{
-                  width: 100,
-                  height: "auto",
-                  cursor: "pointer",
-                  border: "2px solid #ddd",
-                  marginRight: 10,
-                  borderRadius: 10
-                }}
-              />
-              <Image
-                src={test}
-                alt=""
-                id="sub02"
-                style={{
-                  width: 100,
-                  height: "auto",
-                  cursor: "pointer",
-                  border: "2px solid #ddd",
-                  marginRight: 10,
-                  
-                }}
-              />
-              <Image
-                src={test}
-                alt=""
-                id="sub03"
-                style={{
-                  width: 100,
-                  height: "auto",
-                  cursor: "pointer",
-                  border: "2px solid #ddd",
-                  marginRight: 10,
-                  
-                }}
-              />
-              <Image
-                src={test}
-                alt=""
-                id="sub04"
-                style={{
-                  width: 100,
-                  height: "auto",
-                  cursor: "pointer",
-                  border: "2px solid #ddd",
-                  marginRight: 10,
-                  
-                }}
-              />
-            </div>
-          </div>
+         
+          
         </div>
       </div>
 
