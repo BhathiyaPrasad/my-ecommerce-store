@@ -141,8 +141,8 @@ const ProductDetails = ({ productId }: ProductDetailsProps) => {
                 <span className="title-font font-medium text-2xl text-red-900 font-sans">
                   Rs {product.Sales_Price}.00
                 </span>
-                <button className="flex ml-auto border-0 py-2 px-5  rounded font-sans">
-                <button className="btn btn-outline btn-primary">Add to Carts</button>
+                <button className="flex ml-auto text-white bg-indigo-500 border-0 py-2 px-6 focus:outline-none hover:bg-indigo-600 rounded font-sans">
+                  Add to Cart
                 </button>
                 {/* <button className="rounded-full w-10 h-10 bg-gray-200 p-0 border-0 inline-flex items-center justify-center text-gray-500 ml-4">
                   <svg
