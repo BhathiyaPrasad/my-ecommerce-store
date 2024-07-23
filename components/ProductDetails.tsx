@@ -111,7 +111,9 @@ const ProductDetails = ({ productId }: ProductDetailsProps) => {
               </p>
               <div className="flex border-t border-gray-200 py-2">
                 <span className="text-gray-500 font-mono">Color</span>
-                <span className="ml-auto text-gray-900">{product.color}</span>
+                <span className="ml-auto text-gray-900"><input type="radio" name="radio-7" className="radio radio-info" defaultChecked />
+                <input type="radio" name="radio-7" className="radio radio-info" /><input type="radio" name="radio-7" className="radio radio-info" defaultChecked />
+                <input type="radio" name="radio-7" className="radio radio-info" /></span>
               </div>
               <div className="flex border-t border-gray-200 py-2">
                 <span className="text-gray-500 font-mono">Size</span>
