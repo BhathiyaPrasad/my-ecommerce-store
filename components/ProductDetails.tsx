@@ -41,24 +41,20 @@ const ProductDetails = ({ productId }: ProductDetailsProps) => {
             BRAND NAME
           </h2>
           <h1 className="text-gray-900 text-3xl title-font font-medium mb-4">
-            Animated Night Hill Illustrations
+            {product.Name}
           </h1>
           <div className="flex mb-4">
             <a className="flex-grow text-indigo-500 border-b-2 border-indigo-500 py-2 text-lg px-1">
               Description
             </a>
             <a className="flex-grow border-b-2 border-gray-300 py-2 text-lg px-1">
-              Reviews
+              Size Charts
             </a>
-            <a className="flex-grow border-b-2 border-gray-300 py-2 text-lg px-1">
-              Details
-            </a>
+           
           </div>
           <p className="leading-relaxed mb-4">
-            Fam locavore kickstarter distillery. Mixtape chillwave tumeric
-            sriracha taximy chia microdosing tilde DIY. XOXO fam inxigo juiceramps
-            cornhole raw denim forage brooklyn. Everyday carry +1 seitan poutine
-            tumeric. Gastropub blue bottle austin listicle pour-over, neutra jean.
+          Luxury Collection by Saluni Fashion - Hurry Up
+          Product Colour May Slightly vary Due to Photographic Lightning or your Device Settingss
           </p>
           <div className="flex border-t border-gray-200 py-2">
             <span className="text-gray-500">Color</span>
@@ -77,7 +73,7 @@ const ProductDetails = ({ productId }: ProductDetailsProps) => {
               $58.00
             </span>
             <button className="flex ml-auto text-white bg-indigo-500 border-0 py-2 px-6 focus:outline-none hover:bg-indigo-600 rounded">
-              Button
+              Add to Cart
             </button>
             <button className="rounded-full w-10 h-10 bg-gray-200 p-0 border-0 inline-flex items-center justify-center text-gray-500 ml-4">
               <svg
