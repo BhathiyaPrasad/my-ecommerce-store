@@ -1,0 +1,16 @@
+[data-theme='dark'] .mainDiv {
+    background-color: hsl(215, 28%, 17%);
+  }
+[data-theme='dark'] .mainDiv {
+    background-color: hsl(215, 28%, 17%);
+  }  
+
+ 
+.mainDiv{
+    
+    @apply mt-2 flex justify-between overflow-x-auto whitespace-nowrap p-2;
+    backgroun-color: #FBFAF5;
+    height: 'auto';
+    
+}  
+

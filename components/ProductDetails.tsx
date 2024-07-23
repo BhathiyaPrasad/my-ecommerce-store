@@ -47,7 +47,7 @@ const ProductDetails = ({ productId }: ProductDetailsProps) => {
     (
       <section className="text-gray-600 body-font overflow-hidden">
         
-        <div className="container px-5 py-24 mx-auto">
+        <div className="container px-5 py-4 mx-auto">
           
           <div className="lg:w-4/5 mx-auto flex flex-wrap">
           <div className="lg:w-1/2 w-full mb-6 lg:mb-0">
@@ -58,8 +58,8 @@ const ProductDetails = ({ productId }: ProductDetailsProps) => {
                 style={{ maxHeight: '500px', objectFit: 'contain' }}
               />
               <div
-                className="mt-2 flex justify-between overflow-x-auto whitespace-nowrap p-2 bg-gray-200"
-                style={{ height: 'auto', backgroundColor: '#FBFAF5' }}
+                className="mainDiv"
+                
               >
                 <Image
                   src={test}
@@ -91,41 +91,41 @@ const ProductDetails = ({ productId }: ProductDetailsProps) => {
                 />
               </div>
             </div>            <div className="lg:w-1/2 w-full lg:pr-10 lg:py-6 mb-6 lg:mb-0">
-              <h2 className="text-sm title-font text-gray-500 tracking-widest">
+              <h2 className="text-sm title-font text-gray-500 tracking-widest font-mono">
                 {product.Cat_Name}
               </h2>
-              <h1 className="text-gray-900 text-3xl title-font font-medium mb-4">
+              <h1 className="text-gray-900 text-3xl title-font font-medium mb-4 font-sans">
                 {product.Item_Name}
               </h1>
               <div className="flex mb-4">
-                <a className="flex-grow text-indigo-500 border-b-2 border-indigo-500 py-2 text-lg px-1">
+                <a className="flex-grow text-indigo-500 border-b-2 border-indigo-500 py-2 text-lg px-1 font-mono">
                   Description
                 </a>
-                <a className="flex-grow border-b-2 border-gray-300 py-2 text-lg px-1">
+                <a className="flex-grow border-b-2 border-gray-300 py-2 text-lg px-1 font-mono">
                   Size Charts
                 </a>
               </div>
-              <p className="leading-relaxed mb-4">
+              <p className="leading-relaxed mb-4 font-sans">
                 Luxury Collection by Saluni Fashion - Hurry Up
                 Product Colour May Slightly vary Due to Photographic Lightning or your Device Settings
               </p>
               <div className="flex border-t border-gray-200 py-2">
-                <span className="text-gray-500">Color</span>
+                <span className="text-gray-500 font-mono">Color</span>
                 <span className="ml-auto text-gray-900">{product.color}</span>
               </div>
               <div className="flex border-t border-gray-200 py-2">
-                <span className="text-gray-500">Size</span>
+                <span className="text-gray-500 font-mono">Size</span>
                 <span className="ml-auto text-gray-900">{product.size}</span>
               </div>
               <div className="flex border-t border-b mb-6 border-gray-200 py-2">
-                <span className="text-gray-500">Quantity</span>
+                <span className="text-gray-500 font-mono">Quantity</span>
                 <span className="ml-auto text-gray-900">{product.quantity}</span>
               </div>
               <div className="flex">
-                <span className="title-font font-medium text-2xl text-gray-900">
+                <span className="title-font font-medium text-2xl text-red-900 font-sans">
                   Rs {product.Sales_Price}.00
                 </span>
-                <button className="flex ml-auto text-white bg-indigo-500 border-0 py-2 px-6 focus:outline-none hover:bg-indigo-600 rounded">
+                <button className="flex ml-auto text-white bg-indigo-500 border-0 py-2 px-6 focus:outline-none hover:bg-indigo-600 rounded font-sans">
                   Add to Cart
                 </button>
                 {/* <button className="rounded-full w-10 h-10 bg-gray-200 p-0 border-0 inline-flex items-center justify-center text-gray-500 ml-4">
