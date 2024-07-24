@@ -7,7 +7,7 @@
 
 .custom-card {
   @apply card bg-base-100 shadow-xl;
-  width: calc(20% - 1rem); /* Four cards per row on desktop */
+  width: calc(25% - 1rem); /* Four cards per row on desktop */
   background-color: var(--base-10, #ffffff);
   box-shadow: var(--shadow-xl, 0 4px 6px rgba(0, 0, 0, 0.1));
   border-radius: 0.5rem;
@@ -132,11 +132,13 @@
 .card-container {
   display: flex;
   flex-wrap: wrap;
-  gap: 1.5rem;
+  gap: 1.28rem;
+  margin-left: 15rem;
+  margin-right: 15rem
 }
 
 .custom-card {
-  width: calc(20% - 1rem); /* Four cards per row on desktop */
+  width: calc(25% - 1rem); /* Four cards per row on desktop */
   border-radius: 0.5rem;
   overflow: hidden;
   margin: 0.5rem 0; /* Adjust the margin for spacing */
@@ -198,6 +200,14 @@
      font-family:sans-serif;
      font-size: 1rem;
   }
+  .card-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1.28rem;
+    margin-left: 3rem;
+    margin-right: 3rem
+  }
+  
 }
 
 @media (min-width: 600px) and (max-width: 768px) {
@@ -213,6 +223,14 @@
      font-family:sans-serif;
      font-size: 1rem;
   }
+  .card-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1.28rem;
+    margin-left: 2rem;
+    margin-right: 2rem
+  }
+  
 }
 
 @media (max-width: 600px) {
@@ -230,6 +248,14 @@
      font-family:sans-serif;
      font-size: 1rem;
   }
+  .card-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1.28rem;
+    margin-left:1rem ;
+    margin-right:1rem 
+  }
+  
 }
 
 @media (max-width: 400px) {

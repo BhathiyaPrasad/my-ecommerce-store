@@ -111,27 +111,49 @@ const ProductDetails = ({ productId }: ProductDetailsProps) => {
               </p>
               <div className="flex border-t border-gray-200 py-2">
                 <span className="text-gray-500 font-mono">Size</span>
-                <span className="ml-auto text-gray-900"><input type="radio" name="radio-7" className="radio radio-info" defaultChecked />
-                  <input type="radio" name="radio-7" className="radio radio-info" /><input type="radio" name="radio-7" className="radio radio-info" defaultChecked />
-                  <input type="radio" name="radio-7" className="radio radio-info" /></span>
+                <span className="ml-auto text-gray-900 flex space-x-2">
+                  <button
+                    className="w-8 h-8 rounded-full border-2 border-gray-300 hover:border-blue-600 focus:outline-none focus:ring-2  focus:ring-blue-600"
+                    style={{ backgroundColor: "white", fontSize:10}}
+                  >UK 6</button>
+                  <button
+                    className="w-8 h-8 rounded-full border-2 border-gray-300 hover:border-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-600"
+                    style={{ backgroundColor: "white",fontSize:10 }}
+                  >UK 8</button>
+                  <button
+                    className="w-8 h-8 rounded-full border-2 border-gray-300 hover:border-blue-600 focus:outline-none focus:ring-2  focus:ring-blue-600"
+                    style={{ backgroundColor: "white",fontSize:10 }}
+                  >UK 10</button>
+                  <button
+                    className="w-8 h-8 rounded-full border-2 border-gray-300  hover:border-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-600"
+                    style={{ backgroundColor: "white",fontSize:10 }}
+                  >UK 12</button>
+                  <button
+                    className="w-8 h-8 rounded-full border-2 border-gray-300 hover:border-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-600"
+                    style={{ backgroundColor: "white",fontSize:10 }}
+                  >UK 14</button>
+                  <button
+                    className="w-8 h-8 rounded-full border-2 border-gray-300  hover:border-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-600"
+                    style={{ backgroundColor: "white",fontSize:10 }}
+                  >UK 16</button></span>
               </div>
               <div className="flex border-t border-gray-200 py-2">
-  <span className="text-gray-500 font-mono">Color</span>
-  <span className="ml-auto text-gray-900 flex space-x-2">
-    <button
-      className="w-8 h-8 rounded-full border-2 border-gray-300 hover:border-black focus:outline-none focus:ring-2 focus:ring-black"
-      style={{ backgroundColor: "black" }}
-    ></button>
-    <button
-      className="w-8 h-8 rounded-full border-2 border-gray-300 hover:border-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-600"
-      style={{ backgroundColor: "blue" }}
-    ></button>
-    <button
-      className="w-8 h-8 rounded-full border-2 border-gray-300 hover:border-gray-200 focus:outline-none focus:ring-2 focus:ring-gray-200"
-      style={{ backgroundColor: "white" }}
-    ></button>
-  </span>
-</div>
+                <span className="text-gray-500 font-mono">Color</span>
+                <span className="ml-auto text-gray-900 flex space-x-2">
+                  <button
+                    className="w-8 h-8 rounded-full border-2 border-gray-300  hover:border-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-600"
+                    style={{ backgroundColor: "black" }}
+                  ></button>
+                  <button
+                    className="w-8 h-8 rounded-full border-2 border-gray-300 hover:border-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-600"
+                    style={{ backgroundColor: "blue" }}
+                  ></button>
+                  <button
+                    className="w-8 h-8 rounded-full border-2 border-gray-300  hover:border-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-600"
+                    style={{ backgroundColor: "white" }}
+                  ></button>
+                </span>
+              </div>
 
               <div className="flex border-t border-b mb-6 border-gray-200 py-2">
                 <span className="text-gray-500 font-mono">Quantity</span>
