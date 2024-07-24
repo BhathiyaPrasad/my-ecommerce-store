@@ -170,7 +170,7 @@
 
 /* Dark Theme */
 [data-theme='dark'] .custom-card {
-  background-color: #1f2937; /* Adjust to your preferred dark color */
+  background-color: hsl(215, 28%, 17%); /* Adjust to your preferred dark color */
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.5);
 }
 
