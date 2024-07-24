@@ -18,8 +18,8 @@
     transition: color .1s linear;
     padding: 0;
     text-align: center;
-    margin: 15px 0;
-    font-size: 30px;
+    margin: 20px 0;
+    font-size: 40px;
     line-height: 1.5;
     @apply btn btn-ghost text-2xl font-mono;
   }
