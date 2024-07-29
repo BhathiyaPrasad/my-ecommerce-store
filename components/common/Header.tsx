@@ -48,6 +48,7 @@ const Header = () => (
             </li>
             <li><Link href={'/product/week'}>THIS WEEK</Link></li>
             <li><Link href={'/product/sale'}>SALE</Link></li>
+            <li><Link href={'/product/accessories'}>ACCESSORIES</Link></li>
             <li><Link href={'/contact'}>CONTACT</Link></li>
           </ul>
         </div>
@@ -76,6 +77,7 @@ const Header = () => (
           </li>
           <li><Link href={'/product/week'} className='text font-bold font-mono text-base'>THIS WEEK</Link></li>
           <li><Link href={'/product/sale'} className='text font-bold font-mono text-base'>SALE</Link></li>
+          <li><Link href={'/product/accessories'} className='text font-bold font-mono text-base'>ACCESSORIES</Link></li>
           <li><Link href={'/contact'} className='text font-bold font-mono text-base'>CONTACT</Link></li>
         </ul>
       </div>
