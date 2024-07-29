@@ -17,7 +17,13 @@ export default function Home() {
       
       <Title text="New Arrivals" />
        
-      <ProductList/>
+      
+       <ProductList
+       category=""
+       order="DESC"
+       limits={12}
+       discount="discount => 0"
+      />
     
     </MainLayout>
   
