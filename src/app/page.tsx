@@ -22,6 +22,7 @@ export default function Home() {
        category=""
        order=">="
        limits={12}
+       group='Item_ID_Auto'
       
       />
     
