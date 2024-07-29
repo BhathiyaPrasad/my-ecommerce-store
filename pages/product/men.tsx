@@ -12,6 +12,7 @@ export default function men () {
      category="men"
      order="DESC"
      discount="discount => 0"
+     limit=''
      /></MainLayout>
     )
 }
