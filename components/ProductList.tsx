@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { collection, getDocs, where, doc, query, orderBy , limit } from 'firebase/firestore';
+import { collection, getDocs, where, doc, query, orderBy, limit } from 'firebase/firestore';
 import { ref, getStorage, getDownloadURL } from 'firebase/storage'
 import { db } from '../utils/firebase';
 import ProductCard from './common/ProductCard';
@@ -37,15 +37,15 @@ const ProductList = (props) => {
     const fetchProducts = async () => {
       try {
         const itemsRef = collection(doc(db, "organizations", orgDocId), "items");
-        
+
         const itemsQuery = query(
           itemsRef,
           where("ItemActiveMode", "==", 1),
           where("Deleted", "==", 0),
           where("ShowInSaleInvoice", "==", 1),
-          where("Manufacturer", "==",props.category),
+          where("Manufacturer", "==", props.category),
           where("Discount", props.order, "0"),
-          orderBy("Item_ID_Auto" , "desc"),
+          orderBy(props.group, "desc"),
           limit(props.limits)
         );
 
@@ -77,22 +77,22 @@ const ProductList = (props) => {
 
   return (
     <div className="card-container">
-    {products.map(product => (
-      <ProductCard
-        key={product.id}
-        
-        Discount={product.Discount}
-        Sales_Price={product.Sales_Price}
-        Eng_Name={product.Eng_Name}
-        
-        // imageUrl={product.imageUrl}
-      />
-    ))}
-  </div>
-       
+      {products.map(product => (
+        <ProductCard
+          key={product.id}
 
-    
-     
+          Discount={product.Discount}
+          Sales_Price={product.Sales_Price}
+          Eng_Name={product.Eng_Name}
+
+        // imageUrl={product.imageUrl}
+        />
+      ))}
+    </div>
+
+
+
+
   );
 };
 

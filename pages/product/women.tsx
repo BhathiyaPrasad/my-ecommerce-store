@@ -11,6 +11,7 @@ export default function women () {
      category="women"
      order=">="
      limit={12}
+     group='Brand'
       />
      </MainLayout>
     )

@@ -13,6 +13,7 @@ export default function sale () {
      category=""
      order=">"
      limit=''
+     group='Item_ID_Auto'
      /></MainLayout>
     )
 }

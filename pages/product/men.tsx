@@ -12,6 +12,7 @@ export default function men () {
      category="men"
      order=">="
      limit={12}
+     group='Brand'
      /></MainLayout>
     )
 }
