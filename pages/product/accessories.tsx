@@ -5,7 +5,13 @@ import '../../src/app/globals.css'
 
 
 export default function accessories () {
-    return (
-     <MainLayout> <ProductList/></MainLayout>
-    )
+ return (
+    <MainLayout> 
+     <ProductList
+        category="accessories"
+        order=">="
+        limit={12}
+     />
+    </MainLayout>
+ )
 }

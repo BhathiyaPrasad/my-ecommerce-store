@@ -44,7 +44,7 @@ const ProductList = (props) => {
           where("Deleted", "==", 0),
           where("ShowInSaleInvoice", "==", 1),
           where("Manufacturer", "==",props.category),
-          where("Discount", props.order, "0.00"),
+          where("Discount", props.order, "0"),
           orderBy("Item_ID_Auto" , "desc"),
           limit(props.limits)
         );
