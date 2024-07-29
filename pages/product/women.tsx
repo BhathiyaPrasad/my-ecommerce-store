@@ -6,6 +6,12 @@ import '../../src/app/globals.css'
 
 export default function women () {
     return (
-     <MainLayout> <ProductList/></MainLayout>
+     <MainLayout>  
+    <ProductList
+     category="women"
+     order="DESC"
+     discount="discount => 0"
+      />
+     </MainLayout>
     )
 }
