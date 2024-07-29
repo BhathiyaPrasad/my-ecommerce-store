@@ -20,7 +20,7 @@ export default function Home() {
       
        <ProductList
        category=""
-       order=">"
+       order=">="
        limits={12}
       
       />
