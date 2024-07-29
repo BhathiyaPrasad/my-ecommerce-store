@@ -27,7 +27,7 @@ async function getImageDownloadURL(imagePath) {
 }
 
 
-const ProductList = () => {
+const ProductList = (props) => {
   const [products, setProducts] = useState<Product[]>([]);
   const [loading, setLoading] = useState<boolean>(true);
   const [error, setError] = useState<string | null>(null);
@@ -39,7 +39,7 @@ const ProductList = () => {
 
         const itemsQuery = query(
           itemsRef,
-          where("Manufacturer", "!=", ""),
+          where("Manufacturer", "==",props.category),
           where("ItemActiveMode", "==", 1),
           where("Deleted", "==", 0),
           where("ShowInSaleInvoice", "==", 1),
