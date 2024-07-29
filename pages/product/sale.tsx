@@ -2,16 +2,16 @@ import MainLayout from "@components/layout/MainLayout";
 import React from "react";
 import ProductList from '../../components/ProductList';
 import '../../src/app/globals.css'
+import Title from "@components/common/Title";
 
 
-
-export default function men () {
+export default function sale () {
     return (
      <MainLayout> 
+       <Title text="SPECIAL OFFERS" />
      <ProductList
      category=""
-     order="DESC"
-     discount="discount > 0"
+     order=">"
      limit=''
      /></MainLayout>
     )
