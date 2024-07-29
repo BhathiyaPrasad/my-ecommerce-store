@@ -20,9 +20,9 @@ export default function Home() {
       
        <ProductList
        category=""
-       order="DESC"
+       order=">"
        limits={12}
-       discount="discount => 0"
+      
       />
     
     </MainLayout>
