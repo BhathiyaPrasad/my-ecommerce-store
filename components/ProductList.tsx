@@ -10,6 +10,7 @@ type Product = {
   Sales_Price: number;
   Eng_Name: string;
   email: string;
+  Discount: string;
 };
 
 const orgDocId = "20240711-1011-SaluniFashion";
@@ -36,14 +37,15 @@ const ProductList = (props) => {
     const fetchProducts = async () => {
       try {
         const itemsRef = collection(doc(db, "organizations", orgDocId), "items");
-
+        
         const itemsQuery = query(
           itemsRef,
           where("Manufacturer", "==",props.category),
+          where("Discount", props.order, "0" ),
           where("ItemActiveMode", "==", 1),
           where("Deleted", "==", 0),
           where("ShowInSaleInvoice", "==", 1),
-          orderBy("Cat_Name"),
+          orderBy("Item_ID_Auto" , "desc"),
           limit(props.limits)
         );
 
@@ -80,7 +82,7 @@ const ProductList = (props) => {
         key={product.id}
         
         
-        Sales_Price={product.Sales_Price}
+        Sales_Price={product. Sales_Price}
         Eng_Name={product.Eng_Name}
         
         // imageUrl={product.imageUrl}
