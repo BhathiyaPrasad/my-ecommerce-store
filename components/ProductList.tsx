@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { collection, getDocs, where, doc, query, orderBy } from 'firebase/firestore';
+import { collection, getDocs, where, doc, query, orderBy , limit } from 'firebase/firestore';
 import { ref, getStorage, getDownloadURL } from 'firebase/storage'
 import { db } from '../utils/firebase';
 import ProductCard from './common/ProductCard';
@@ -43,7 +43,8 @@ const ProductList = (props) => {
           where("ItemActiveMode", "==", 1),
           where("Deleted", "==", 0),
           where("ShowInSaleInvoice", "==", 1),
-          orderBy("Cat_Name")
+          orderBy("Cat_Name"),
+          limit(props.limits)
         );
 
         const querySnapshot = await getDocs(itemsQuery);
