@@ -18,12 +18,12 @@ function ProductCard({Sales_Price, Eng_Name , Discount}) {
           {Eng_Name}
             <div className="tag">NEW</div>
           </h2>
-          <p className="custom-card-sale-price">{Sales_Price}.00</p>
-          <p className="custom-card-real-price">{Sales_Price - Discount}.00</p>
-          {/* <div className="card-actions justify-end">
-            <div className="badge badge-outline">Fashion</div>
-            <div className="badge badge-outline">Products</div>
-          </div> */}
+          {Discount > 0 ? (
+            <>
+                        <p className="custom-card-sale-price">{Sales_Price}.00</p> 
+                        <p className="custom-card-real-price">{Sales_Price - Discount}.00</p></>
+                    ) : <p className="custom-card-real-price">{Sales_Price}.00</p> }
+         
         </div>
       </div>
         
