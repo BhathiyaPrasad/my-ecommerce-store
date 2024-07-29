@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { collection, getDocs, where, doc, query, orderBy } from 'firebase/firestore';
+import { collection, getDocs, where, doc, query, orderBy , limit } from 'firebase/firestore';
 import { ref, getStorage, getDownloadURL } from 'firebase/storage'
 import { db } from '../utils/firebase';
 import ProductCard from './common/ProductCard';
@@ -27,7 +27,7 @@ async function getImageDownloadURL(imagePath) {
 }
 
 
-const ProductList = () => {
+const ProductList = (props) => {
   const [products, setProducts] = useState<Product[]>([]);
   const [loading, setLoading] = useState<boolean>(true);
   const [error, setError] = useState<string | null>(null);
@@ -39,11 +39,12 @@ const ProductList = () => {
 
         const itemsQuery = query(
           itemsRef,
-          where("Manufacturer", "!=", ""),
+          where("Manufacturer", "==",props.category),
           where("ItemActiveMode", "==", 1),
           where("Deleted", "==", 0),
           where("ShowInSaleInvoice", "==", 1),
-          orderBy("Cat_Name")
+          orderBy("Cat_Name"),
+          limit(props.limits)
         );
 
         const querySnapshot = await getDocs(itemsQuery);

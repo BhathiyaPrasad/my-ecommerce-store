@@ -4,8 +4,15 @@ import ProductList from '../../components/ProductList';
 import '../../src/app/globals.css'
 
 
+
 export default function men () {
     return (
-     <MainLayout> <ProductList/></MainLayout>
+     <MainLayout> 
+     <ProductList
+     category="men"
+     order="DESC"
+     discount="discount => 0"
+     limit=''
+     /></MainLayout>
     )
 }
