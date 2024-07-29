@@ -40,11 +40,11 @@ const ProductList = (props) => {
         
         const itemsQuery = query(
           itemsRef,
-          where("Manufacturer", "==",props.category),
-          where("Discount", props.order, "0" ),
           where("ItemActiveMode", "==", 1),
           where("Deleted", "==", 0),
           where("ShowInSaleInvoice", "==", 1),
+          where("Manufacturer", "==",props.category),
+          where("Discount", props.order, "0" ),
           orderBy("Item_ID_Auto" , "desc"),
           limit(props.limits)
         );
