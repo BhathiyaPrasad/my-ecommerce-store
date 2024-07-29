@@ -11,6 +11,7 @@ export default function women () {
      category="women"
      order="DESC"
      discount="discount => 0"
+     limit='12'
       />
      </MainLayout>
     )
