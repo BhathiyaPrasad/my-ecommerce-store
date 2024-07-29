@@ -10,9 +10,8 @@ export default function men () {
      <MainLayout> 
      <ProductList
      category="men"
-     order="DESC"
-     discount="discount => 0"
-     limit=''
+     order=">"
+     limit={12}
      /></MainLayout>
     )
 }
