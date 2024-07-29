@@ -9,9 +9,8 @@ export default function women () {
      <MainLayout>  
     <ProductList
      category="women"
-     order="DESC"
-     discount="discount => 0"
-     limit='12'
+     order=">"
+     limit={12}
       />
      </MainLayout>
     )

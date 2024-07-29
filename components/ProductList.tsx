@@ -44,7 +44,7 @@ const ProductList = (props) => {
           where("Deleted", "==", 0),
           where("ShowInSaleInvoice", "==", 1),
           where("Manufacturer", "==",props.category),
-          where("Discount", props.order, "0" ),
+          where("Discount", props.order, "0.00"),
           orderBy("Item_ID_Auto" , "desc"),
           limit(props.limits)
         );
@@ -81,8 +81,8 @@ const ProductList = (props) => {
       <ProductCard
         key={product.id}
         
-        
-        Sales_Price={product. Sales_Price}
+        Discount={product.Discount}
+        Sales_Price={product.Sales_Price}
         Eng_Name={product.Eng_Name}
         
         // imageUrl={product.imageUrl}
