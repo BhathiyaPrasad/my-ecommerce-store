@@ -5,6 +5,7 @@
   gap: 1rem;
 } */
 
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap');
 .custom-card {
   @apply card bg-base-100 shadow-xl;
   width: calc(25% - 1rem); /* Four cards per row on desktop */
@@ -33,29 +34,23 @@
   font-size: 1rem;
   font-weight: 700;
   margin-bottom: 0.5rem;
-  
 }
-
-
 
 .tag {
   @apply badge badge-secondary;
-  
 }
 
 @media (min-width: 768px) and (max-width: 1024px) {
   .custom-card {
-    width: calc(25.00% - 1rem); /* Three cards per row for medium screens */
-    
+    width: calc(25% - 1rem); /* Three cards per row for medium screens */
   }
   .card-container {
     width: fit-content;
-    
   }
   .custom-card-title {
     font-size: 0.8rem;
   }
-  .tag{
+  .tag {
     font-size: 0.8rem;
   }
 }
@@ -64,16 +59,14 @@
 @media (min-width: 600px) and (max-width: 768px) {
   .custom-card {
     width: calc(40.33% - 1rem); /* Three cards per row for medium screens */
-    
   }
   .card-container {
     width: fit-content;
-    
   }
   .custom-card-title {
     font-size: 0.8rem;
   }
-  .tag{
+  .tag {
     font-size: 0.7rem;
   }
 }
@@ -92,7 +85,7 @@
   .custom-card-title {
     font-size: 0.8rem;
   }
-  .tag{
+  .tag {
     font-size: 0.6rem;
   }
 }
@@ -111,14 +104,12 @@
   .custom-card-title {
     font-size: 0.6rem;
   }
-  .tag{
+  .tag {
     font-size: 0.5rem;
   }
   .custom-card-sale-price {
-   
-     font-size: 0.8rem;
+    font-size: 0.8rem;
   }
-  
 }
 
 /* Card.css */
@@ -129,7 +120,7 @@
   flex-wrap: wrap;
   gap: 1.28rem;
   margin-left: 15rem;
-  margin-right: 15rem
+  margin-right: 15rem;
 }
 
 .custom-card {
@@ -160,37 +151,41 @@
 }
 
 /* Light Theme */
-[data-theme='light'] .custom-card {
-  background-color: #FBFAF5;
+[data-theme="light"] .custom-card {
+  background-color: #fbfaf5;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
 
 /* Dark Theme */
-[data-theme='dark'] .custom-card {
-  background-color: hsl(215, 28%, 17%); /* Adjust to your preferred dark color */
+[data-theme="dark"] .custom-card {
+  background-color: hsl(
+    215,
+    28%,
+    17%
+  ); /* Adjust to your preferred dark color */
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.5);
 }
 
-[data-theme='dark'] .custom-card-title {
+[data-theme="dark"] .custom-card-title {
   color: #ffffff;
 }
-[data-theme='dark'] .custom-card-sale-price {
+[data-theme="dark"] .custom-card-sale-price {
   color: #ffffff;
 }
-[data-theme='light'] .custom-card-sale-price {
+[data-theme="light"] .custom-card-sale-price {
   color: #0f0f0f;
 }
 .custom-card-sale-price {
-  color: #ff6347; 
+  color: #ff6347;
   font-size: 1.25rem;
-  font-weight: 700; 
+  font-weight: 700;
   text-decoration: line-through;
 }
 .custom-card-real-price {
-  color: #ff6347; 
+  color: #ff6347;
   font-size: 1.25rem;
-  font-weight: 700; 
-  
+  font-weight: 700;
+  font-family: Roboto;
 }
 /* Media Queries */
 @media (min-width: 768px) and (max-width: 1024px) {
@@ -202,24 +197,23 @@
   }
   .custom-card-sale-price {
     color: rgb(168, 62, 62);
-     font-weight:600;
-     font-family:sans-serif;
-     font-size: 1rem;
+    font-weight: 600;
+    font-family: sans-serif;
+    font-size: 1rem;
   }
   .custom-card-real-price {
-    color: #ff6347; 
-     font-weight:600;
-     font-family:sans-serif;
-     font-size: 1rem;
+    color: #ff6347;
+    font-weight: 600;
+    font-family: sans-serif;
+    font-size: 1rem;
   }
   .card-container {
     display: flex;
     flex-wrap: wrap;
     gap: 1.28rem;
     margin-left: 3rem;
-    margin-right: 3rem
+    margin-right: 3rem;
   }
-  
 }
 
 @media (min-width: 600px) and (max-width: 768px) {
@@ -231,24 +225,23 @@
   }
   .custom-card-sale-price {
     color: rgb(168, 62, 62);
-     font-weight:600;
-     font-family:sans-serif;
-     font-size: 1rem;
+    font-weight: 600;
+    font-family: sans-serif;
+    font-size: 1rem;
   }
   .custom-card-real-price {
-    color: #ff6347; 
-     font-weight:600;
-     font-family:sans-serif;
-     font-size: 1rem;
+    color: #ff6347;
+    font-weight: 600;
+    font-family: sans-serif;
+    font-size: 1rem;
   }
   .card-container {
     display: flex;
     flex-wrap: wrap;
     gap: 1.28rem;
     margin-left: 2rem;
-    margin-right: 2rem
+    margin-right: 2rem;
   }
-  
 }
 
 @media (max-width: 600px) {
@@ -262,24 +255,23 @@
   }
   .custom-card-sale-price {
     color: rgb(168, 62, 62);
-     font-weight:600;
-     font-family:sans-serif;
-     font-size: 1rem;
+    font-weight: 600;
+    font-family: sans-serif;
+    font-size: 1rem;
   }
   .custom-card-real-price {
-    color: #ff6347; 
-     font-weight:600;
-     font-family:sans-serif;
-     font-size: 1rem;
+    color: #ff6347;
+    font-weight: 600;
+    font-family: sans-serif;
+    font-size: 1rem;
   }
   .card-container {
     display: flex;
     flex-wrap: wrap;
     gap: 1.2rem;
-    margin-left:1.5rem ;
-    margin-right:1rem 
+    margin-left: 1.5rem;
+    margin-right: 1rem;
   }
-  
 }
 
 @media (max-width: 400px) {
@@ -291,17 +283,16 @@
   }
   .custom-card-sale-price {
     color: rgb(168, 62, 62);
-     font-weight:600;
-     font-family:sans-serif;
-     font-size: 0.9rem;
+    font-weight: 600;
+    font-family: sans-serif;
+    font-size: 0.9rem;
   }
   .custom-card-real-price {
-    color: #ff6347; ;
-     font-weight:600;
-     font-family:sans-serif;
-     font-size: 0.9rem;
+    color: #ff6347;
+    font-weight: 600;
+    font-family: sans-serif;
+    font-size: 0.9rem;
   }
-  
 }
 
 @media (min-width: 320) {
@@ -313,17 +304,17 @@
   }
   .custom-card-sale-price {
     color: rgb(168, 62, 62);
-     font-weight:600;
-     font-family:sans-serif;
-     font-size: 0.9rem;
+    font-weight: 600;
+    font-family: sans-serif;
+    font-size: 0.9rem;
   }
   .custom-card-real-price {
-    color: #ff6347; 
-     font-weight:600;
-     font-family:sans-serif;
-     font-size: 0.9rem;
+    color: #ff6347;
+    font-weight: 600;
+    font-family: sans-serif;
+    font-size: 0.9rem;
   }
-  .tag{
+  .tag {
     font-size: 0.5rem;
   }
 }
