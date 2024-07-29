@@ -46,9 +46,9 @@ const Header = () => (
                 <li><a>Pants</a></li>
               </ul>
             </li>
-            <li><Link href={'/'}>THIS WEEK</Link></li>
-            <li><Link href={'/'}>SALE</Link></li>
-            <li><Link href={'/'}>CONTACT</Link></li>
+            <li><Link href={'/product/week'}>THIS WEEK</Link></li>
+            <li><Link href={'/product/sale'}>SALE</Link></li>
+            <li><Link href={'/contact'}>CONTACT</Link></li>
           </ul>
         </div>
         <a className="btn btn-ghost text-xl" href='/'>SALUNI FASHION</a>
@@ -74,9 +74,9 @@ const Header = () => (
               </ul>
             </details>
           </li>
-          <li><Link href={'/'} className='text font-bold font-mono text-base'>THIS WEEK</Link></li>
-          <li><Link href={'/'} className='text font-bold font-mono text-base'>SALE</Link></li>
-          <li><Link href={'/'} className='text font-bold font-mono text-base'>CONTACT</Link></li>
+          <li><Link href={'/product/week'} className='text font-bold font-mono text-base'>THIS WEEK</Link></li>
+          <li><Link href={'/product/sale'} className='text font-bold font-mono text-base'>SALE</Link></li>
+          <li><Link href={'/contact'} className='text font-bold font-mono text-base'>CONTACT</Link></li>
         </ul>
       </div>
       <div className="navbar-end">
