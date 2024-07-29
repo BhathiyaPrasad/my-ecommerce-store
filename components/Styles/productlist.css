@@ -35,12 +35,7 @@
   margin-bottom: 0.5rem;
   
 }
-.custom-card-sale-price {
-  color: rgb(168, 62, 62);
-   font-weight:600;
-   font-family:sans-serif;
-   font-size: 1.2rem;
-}
+
 
 
 .tag {
@@ -185,7 +180,18 @@
 [data-theme='light'] .custom-card-sale-price {
   color: #0f0f0f;
 }
-
+.custom-card-sale-price {
+  color: #ff6347; 
+  font-size: 1.25rem;
+  font-weight: 700; 
+  text-decoration: line-through;
+}
+.custom-card-real-price {
+  color: #ff6347; 
+  font-size: 1.25rem;
+  font-weight: 700; 
+  
+}
 /* Media Queries */
 @media (min-width: 768px) and (max-width: 1024px) {
   .custom-card {
