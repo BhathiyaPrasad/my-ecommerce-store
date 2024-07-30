@@ -23,6 +23,7 @@ export default function Home() {
        order=">="
        limits={12}
        group='Item_ID_Auto'
+       type=''
       
       />
     

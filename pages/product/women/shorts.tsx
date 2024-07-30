@@ -5,7 +5,7 @@ import '../../../src/app/globals.css'
 
 
 
-export default function shirts () {
+export default function shorts () {
     return (
      <MainLayout> 
      <ProductList
@@ -13,7 +13,7 @@ export default function shirts () {
      order=">="
      limit={12}
      group='Brand'
-     type='shirt'
+     type='shorts'
      /></MainLayout>
     )
 }
