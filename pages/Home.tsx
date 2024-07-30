@@ -6,7 +6,13 @@ export default function Home() {
   return (
     <MainLayout>
   <Hero />
-      <ProductList />
+      <ProductList
+      category=""
+      order=">="
+      limit={12}
+      group='Brand'
+      type=''
+       />
     </MainLayout>
   );
 }

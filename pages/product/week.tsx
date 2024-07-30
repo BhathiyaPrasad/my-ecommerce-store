@@ -13,6 +13,8 @@ export default function week () {
      category=""
      order=">"
      limit=''
+     group='Item_ID_Auto'
+     type=''
      /></MainLayout>
     )
 }

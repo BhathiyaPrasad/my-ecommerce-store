@@ -11,6 +11,8 @@ export default function accessories () {
         category="accessories"
         order=">="
         limit={12}
+        group='Brand'
+        type=''
      />
     </MainLayout>
  )
