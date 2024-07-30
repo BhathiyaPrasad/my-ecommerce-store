@@ -42,8 +42,8 @@ const Header = () => (
             <li>
               <Link href={'/product/women '}>WOMEN</Link>
               <ul className="p-2">
-                <li><Link href={'/product/men/shirts'}>Skirts</Link></li>
-                <li><Link href={'/product/men/trousers'}>Pants</Link></li>
+                <li><Link href={'/product/women/shorts'}>Shorts</Link></li>
+                <li><Link href={'/product/women/skirts'}>Skirts</Link></li>
               </ul>
             </li>
             <li><Link href={'/product/week'}>THIS WEEK</Link></li>
@@ -70,8 +70,8 @@ const Header = () => (
             <details>
               <summary><Link href={'/product/women'} className='text font-bold font-mono text-base'>WOMEN</Link></summary>
               <ul className="p-2">
-                <li><a>Pants</a></li>
-                <li><a>Skirts</a></li>
+              <li><Link href={'/product/women/shorts'}>Shorts</Link></li>
+                <li><Link href={'/product/women/skirts'}>Skirts</Link></li>
               </ul>
             </details>
           </li>
