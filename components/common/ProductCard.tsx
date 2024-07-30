@@ -1,19 +1,19 @@
+'use client'
+import { useRouter } from 'next/navigation'
 import React from "react";
 import product from "../../assests/images/product13.13.jpg";
 import Image from "next/image";
 import "../Styles/productlist.css";
 
-function clickImage() {
-
-}
 
 
 
 
-function ProductCard({ Sales_Price, Eng_Name, Discount }) {
+function ProductCard({ Sales_Price, Eng_Name, Discount, UUID }) {
+
+  const router = useRouter()
   return (
-    <div className="custom-card">
-    
+    <div className="custom-card" onClick={() => router.push(`/product/${UUID}`)}>
       <figure>
         <Image src={product} alt="car!" priority={false} loading="lazy" />
       </figure>
@@ -33,7 +33,7 @@ function ProductCard({ Sales_Price, Eng_Name, Discount }) {
           <p className="custom-card-real-price">{Sales_Price}.00</p>
         )}
       </div>
-   
+
     </div>
   );
 }
