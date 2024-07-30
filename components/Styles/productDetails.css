@@ -104,3 +104,75 @@
   --tw-bg-opacity: 1;
   background-color: rgba(79, 70, 229, var(--tw-bg-opacity));
 }
+/* Dark Mode Styles */
+[data-theme='dark'] .mainDiv {
+  background-color: hsl(215, 28%, 17%);
+}
+
+[data-theme='dark'] .border-gray-300 {
+  border-color: rgba(75, 85, 99, 1); /* Darker border color for dark mode */
+}
+
+[data-theme='dark'] .text-gray-500 {
+  color: rgba(156, 163, 175, 1); /* Darker text color for dark mode */
+}
+
+[data-theme='dark'] .text-gray-900 {
+  color: rgba(255, 255, 255, 1); /* Lighter text color for dark mode */
+}
+
+[data-theme='dark'] .bg-indigo-500 {
+  background-color: rgba(67, 56, 202, 1); /* Keep the same in dark mode */
+}
+
+[data-theme='dark'] .hover\:bg-indigo-600:hover {
+  background-color: rgba(79, 70, 229, 1); /* Keep the same in dark mode */
+}
+
+[data-theme='dark'] .border-b-2 {
+  border-bottom-width: 2px;
+  border-bottom-color: rgba(67, 56, 202, 1); /* Indigo color for active tab in dark mode */
+}
+
+/* Light Mode Styles */
+.mainDiv {
+  @apply mt-2 flex justify-between overflow-x-auto whitespace-nowrap p-2;
+  background-color: #FBFAF5; /* Light background color */
+  height: auto;
+}
+
+.border-gray-300 {
+  border-color: rgba(209, 213, 219, 1); /* Light border color */
+}
+
+.text-gray-500 {
+  color: rgba(107, 114, 128, 1); /* Gray text color */
+}
+
+.text-gray-900 {
+  color: rgba(17, 24, 39, 1); /* Dark text color */
+}
+
+.bg-indigo-500 {
+  background-color: rgba(67, 56, 202, 1); /* Indigo color */
+}
+
+.hover\:bg-indigo-600:hover {
+  background-color: rgba(79, 70, 229, 1); /* Darker Indigo color on hover */
+}
+
+.border-b-2 {
+  border-bottom-width: 2px;
+  border-bottom-color: transparent; /* Default border color for inactive tabs */
+}
+
+/* Add styles for active and inactive tabs */
+.active-tab {
+  color: #4f46e5; /* Indigo color */
+  border-bottom: 2px solid #4f46e5; /* Indigo color */
+}
+
+.inactive-tab {
+  color: #4b5563; /* Gray color */
+  border-bottom: 2px solid transparent;
+}
