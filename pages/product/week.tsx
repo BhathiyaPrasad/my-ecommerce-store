@@ -14,6 +14,7 @@ export default function week () {
      order=">"
      limit=''
      group='Item_ID_Auto'
+     type=''
      /></MainLayout>
     )
 }

@@ -45,7 +45,9 @@ const ProductList = (props) => {
           where("ShowInSaleInvoice", "==", 1),
           where("Manufacturer", "==", props.category),
           where("Discount", props.order, "0"),
+          where("Brand" ,"==",props.type),
           orderBy(props.group, "desc"),
+          
           limit(props.limits)
         );
 
