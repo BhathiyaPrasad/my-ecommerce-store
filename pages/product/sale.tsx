@@ -14,6 +14,7 @@ export default function sale () {
      order=">"
      limit=''
      group='Item_ID_Auto'
+     type=''
      /></MainLayout>
     )
 }

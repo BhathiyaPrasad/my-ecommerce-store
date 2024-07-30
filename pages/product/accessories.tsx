@@ -12,6 +12,7 @@ export default function accessories () {
         order=">="
         limit={12}
         group='Brand'
+        type=''
      />
     </MainLayout>
  )
