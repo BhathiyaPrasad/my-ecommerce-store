@@ -35,15 +35,15 @@ const Header = () => (
             <li>
               <Link href={'/product/men'}>MEN</Link>
               <ul className="p-2">
-                <li><a>Shirts</a></li>
-                <li><a>Trousers</a></li>
+              <li><Link href={'/product/men/shirts'}>Shirts</Link></li>
+                <li><Link href={'/product/men/trousers'}>Trousers</Link></li>
               </ul>
             </li>
             <li>
               <Link href={'/product/women '}>WOMEN</Link>
               <ul className="p-2">
-                <li><a>Skirts</a></li>
-                <li><a>Pants</a></li>
+                <li><Link href={'/product/men/shirts'}>Skirts</Link></li>
+                <li><Link href={'/product/men/trousers'}>Pants</Link></li>
               </ul>
             </li>
             <li><Link href={'/product/week'}>THIS WEEK</Link></li>
@@ -61,8 +61,8 @@ const Header = () => (
             <details>
               <summary><Link href={'/product/men'} className='text font-bold font-mono text-base'>MEN</Link></summary>
               <ul className="p-2">
-                <li><a href='./home'>Shirts</a></li>
-                <li><a>Trousers</a></li>
+              <li><Link href={'/product/men/shirts'}>Shirts</Link></li>
+              <li><Link href={'/product/men/trousers'}>Trousers</Link></li>
               </ul>
             </details>
           </li>
