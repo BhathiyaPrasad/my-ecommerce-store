@@ -11,6 +11,7 @@ type Product = {
   Eng_Name: string;
   email: string;
   Discount: string;
+  UUID: string;
 };
 
 const orgDocId = "20240711-1011-SaluniFashion";
@@ -86,6 +87,7 @@ const ProductList = (props) => {
           Discount={product.Discount}
           Sales_Price={product.Sales_Price}
           Eng_Name={product.Eng_Name}
+          UUID={product.UUID}
 
         // imageUrl={product.imageUrl}
         />
