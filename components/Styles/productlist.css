@@ -38,7 +38,11 @@
 
 .tag {
   @apply badge badge-secondary;
+  position: absolute;
+  top: 0.5rem;
+  right: 0.5rem;
 }
+
 
 @media (min-width: 768px) and (max-width: 1024px) {
   .custom-card {
@@ -318,3 +322,5 @@
     font-size: 0.5rem;
   }
 }
+
+
