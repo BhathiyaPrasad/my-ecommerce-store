@@ -3,6 +3,7 @@ import { doc, getDoc, collection } from 'firebase/firestore';
 import { db } from '../utils/firebase';
 import Image from 'next/image';
 import test from '../assests/images/product13.13.jpg';
+import test2 from '../assests/images/test2.jpg';
 import SizeChart from './common/SizeChart';
 import './Styles/productDetails.css';
 
@@ -21,11 +22,13 @@ type Product = {
   size: string;
   quantity: number;
   Cat_Name: string;
+  src: string;
 };
 
 const ProductDetails = ({ productId }: ProductDetailsProps) => {
   const [product, setProduct] = useState<Product | null>(null);
   const [activeTab, setActiveTab] = useState<'description' | 'sizeChart'>('description');
+  const [mainImage, setMainImage] = useState(test); // Initial main image
 
   useEffect(() => {
     const fetchProduct = async () => {
@@ -40,6 +43,10 @@ const ProductDetails = ({ productId }: ProductDetailsProps) => {
     fetchProduct();
   }, [productId]);
 
+  const handleImageClick = (src: string) => {
+    setMainImage(src);
+  };
+
   if (!product) return <span className="loading loading-dots loading-md"></span>;
 
   return (
@@ -50,36 +57,37 @@ const ProductDetails = ({ productId }: ProductDetailsProps) => {
             <div className="lg:w-1/2 w-full mb-6 lg:mb-0">
               <Image
                 alt="ecommerce"
+                id='main'
                 className="w-full sm:w-3/4 md:w-2/3 lg:w-full h-auto object-cover object-center rounded"
-                src={test}
+                src={mainImage}
                 style={{ maxHeight: '500px', objectFit: 'contain' }}
               />
               <div className="mainDiv mt-4">
                 <Image
-                  src={test}
-                  alt=""
-                  id="sub01"
+                  src={test2}
+                  alt="Thumbnail 1"
+                  onClick={() => handleImageClick(test2)}
                   className="w-24 h-auto cursor-pointer border-2 border-gray-300 mr-2 rounded"
                   style={{ width: '100px', marginRight: '10px', borderRadius: '10px' }}
                 />
                 <Image
                   src={test}
-                  alt=""
-                  id="sub02"
+                  alt="Thumbnail 2"
+                  onClick={() => handleImageClick(test)}
+                  className="w-24 h-auto cursor-pointer border-2 border-gray-300 mr-2 rounded"
+                  style={{ width: '100px', marginRight: '10px', borderRadius: '10px' }}
+                />
+                <Image
+                  src={test2}
+                  alt="Thumbnail 3"
+                  onClick={() => handleImageClick(test2)}
                   className="w-24 h-auto cursor-pointer border-2 border-gray-300 mr-2 rounded"
                   style={{ width: '100px', marginRight: '10px', borderRadius: '10px' }}
                 />
                 <Image
                   src={test}
-                  alt=""
-                  id="sub03"
-                  className="w-24 h-auto cursor-pointer border-2 border-gray-300 mr-2 rounded"
-                  style={{ width: '100px', marginRight: '10px', borderRadius: '10px' }}
-                />
-                <Image
-                  src={test}
-                  alt=""
-                  id="sub04"
+                  alt="Thumbnail 4"
+                  onClick={() => handleImageClick(test)}
                   className="w-24 h-auto cursor-pointer border-2 border-gray-300 mr-2 rounded"
                   style={{ width: '100px', marginRight: '10px', borderRadius: '10px' }}
                 />
@@ -107,7 +115,7 @@ const ProductDetails = ({ productId }: ProductDetailsProps) => {
                   }`}
                   onClick={() => setActiveTab('sizeChart')}
                 >
-                  Size Charts
+                  Size Chart
                 </a>
               </div>
               {activeTab === 'sizeChart' && <SizeChart />}
@@ -163,15 +171,23 @@ const ProductDetails = ({ productId }: ProductDetailsProps) => {
                     <span className="ml-auto text-gray-900 flex space-x-2">
                       <button
                         className="w-8 h-8 rounded-full border-2 border-gray-300 hover:border-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-600"
-                        style={{ backgroundColor: "black" }}
+                        style={{ backgroundColor:"#FFC0CB"  }}
                       ></button>
                       <button
                         className="w-8 h-8 rounded-full border-2 border-gray-300 hover:border-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-600"
-                        style={{ backgroundColor: "blue" }}
+                        style={{ backgroundColor: "#B76E79" }}
                       ></button>
                       <button
                         className="w-8 h-8 rounded-full border-2 border-gray-300 hover:border-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-600"
-                        style={{ backgroundColor: "white" }}
+                        style={{ backgroundColor: "#663399" }}
+                      ></button>
+                         <button
+                        className="w-8 h-8 rounded-full border-2 border-gray-300 hover:border-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-600"
+                        style={{ backgroundColor: "#FFDAB9" }}
+                      ></button>
+                         <button
+                        className="w-8 h-8 rounded-full border-2 border-gray-300 hover:border-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-600"
+                        style={{ backgroundColor: "#ADD8E6" }}
                       ></button>
                     </span>
                   </div>
@@ -180,7 +196,7 @@ const ProductDetails = ({ productId }: ProductDetailsProps) => {
                     <span className="ml-auto text-gray-900">{product.quantity}</span>
                   </div>
                   <div className="flex">
-                    <span className="title-font font-medium text-2xl text-red-900 font-sans">
+                    <span className="title-fonts font-medium text-2xl text-red-900 font-sans">
                       Rs {product.Sales_Price}.00
                     </span>
                     <button className="flex ml-auto text-white bg-indigo-500 border-0 py-2 px-6 focus:outline-none hover:bg-indigo-600 rounded font-sans">

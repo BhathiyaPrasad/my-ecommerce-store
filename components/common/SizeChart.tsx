@@ -2,6 +2,7 @@
 import React from 'react';
 import Link from 'next/link';
 import "../Styles/title.css";
+import "../Styles/sizechart.css"
 
 const SizeChart = () => (
   <>
@@ -10,57 +11,58 @@ const SizeChart = () => (
   {/* head */}
   <thead>
     <tr>
-      <th>Size</th>
-      <th>Bust (inches)</th>
-      <th>Waist (inches)</th>
-      <th>Hips (inches)</th>
+      <th className='tableheaders'>Size</th>
+      <th className='tableheaders'>Bust (cm)</th>
+      <th className='tableheaders'>Waist (cm)</th>
+      <th className='tableheaders'>Hips (cm)</th>
     </tr>
   </thead>
   <tbody>
-    {/* row 1 */}
+   
     <tr>
-      <th>UK 6</th>
-      <td>31.5</td>
-      <td>24.5</td>
-      <td>34</td>
+      <th className='tabledata'>UK 6</th>
+      <td className='tabledata'>80</td>
+      <td className='tabledata'>62</td>
+      <td className='tabledata'>86.5</td>
     </tr>
-    {/* row 2 */}
+    
     <tr>
-      <th>UK 8</th>
-      <td>33</td>
-      <td>26</td>
-      <td>35.5</td>
+      <th className='tabledata'>UK 8</th>
+      <td className='tabledata'>84</td>
+      <td className='tabledata'>66</td>
+      <td className='tabledata'>90</td>
     </tr>
-    {/* row 3 */}
+  
     <tr>
-      <th>UK 10</th>
-      <td>35</td>
-      <td>28</td>
-      <td>37.5</td>
+      <th className='tabledata'>UK 10</th>
+      <td className='tabledata'>89</td>
+      <td className='tabledata'>71</td>
+      <td className='tabledata'>95</td>
     </tr>
-    {/* row 4 */}
+
     <tr>
-      <th>UK 12</th>
-      <td>37</td>
-      <td>30</td>
-      <td>39.5</td>
+      <th className='tabledata'>UK 12</th>
+      <td className='tabledata'>94</td>
+      <td className='tabledata'>76</td>
+      <td className='tabledata'>100</td>
     </tr>
-    {/* row 5 */}
+  
     <tr>
-      <th>UK 14</th>
-      <td>39</td>
-      <td>32</td>
-      <td>41.5</td>
+      <th className='tabledata'>UK 14</th>
+      <td className='tabledata'>99</td>
+      <td className='tabledata'>81</td>
+      <td className='tabledata'>105</td>
     </tr>
-    {/* row 6 */}
+   
     <tr>
-      <th>UK 16</th>
-      <td>41</td>
-      <td>34</td>
-      <td>43.5</td>
+      <th className='tabledata'>UK 16</th>
+      <td className='tabledata'>104</td>
+      <td className='tabledata'>86</td>
+      <td className='tabledata'>110</td>
     </tr>
   </tbody>
 </table>
+
 
 </div>
 </>
