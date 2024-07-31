@@ -171,15 +171,23 @@ const ProductDetails = ({ productId }: ProductDetailsProps) => {
                     <span className="ml-auto text-gray-900 flex space-x-2">
                       <button
                         className="w-8 h-8 rounded-full border-2 border-gray-300 hover:border-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-600"
-                        style={{ backgroundColor: "black" }}
+                        style={{ backgroundColor:"#FFC0CB"  }}
                       ></button>
                       <button
                         className="w-8 h-8 rounded-full border-2 border-gray-300 hover:border-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-600"
-                        style={{ backgroundColor: "blue" }}
+                        style={{ backgroundColor: "#B76E79" }}
                       ></button>
                       <button
                         className="w-8 h-8 rounded-full border-2 border-gray-300 hover:border-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-600"
-                        style={{ backgroundColor: "white" }}
+                        style={{ backgroundColor: "#663399" }}
+                      ></button>
+                         <button
+                        className="w-8 h-8 rounded-full border-2 border-gray-300 hover:border-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-600"
+                        style={{ backgroundColor: "#FFDAB9" }}
+                      ></button>
+                         <button
+                        className="w-8 h-8 rounded-full border-2 border-gray-300 hover:border-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-600"
+                        style={{ backgroundColor: "#ADD8E6" }}
                       ></button>
                     </span>
                   </div>
