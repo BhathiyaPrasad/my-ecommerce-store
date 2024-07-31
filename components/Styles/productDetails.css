@@ -202,12 +202,12 @@ border-bottom: 2px solid transparent;
 
 @media (min-width: 375px) and (max-width: 425px) {
   .leading-relaxed {
-    font-size: 15px;
+    font-size: 13px;
   }
 }
 
 @media (min-width: 300px) and (max-width: 375px) {
   .leading-relaxed {
-    font-size: 14px;
+    font-size: 11px;
   }
 }

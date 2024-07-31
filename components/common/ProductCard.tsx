@@ -22,6 +22,7 @@ function ProductCard({ Sales_Price, Eng_Name, Discount, UUID }) {
           {Eng_Name}
           <div className="tag">NEW</div>
         </h2>
+       
         {Discount > 0 ? (
           <>
             <p className="custom-card-sale-price">{Sales_Price}.00</p>
