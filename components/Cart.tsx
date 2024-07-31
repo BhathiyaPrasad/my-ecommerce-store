@@ -1,35 +1,34 @@
-'use client'
-import React, { useState } from 'react';
+'use client';
+import React, { useEffect, useState } from 'react';
 
-const products = [
-  {
-    id: 1,
-    name: 'Throwback Hip Bag',
-    href: '#',
-    color: 'Salmon',
-    price: '1800.00',
-    quantity: 1,
-    imageSrc: 'https://tailwindui.com/img/ecommerce-images/shopping-cart-page-04-product-01.jpg',
-    imageAlt: 'Salmon orange fabric pouch with match zipper, gray zipper pull, and adjustable hip belt.',
-  },
-  {
-    id: 2,
-    name: 'Medium Stuff Satchel',
-    href: '#',
-    color: 'Blue',
-    price: '2500.00',
-    quantity: 1,
-    imageSrc: 'https://tailwindui.com/img/ecommerce-images/shopping-cart-page-04-product-02.jpg',
-    imageAlt:
-      'Front of satchel with blue canvas body, black straps and handle, drawstring top, and front zipper pouch.',
-  },
-  // More products...
-];
+interface CartItem {
+  id: number;
+  name: string;
+  price: string;
+  quantity: number;
+  imageSrc: string;
+  imageAlt: string;
+}
 
 const Cart = () => {
-  const [cartItems, setCartItems] = useState(products);
+  const [cartItems, setCartItems] = useState<CartItem[]>([]);
 
-  const handleQuantityChange = (id, quantity) => {
+  useEffect(() => {
+    const storedItems = JSON.parse(localStorage.getItem('Items'));
+    if (storedItems) {
+      const formattedItems: CartItem[] = storedItems.map((item: any) => ({
+        id: item.Item_ID_Auto,
+        name: item.Item_Name,
+        price: `$${item.Sales_Price.toFixed(2)}`,
+        quantity: item.quantity ? item.quantity : 1, // Assuming default quantity as 1 if not provided
+        imageSrc: 'https://via.placeholder.com/150', // Placeholder image, update with actual image URL if available
+        imageAlt: item.Item_Name,
+      }));
+      setCartItems(formattedItems);
+    }
+  }, []);
+
+  const handleQuantityChange = (id: number, quantity: number) => {
     setCartItems(prevItems =>
       prevItems.map(item =>
         item.id === id ? { ...item, quantity: Math.max(1, quantity) } : item
@@ -37,7 +36,7 @@ const Cart = () => {
     );
   };
 
-  const handleRemoveItem = (id) => {
+  const handleRemoveItem = (id: number) => {
     setCartItems(prevItems => prevItems.filter(item => item.id !== id));
   };
 
@@ -57,8 +56,7 @@ const Cart = () => {
               <li key={item.id} className="flex items-center border-b py-4">
                 <img src={item.imageSrc} alt={item.imageAlt} className="w-24 h-24 object-cover mr-4" />
                 <div className="flex-1">
-                  <a href={item.href} className="text-lg font-semibold">{item.name}</a>
-                  <p className="text-gray-600">{item.color}</p>
+                  <p className="text-lg font-semibold">{item.name}</p>
                   <p className="text-gray-600">Price: {item.price}</p>
                   <div className="flex items-center mt-2">
                     <button
@@ -86,7 +84,7 @@ const Cart = () => {
             ))}
           </ul>
           <div className="mt-4">
-            <p className="text-lg font-bold">Total: {calculateTotalPrice()}</p>
+            <p className="text-lg font-bold">Total: ${calculateTotalPrice()}</p>
           </div>
         </>
       )}
