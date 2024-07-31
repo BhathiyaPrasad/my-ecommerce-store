@@ -48,7 +48,7 @@ const ProductDetails = ({ productId }: ProductDetailsProps) => {
     fetchProduct();
   }, [productId]);
 
-  const handleImageClick = (src: string) => {
+  const handleImageClick = (src) => {
     setMainImage(src);
   };
 

@@ -68,7 +68,7 @@ const ProductList = (props) => {
     };
 
     fetchProducts();
-  }, []);
+  },  [props.category, props.group, props.limits, props.order, props.type]);
 
   if (loading) {
     return <span className="loading loading-dots loading-md"></span>;
