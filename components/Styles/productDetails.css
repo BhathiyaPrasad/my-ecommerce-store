@@ -120,6 +120,15 @@
 [data-theme='dark'] .text-gray-900 {
   color: rgba(255, 255, 255, 1); /* Lighter text color for dark mode */
 }
+[data-theme='dark'] .leading-relaxed {
+  color: rgba(255, 255, 255, 1); /* Lighter text color for dark mode */
+}
+[data-theme='dark'] .flex-grow {
+  color: rgb(202, 180, 180); /* Lighter text color for dark mode */
+}
+[data-theme='dark'] .text-gray-500 {
+  color: rgba(202, 180, 180); /* Lighter text color for dark mode */
+}
 
 [data-theme='dark'] .bg-indigo-500 {
   background-color: rgba(67, 56, 202, 1); /* Keep the same in dark mode */
