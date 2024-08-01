@@ -14,8 +14,9 @@ const Cart = () => {
   const [cartItems, setCartItems] = useState<CartItem[]>([]);
 
   useEffect(() => {
-    const storedItems = JSON.parse(localStorage.getItem('Items'));
-    if (storedItems) {
+    const itemsString = localStorage.getItem('Items');
+    if (itemsString) {
+      const storedItems = JSON.parse(itemsString);
       const formattedItems: CartItem[] = storedItems.map((item: any) => ({
         id: item.Item_ID_Auto,
         name: item.Item_Name,

@@ -8,9 +8,10 @@ const Header = () => {
   const [items, setItems] = useState([]);
 
   useEffect(() => {
-    const items = JSON.parse(localStorage.getItem('Items'));
-    if (items) {
-      setItems(items);
+    const itemsString = localStorage.getItem('Items');
+    if (itemsString) {
+      const parsedItems = JSON.parse(itemsString);
+      setItems(parsedItems);
     }
   }, []);
 
