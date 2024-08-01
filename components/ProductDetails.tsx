@@ -1,3 +1,5 @@
+'use client'
+import { useRouter } from 'next/navigation';
 import { useEffect, useState } from "react";
 import { doc, getDoc, collection } from "firebase/firestore";
 import { db } from "../utils/firebase";
@@ -6,6 +8,7 @@ import test from "../assests/images/product13.13.jpg";
 import test2 from "../assests/images/test2.jpg";
 import SizeChart from "./common/SizeChart";
 import "./Styles/productDetails.css";
+import { formatPrice } from "../utils/price";
 
 const orgDocId = "20240711-1011-SaluniFashion";
 
@@ -17,7 +20,7 @@ type Product = {
   Item_Name: string;
   description: string;
   Sales_Price: number;
-  id: string;  // Assuming this is the product's ID
+  id: string;
   color: string;
   size: string;
   quantity: number;
@@ -27,7 +30,6 @@ type Product = {
 
 const ProductDetails = ({ productId }: ProductDetailsProps) => {
   const [product, setProduct] = useState<Product | null>(null);
-  const [availableQty, setAvailableQty] = useState<number | null>(null); // State for available quantity
   const [activeTab, setActiveTab] = useState<"description" | "sizeChart">(
     "description"
   );
@@ -35,43 +37,17 @@ const ProductDetails = ({ productId }: ProductDetailsProps) => {
 
   useEffect(() => {
     const fetchProduct = async () => {
-      try {
-        // Fetch product details
-        const productDocRef = doc(
-          collection(doc(db, "organizations", orgDocId), "items"),
-          productId
-        );
-        const productDoc = await getDoc(productDocRef);
-  
-        if (productDoc.exists()) {
-          const productData = productDoc.data() as Product;
-          setProduct(productData);
-  
-          if (productData.id) {
-            // Fetch product stock details based on item_id
-            const productStockDocRef = doc(
-              collection(doc(db, "organizations", orgDocId), "products_stock_management"),
-              productData.id // Assuming item_id from items matches product_id in products_stock_management
-            );
-            const productStockDoc = await getDoc(productStockDocRef);
-  
-            if (productStockDoc.exists()) {
-              const stockData = productStockDoc.data();
-              setAvailableQty(stockData.available_qty);
-            } else {
-              console.error("No matching document in products_stock_management!");
-            }
-          } else {
-            console.error("Product ID is missing!");
-          }
-        } else {
-          console.error("No matching document in items!");
-        }
-      } catch (error) {
-        console.error("Error fetching product data:", error);
+      const productDocRef = doc(
+        collection(doc(db, "organizations", orgDocId), "items"),
+        productId
+      );
+      const productDoc = await getDoc(productDocRef);
+
+      if (productDoc.exists()) {
+        setProduct(productDoc.data() as Product);
       }
     };
-  
+
     fetchProduct();
   }, [productId]);
 
@@ -82,6 +58,7 @@ const ProductDetails = ({ productId }: ProductDetailsProps) => {
   if (!product)
     return <span className="loading loading-dots loading-md"></span>;
 
+  // addtocart function
   const addToCart = (product) => {
     console.log("order is processing", product);
 
@@ -176,7 +153,7 @@ const ProductDetails = ({ productId }: ProductDetailsProps) => {
               </div>
             </div>
             <div className="lg:w-1/2 w-full lg:pr-10 lg:py-6 mb-6 lg:mb-0">
-              <h2 className="text-sm title-font text-gray-500 tracking-widest font-mono">
+              <h2 className="text-sm title-font text-gray-500 tracking-widest font-Roboto">
                 {product.Cat_Name}
               </h2>
               <h1 className="text-gray-900 text-3xl title-font font-medium mb-4 font-sans">
@@ -184,7 +161,7 @@ const ProductDetails = ({ productId }: ProductDetailsProps) => {
               </h1>
               <div className="flex mb-4 border-b-2 border-gray-300">
                 <a
-                  className={`flex-grow py-2 text-lg px-1 font-mono cursor-pointer ${activeTab === "description"
+                  className={`flex-grow py-2 text-lg px-1 font-Roboto cursor-pointer ${activeTab === "description"
                       ? "text-indigo-500 border-b-2 border-indigo-500"
                       : ""
                     }`}
@@ -193,7 +170,7 @@ const ProductDetails = ({ productId }: ProductDetailsProps) => {
                   Description
                 </a>
                 <a
-                  className={`flex-grow py-2 text-lg px-1 font-mono cursor-pointer ${activeTab === "sizeChart"
+                  className={`flex-grow py-2 text-lg px-1 font-Roboto cursor-pointer ${activeTab === "sizeChart"
                       ? "text-indigo-500 border-b-2 border-indigo-500"
                       : ""
                     }`}
@@ -211,7 +188,7 @@ const ProductDetails = ({ productId }: ProductDetailsProps) => {
                     your Device Settings
                   </p>
                   <div className="flex border-t border-gray-200 py-2">
-                    <span className="text-gray-500 font-mono">Size</span>
+                    <span className="text-gray-500 font-Roboto">Size</span>
                     <span className="ml-auto text-gray-900 flex space-x-2">
                       <button
                         className="w-8 h-8 rounded-full border-2 border-gray-300 hover:border-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-600"
@@ -252,7 +229,7 @@ const ProductDetails = ({ productId }: ProductDetailsProps) => {
                     </span>
                   </div>
                   <div className="flex border-t border-gray-200 py-2">
-                    <span className="text-gray-500 font-mono">Color</span>
+                    <span className="text-gray-500 font-Roboto">Color</span>
                     <span className="ml-auto text-gray-900 flex space-x-2">
                       <button
                         className="w-8 h-8 rounded-full border-2 border-gray-300 hover:border-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-600"
@@ -276,15 +253,12 @@ const ProductDetails = ({ productId }: ProductDetailsProps) => {
                       ></button>
                     </span>
                   </div>
-                  <div className="flex border-t border-b mb-6 border-gray-200 py-2">
-                    <span className="text-gray-500 font-mono">Quantity</span>
-                    <span className="ml-auto text-gray-900">
-                    <progress className="progress progress-accent w-56" value="50" max="100"></progress>
-                    </span>
+                  <div className="flex border-t  mb-6 border-gray-200 py-2">
+                
                   </div>
                   <div className="flex items-center justify-between mt-4">
-                    <span className="title-font font-medium text-2xl text-black-900 font-sans">
-                      Rs {product.Sales_Price}.00
+                    <span className="title-font font-medium text-2xl text-black-900 font-Roboto">
+                      {formatPrice(product.Sales_Price)}
                     </span>
                     <div className="flex space-x-5">
                       <button className="btn btn-primary">
@@ -312,8 +286,6 @@ const ProductDetails = ({ productId }: ProductDetailsProps) => {
                       </button>
                     </div>
                   </div>
-
-
                 </>
               )}
             </div>
