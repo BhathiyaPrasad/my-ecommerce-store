@@ -204,10 +204,14 @@ border-bottom: 2px solid transparent;
   .leading-relaxed {
     font-size: 13px;
   }
+ 
 }
 
 @media (min-width: 300px) and (max-width: 375px) {
   .leading-relaxed {
     font-size: 11px;
+  }
+  .title-fonts{
+    font-size:1rem ;
   }
 }

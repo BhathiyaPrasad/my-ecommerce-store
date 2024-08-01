@@ -1,5 +1,5 @@
 'use client'
-import { useRouter } from 'next/navigation'
+import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
 import { doc, getDoc, collection } from "firebase/firestore";
 import { db } from "../utils/firebase";
@@ -8,7 +8,8 @@ import test from "../assests/images/product13.13.jpg";
 import test2 from "../assests/images/test2.jpg";
 import SizeChart from "./common/SizeChart";
 import "./Styles/productDetails.css";
-
+import { formatPrice } from "../utils/price";
+import { Router } from 'next/router';
 
 const orgDocId = "20240711-1011-SaluniFashion";
 
@@ -34,6 +35,7 @@ const ProductDetails = ({ productId }: ProductDetailsProps) => {
     "description"
   );
   const [mainImage, setMainImage] = useState(test); // Initial main image
+  const router = useRouter(); // Initialize useRouter
 
   useEffect(() => {
     const fetchProduct = async () => {
@@ -55,11 +57,11 @@ const ProductDetails = ({ productId }: ProductDetailsProps) => {
     setMainImage(src);
   };
 
+ 
   if (!product)
     return <span className="loading loading-dots loading-md"></span>;
 
   // addtocart function
-
   const addToCart = (product) => {
     console.log("order is processing", product);
 
@@ -80,23 +82,26 @@ const ProductDetails = ({ productId }: ProductDetailsProps) => {
       itemsArray = [];
     }
 
-    // Check if the product already exists in the array based on its id (UUID)
-    const productExists = itemsArray.some(item => item.UUID === product.UUID);
+    // Check if the product already exists in the array based on its id
+    const productExists = itemsArray.some(item => item.id === product.id);
 
     // Add the new product only if it does not already exist in the array
     if (!productExists) {
       itemsArray.push(product);
       localStorage.setItem('Items', JSON.stringify(itemsArray));
       console.log("Product added to cart");
-       
     } else {
       console.log("Product already in the cart");
     }
 
     
-
   };
 
+
+
+  const buyNow = () => {
+    router.push('/product/cart');
+  };
   return (
     <>
       <section className="text-gray-600 body-font overflow-hidden">
@@ -158,7 +163,7 @@ const ProductDetails = ({ productId }: ProductDetailsProps) => {
               </div>
             </div>
             <div className="lg:w-1/2 w-full lg:pr-10 lg:py-6 mb-6 lg:mb-0">
-              <h2 className="text-sm title-font text-gray-500 tracking-widest font-mono">
+              <h2 className="text-sm title-font text-gray-500 tracking-widest font-Roboto">
                 {product.Cat_Name}
               </h2>
               <h1 className="text-gray-900 text-3xl title-font font-medium mb-4 font-sans">
@@ -166,7 +171,7 @@ const ProductDetails = ({ productId }: ProductDetailsProps) => {
               </h1>
               <div className="flex mb-4 border-b-2 border-gray-300">
                 <a
-                  className={`flex-grow py-2 text-lg px-1 font-mono cursor-pointer ${activeTab === "description"
+                  className={`flex-grow py-2 text-lg px-1 font-Roboto cursor-pointer ${activeTab === "description"
                       ? "text-indigo-500 border-b-2 border-indigo-500"
                       : ""
                     }`}
@@ -175,7 +180,7 @@ const ProductDetails = ({ productId }: ProductDetailsProps) => {
                   Description
                 </a>
                 <a
-                  className={`flex-grow py-2 text-lg px-1 font-mono cursor-pointer ${activeTab === "sizeChart"
+                  className={`flex-grow py-2 text-lg px-1 font-Roboto cursor-pointer ${activeTab === "sizeChart"
                       ? "text-indigo-500 border-b-2 border-indigo-500"
                       : ""
                     }`}
@@ -193,7 +198,7 @@ const ProductDetails = ({ productId }: ProductDetailsProps) => {
                     your Device Settings
                   </p>
                   <div className="flex border-t border-gray-200 py-2">
-                    <span className="text-gray-500 font-mono">Size</span>
+                    <span className="text-gray-500 font-Roboto">Size</span>
                     <span className="ml-auto text-gray-900 flex space-x-2">
                       <button
                         className="w-8 h-8 rounded-full border-2 border-gray-300 hover:border-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-600"
@@ -234,7 +239,7 @@ const ProductDetails = ({ productId }: ProductDetailsProps) => {
                     </span>
                   </div>
                   <div className="flex border-t border-gray-200 py-2">
-                    <span className="text-gray-500 font-mono">Color</span>
+                    <span className="text-gray-500 font-Roboto">Color</span>
                     <span className="ml-auto text-gray-900 flex space-x-2">
                       <button
                         className="w-8 h-8 rounded-full border-2 border-gray-300 hover:border-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-600"
@@ -258,35 +263,40 @@ const ProductDetails = ({ productId }: ProductDetailsProps) => {
                       ></button>
                     </span>
                   </div>
-                  <div className="flex border-t border-b mb-6 border-gray-200 py-2">
-                    <span className="text-gray-500 font-mono">Quantity</span>
-                    <span className="ml-auto text-gray-900">
-                      {product.quantity}
-                    </span>
+                  <div className="flex border-t  mb-6 border-gray-200 py-2">
+                
                   </div>
-                  <div className="flex">
-                    <span className="title-fonts font-medium text-2xl text-red-900 font-sans">
-                      Rs {product.Sales_Price}.00
+                  <div className="flex items-center justify-between mt-4">
+                    <span className="title-font font-medium text-2xl text-black-900 font-Roboto">
+                      {formatPrice(product.Sales_Price)}
                     </span>
-                    <button
-                      className="flex ml-auto text-white bg-indigo-500 border-0 py-2 px-6 focus:outline-none hover:bg-indigo-600 rounded font-sans"
-                      onClick={() => addToCart(product)}
-                    >
-                      Add to Cart
-                    </button>
-
-                    <button className="rounded-full w-10 h-10 bg-gray-200 p-0 border-0 inline-flex items-center justify-center text-red-500 ml-4">
-                      <svg
-                        fill="currentColor"
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                        strokeWidth={2}
-                        className="w-5 h-5"
-                        viewBox="0 0 24 24"
+                    <div className="flex space-x-5">
+                      <button className="btn btn-primary" 
+                      onClick={() => buyNow()}
                       >
-                        <path d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 00-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 000-7.78z" />
-                      </svg>
-                    </button>
+                        Buy Now
+                      </button>
+                      <button
+                        className="btn btn-primary"
+                        onClick={() => addToCart(product)}
+                      >
+                        Add To
+                        <svg
+                          xmlns="http://www.w3.org/2000/svg"
+                          className="h-6 w-6 ml-2"
+                          fill="none"
+                          viewBox="0 0 24 24"
+                          stroke="currentColor"
+                        >
+                          <path
+                            strokeLinecap="round"
+                            strokeLinejoin="round"
+                            strokeWidth="2"
+                            d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13l-1.5 6h13l-1.5-6M7 13H3m6 9a1 1 0 11-2 0 1 1 0 012 0zm10 0a1 1 0 11-2 0 1 1 0 012 0z"
+                          />
+                        </svg>
+                      </button>
+                    </div>
                   </div>
                 </>
               )}
