@@ -9,7 +9,6 @@ import test2 from "../assests/images/test2.jpg";
 import SizeChart from "./common/SizeChart";
 import "./Styles/productDetails.css";
 import { formatPrice } from "../utils/price";
-import { Router } from 'next/router';
 
 const orgDocId = "20240711-1011-SaluniFashion";
 
@@ -57,18 +56,14 @@ const ProductDetails = ({ productId }: ProductDetailsProps) => {
     setMainImage(src);
   };
 
-
   if (!product)
     return <span className="loading loading-dots loading-md"></span>;
 
-  // addtocart function
   const addToCart = (product) => {
     console.log("order is processing", product);
 
-    // Retrieve existing items from localStorage
     let existingItems = localStorage.getItem('Items');
 
-    // Parse the existing items or start with an empty array if none exist
     let itemsArray;
     try {
       itemsArray = existingItems ? JSON.parse(existingItems) : [];
@@ -77,31 +72,30 @@ const ProductDetails = ({ productId }: ProductDetailsProps) => {
       itemsArray = [];
     }
 
-    // Ensure itemsArray is an array
     if (!Array.isArray(itemsArray)) {
       itemsArray = [];
     }
 
-    // Check if the product already exists in the array based on its id
-    const productExists = itemsArray.some(item => item.id === product.id);
+    const productIndex = itemsArray.findIndex(item => item.id === product.id);
 
-    // Add the new product only if it does not already exist in the array
-    if (!productExists) {
-      itemsArray.push(product);
-      localStorage.setItem('Items', JSON.stringify(itemsArray));
-      console.log("Product added to cart");
+    if (productIndex > -1) {
+      // Increment quantity if product exists
+      itemsArray[productIndex].quantity += 1;
     } else {
-      console.log("Product already in the cart");
+      // Add new product with quantity 1 if it doesn't exist
+      itemsArray.push({ ...product, quantity: 1 });
     }
 
-    router.push('/product/cart');
+    localStorage.setItem('Items', JSON.stringify(itemsArray));
+    console.log("Product added to cart");
+
+   
   };
-
-
 
   const buyNow = () => {
     router.push('/product/cart');
   };
+
   return (
     <>
       <section className="text-gray-600 body-font overflow-hidden">
