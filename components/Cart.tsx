@@ -39,6 +39,7 @@ const Cart = () => {
 
   const handleRemoveItem = (id: number) => {
     setCartItems(prevItems => prevItems.filter(item => item.id !== id));
+    
   };
 
   const calculateTotalPrice = () => {
