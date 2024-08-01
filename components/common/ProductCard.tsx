@@ -4,8 +4,7 @@ import React from "react";
 import product from "../../assests/images/product13.13.jpg";
 import Image from "next/image";
 import "../Styles/productlist.css";
-
-
+import { formatPrice } from "@utils/price";
 
 
 
@@ -25,13 +24,13 @@ function ProductCard({ Sales_Price, Eng_Name, Discount, UUID }) {
        
         {Discount > 0 ? (
           <>
-            <p className="custom-card-sale-price">{Sales_Price}.00</p>
+            <p className="custom-card-sale-price">{formatPrice(Sales_Price)}</p>
             <p className="custom-card-real-price">
-              {Sales_Price - Discount}.00
+              {formatPrice(Sales_Price - Discount)}
             </p>
           </>
         ) : (
-          <p className="custom-card-real-price">{Sales_Price}.00</p>
+          <p className="custom-card-real-price">{formatPrice(Sales_Price)}</p>
         )}
       </div>
 
