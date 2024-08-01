@@ -94,7 +94,7 @@ const ProductDetails = ({ productId }: ProductDetailsProps) => {
       console.log("Product already in the cart");
     }
 
-    
+    router.push('/product/cart');
   };
 
 
