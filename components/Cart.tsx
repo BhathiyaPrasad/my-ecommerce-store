@@ -1,10 +1,11 @@
 'use client';
 import React, { useEffect, useState } from 'react';
+import { formatPrice } from "@utils/price"; // Ensure this path is correct
 
 interface CartItem {
   id: number;
   name: string;
-  price: string;
+  price: number; // Changed to number to better work with formatting
   quantity: number;
   imageSrc: string;
   imageAlt: string;
@@ -20,9 +21,9 @@ const Cart = () => {
       const formattedItems: CartItem[] = storedItems.map((item: any) => ({
         id: item.Item_ID_Auto,
         name: item.Item_Name,
-        price: `$${item.Sales_Price.toFixed(2)}`,
-        quantity: item.quantity ? item.quantity : 1, // Assuming default quantity as 1 if not provided
-        imageSrc: 'https://via.placeholder.com/150', // Placeholder image, update with actual image URL if available
+        price: item.Sales_Price, // Use number here
+        quantity: item.quantity ? item.quantity : 1, // Default quantity
+        imageSrc: 'https://via.placeholder.com/150', // Placeholder image
         imageAlt: item.Item_Name,
       }));
       setCartItems(formattedItems);
@@ -39,11 +40,12 @@ const Cart = () => {
 
   const handleRemoveItem = (id: number) => {
     setCartItems(prevItems => prevItems.filter(item => item.id !== id));
-    
   };
 
   const calculateTotalPrice = () => {
-    return cartItems.reduce((total, item) => total + parseFloat(item.price.replace('$', '')) * item.quantity, 0).toFixed(2);
+    return formatPrice(
+      cartItems.reduce((total, item) => total + item.price * item.quantity, 0)
+    );
   };
 
   return (
@@ -59,7 +61,7 @@ const Cart = () => {
                 <img src={item.imageSrc} alt={item.imageAlt} className="w-24 h-24 object-cover mr-4" />
                 <div className="flex-1">
                   <p className="text-lg font-semibold">{item.name}</p>
-                  <p className="text-gray-600">Price: {item.price}</p>
+                  <p className="text-gray-600">Price: {formatPrice(item.price)}</p>
                   <div className="flex items-center mt-2">
                     <button
                       className="px-2 py-1 bg-gray-200 rounded"
@@ -86,7 +88,7 @@ const Cart = () => {
             ))}
           </ul>
           <div className="mt-4">
-            <p className="text-lg font-bold">Total: ${calculateTotalPrice()}</p>
+            <p className="text-lg font-bold">Total: {calculateTotalPrice()}</p>
           </div>
         </>
       )}

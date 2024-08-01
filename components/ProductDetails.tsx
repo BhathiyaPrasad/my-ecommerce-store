@@ -1,5 +1,5 @@
 'use client'
-import { useRouter } from 'next/navigation';
+import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
 import { doc, getDoc, collection } from "firebase/firestore";
 import { db } from "../utils/firebase";
@@ -9,6 +9,7 @@ import test2 from "../assests/images/test2.jpg";
 import SizeChart from "./common/SizeChart";
 import "./Styles/productDetails.css";
 import { formatPrice } from "../utils/price";
+import { Router } from 'next/router';
 
 const orgDocId = "20240711-1011-SaluniFashion";
 
@@ -34,6 +35,7 @@ const ProductDetails = ({ productId }: ProductDetailsProps) => {
     "description"
   );
   const [mainImage, setMainImage] = useState(test); // Initial main image
+  const router = useRouter(); // Initialize useRouter
 
   useEffect(() => {
     const fetchProduct = async () => {
@@ -55,6 +57,7 @@ const ProductDetails = ({ productId }: ProductDetailsProps) => {
     setMainImage(src);
   };
 
+ 
   if (!product)
     return <span className="loading loading-dots loading-md"></span>;
 
@@ -90,8 +93,15 @@ const ProductDetails = ({ productId }: ProductDetailsProps) => {
     } else {
       console.log("Product already in the cart");
     }
+
+    
   };
 
+
+
+  const buyNow = () => {
+    router.push('/product/cart');
+  };
   return (
     <>
       <section className="text-gray-600 body-font overflow-hidden">
@@ -261,7 +271,9 @@ const ProductDetails = ({ productId }: ProductDetailsProps) => {
                       {formatPrice(product.Sales_Price)}
                     </span>
                     <div className="flex space-x-5">
-                      <button className="btn btn-primary">
+                      <button className="btn btn-primary" 
+                      onClick={() => buyNow()}
+                      >
                         Buy Now
                       </button>
                       <button
