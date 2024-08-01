@@ -57,7 +57,7 @@ const ProductDetails = ({ productId }: ProductDetailsProps) => {
     setMainImage(src);
   };
 
- 
+
   if (!product)
     return <span className="loading loading-dots loading-md"></span>;
 
@@ -172,8 +172,8 @@ const ProductDetails = ({ productId }: ProductDetailsProps) => {
               <div className="flex mb-4 border-b-2 border-gray-300">
                 <a
                   className={`flex-grow py-2 text-lg px-1 font-Roboto cursor-pointer ${activeTab === "description"
-                      ? "text-indigo-500 border-b-2 border-indigo-500"
-                      : ""
+                    ? "text-indigo-500 border-b-2 border-indigo-500"
+                    : ""
                     }`}
                   onClick={() => setActiveTab("description")}
                 >
@@ -181,8 +181,8 @@ const ProductDetails = ({ productId }: ProductDetailsProps) => {
                 </a>
                 <a
                   className={`flex-grow py-2 text-lg px-1 font-Roboto cursor-pointer ${activeTab === "sizeChart"
-                      ? "text-indigo-500 border-b-2 border-indigo-500"
-                      : ""
+                    ? "text-indigo-500 border-b-2 border-indigo-500"
+                    : ""
                     }`}
                   onClick={() => setActiveTab("sizeChart")}
                 >
@@ -264,15 +264,15 @@ const ProductDetails = ({ productId }: ProductDetailsProps) => {
                     </span>
                   </div>
                   <div className="flex border-t  mb-6 border-gray-200 py-2">
-                
+
                   </div>
                   <div className="flex items-center justify-between mt-4">
                     <span className="title-font font-medium text-2xl text-black-900 font-Roboto">
                       {formatPrice(product.Sales_Price)}
                     </span>
                     <div className="flex space-x-5">
-                      <button className="btn btn-primary" 
-                      onClick={() => buyNow()}
+                      <button className="btn btn-primary"
+                        onClick={() => buyNow()}
                       >
                         Buy Now
                       </button>
