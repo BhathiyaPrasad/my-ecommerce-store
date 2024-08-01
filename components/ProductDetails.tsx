@@ -1,5 +1,3 @@
-'use client'
-import { useRouter } from 'next/navigation'
 import { useEffect, useState } from "react";
 import { doc, getDoc, collection } from "firebase/firestore";
 import { db } from "../utils/firebase";
@@ -8,7 +6,6 @@ import test from "../assests/images/product13.13.jpg";
 import test2 from "../assests/images/test2.jpg";
 import SizeChart from "./common/SizeChart";
 import "./Styles/productDetails.css";
-
 
 const orgDocId = "20240711-1011-SaluniFashion";
 
@@ -20,7 +17,7 @@ type Product = {
   Item_Name: string;
   description: string;
   Sales_Price: number;
-  id: string;
+  id: string;  // Assuming this is the product's ID
   color: string;
   size: string;
   quantity: number;
@@ -30,6 +27,7 @@ type Product = {
 
 const ProductDetails = ({ productId }: ProductDetailsProps) => {
   const [product, setProduct] = useState<Product | null>(null);
+  const [availableQty, setAvailableQty] = useState<number | null>(null); // State for available quantity
   const [activeTab, setActiveTab] = useState<"description" | "sizeChart">(
     "description"
   );
@@ -37,17 +35,43 @@ const ProductDetails = ({ productId }: ProductDetailsProps) => {
 
   useEffect(() => {
     const fetchProduct = async () => {
-      const productDocRef = doc(
-        collection(doc(db, "organizations", orgDocId), "items"),
-        productId
-      );
-      const productDoc = await getDoc(productDocRef);
-
-      if (productDoc.exists()) {
-        setProduct(productDoc.data() as Product);
+      try {
+        // Fetch product details
+        const productDocRef = doc(
+          collection(doc(db, "organizations", orgDocId), "items"),
+          productId
+        );
+        const productDoc = await getDoc(productDocRef);
+  
+        if (productDoc.exists()) {
+          const productData = productDoc.data() as Product;
+          setProduct(productData);
+  
+          if (productData.id) {
+            // Fetch product stock details based on item_id
+            const productStockDocRef = doc(
+              collection(doc(db, "organizations", orgDocId), "products_stock_management"),
+              productData.id // Assuming item_id from items matches product_id in products_stock_management
+            );
+            const productStockDoc = await getDoc(productStockDocRef);
+  
+            if (productStockDoc.exists()) {
+              const stockData = productStockDoc.data();
+              setAvailableQty(stockData.available_qty);
+            } else {
+              console.error("No matching document in products_stock_management!");
+            }
+          } else {
+            console.error("Product ID is missing!");
+          }
+        } else {
+          console.error("No matching document in items!");
+        }
+      } catch (error) {
+        console.error("Error fetching product data:", error);
       }
     };
-
+  
     fetchProduct();
   }, [productId]);
 
@@ -57,8 +81,6 @@ const ProductDetails = ({ productId }: ProductDetailsProps) => {
 
   if (!product)
     return <span className="loading loading-dots loading-md"></span>;
-
-  // addtocart function
 
   const addToCart = (product) => {
     console.log("order is processing", product);
@@ -80,21 +102,17 @@ const ProductDetails = ({ productId }: ProductDetailsProps) => {
       itemsArray = [];
     }
 
-    // Check if the product already exists in the array based on its id (UUID)
-    const productExists = itemsArray.some(item => item.UUID === product.UUID);
+    // Check if the product already exists in the array based on its id
+    const productExists = itemsArray.some(item => item.id === product.id);
 
     // Add the new product only if it does not already exist in the array
     if (!productExists) {
       itemsArray.push(product);
       localStorage.setItem('Items', JSON.stringify(itemsArray));
       console.log("Product added to cart");
-       
     } else {
       console.log("Product already in the cart");
     }
-
-    
-
   };
 
   return (
@@ -261,33 +279,41 @@ const ProductDetails = ({ productId }: ProductDetailsProps) => {
                   <div className="flex border-t border-b mb-6 border-gray-200 py-2">
                     <span className="text-gray-500 font-mono">Quantity</span>
                     <span className="ml-auto text-gray-900">
-                      {product.quantity}
+                    <progress className="progress progress-accent w-56" value="50" max="100"></progress>
                     </span>
                   </div>
-                  <div className="flex">
-                    <span className="title-fonts font-medium text-2xl text-red-900 font-sans">
+                  <div className="flex items-center justify-between mt-4">
+                    <span className="title-font font-medium text-2xl text-black-900 font-sans">
                       Rs {product.Sales_Price}.00
                     </span>
-                    <button
-                      className="flex ml-auto text-white bg-indigo-500 border-0 py-2 px-6 focus:outline-none hover:bg-indigo-600 rounded font-sans"
-                      onClick={() => addToCart(product)}
-                    >
-                      Add to Cart
-                    </button>
-
-                    <button className="rounded-full w-10 h-10 bg-gray-200 p-0 border-0 inline-flex items-center justify-center text-red-500 ml-4">
-                      <svg
-                        fill="currentColor"
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                        strokeWidth={2}
-                        className="w-5 h-5"
-                        viewBox="0 0 24 24"
+                    <div className="flex space-x-5">
+                      <button className="btn btn-primary">
+                        Buy Now
+                      </button>
+                      <button
+                        className="btn btn-primary"
+                        onClick={() => addToCart(product)}
                       >
-                        <path d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 00-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 000-7.78z" />
-                      </svg>
-                    </button>
+                        Add To
+                        <svg
+                          xmlns="http://www.w3.org/2000/svg"
+                          className="h-6 w-6 ml-2"
+                          fill="none"
+                          viewBox="0 0 24 24"
+                          stroke="currentColor"
+                        >
+                          <path
+                            strokeLinecap="round"
+                            strokeLinejoin="round"
+                            strokeWidth="2"
+                            d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13l-1.5 6h13l-1.5-6M7 13H3m6 9a1 1 0 11-2 0 1 1 0 012 0zm10 0a1 1 0 11-2 0 1 1 0 012 0z"
+                          />
+                        </svg>
+                      </button>
+                    </div>
                   </div>
+
+
                 </>
               )}
             </div>
