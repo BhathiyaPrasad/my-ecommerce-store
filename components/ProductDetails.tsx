@@ -1,3 +1,5 @@
+'use client'
+import { useRouter } from 'next/navigation'
 import { useEffect, useState } from "react";
 import { doc, getDoc, collection } from "firebase/firestore";
 import { db } from "../utils/firebase";
@@ -6,6 +8,7 @@ import test from "../assests/images/product13.13.jpg";
 import test2 from "../assests/images/test2.jpg";
 import SizeChart from "./common/SizeChart";
 import "./Styles/productDetails.css";
+
 
 const orgDocId = "20240711-1011-SaluniFashion";
 
@@ -55,40 +58,44 @@ const ProductDetails = ({ productId }: ProductDetailsProps) => {
   if (!product)
     return <span className="loading loading-dots loading-md"></span>;
 
-// addtocart function
+  // addtocart function
 
-const addToCart = (product) => {
-  console.log("order is processing", product);
+  const addToCart = (product) => {
+    console.log("order is processing", product);
 
-  // Retrieve existing items from localStorage
-  let existingItems = localStorage.getItem('Items');
+    // Retrieve existing items from localStorage
+    let existingItems = localStorage.getItem('Items');
 
-  // Parse the existing items or start with an empty array if none exist
-  let itemsArray;
-  try {
-    itemsArray = existingItems ? JSON.parse(existingItems) : [];
-  } catch (error) {
-    console.error("Error parsing existing items from localStorage", error);
-    itemsArray = [];
-  }
+    // Parse the existing items or start with an empty array if none exist
+    let itemsArray;
+    try {
+      itemsArray = existingItems ? JSON.parse(existingItems) : [];
+    } catch (error) {
+      console.error("Error parsing existing items from localStorage", error);
+      itemsArray = [];
+    }
 
-  // Ensure itemsArray is an array
-  if (!Array.isArray(itemsArray)) {
-    itemsArray = [];
-  }
+    // Ensure itemsArray is an array
+    if (!Array.isArray(itemsArray)) {
+      itemsArray = [];
+    }
 
-  // Check if the product already exists in the array based on its id (UUID)
-  const productExists = itemsArray.some(item => item.UUID === product.UUID);
+    // Check if the product already exists in the array based on its id (UUID)
+    const productExists = itemsArray.some(item => item.UUID === product.UUID);
 
-  // Add the new product only if it does not already exist in the array
-  if (!productExists) {
-    itemsArray.push(product);
-    localStorage.setItem('Items', JSON.stringify(itemsArray));
-    console.log("Product added to cart");
-  } else {
-    console.log("Product already in the cart");
-  }
-};
+    // Add the new product only if it does not already exist in the array
+    if (!productExists) {
+      itemsArray.push(product);
+      localStorage.setItem('Items', JSON.stringify(itemsArray));
+      console.log("Product added to cart");
+       
+    } else {
+      console.log("Product already in the cart");
+    }
+
+    
+
+  };
 
   return (
     <>
@@ -159,21 +166,19 @@ const addToCart = (product) => {
               </h1>
               <div className="flex mb-4 border-b-2 border-gray-300">
                 <a
-                  className={`flex-grow py-2 text-lg px-1 font-mono cursor-pointer ${
-                    activeTab === "description"
+                  className={`flex-grow py-2 text-lg px-1 font-mono cursor-pointer ${activeTab === "description"
                       ? "text-indigo-500 border-b-2 border-indigo-500"
                       : ""
-                  }`}
+                    }`}
                   onClick={() => setActiveTab("description")}
                 >
                   Description
                 </a>
                 <a
-                  className={`flex-grow py-2 text-lg px-1 font-mono cursor-pointer ${
-                    activeTab === "sizeChart"
+                  className={`flex-grow py-2 text-lg px-1 font-mono cursor-pointer ${activeTab === "sizeChart"
                       ? "text-indigo-500 border-b-2 border-indigo-500"
                       : ""
-                  }`}
+                    }`}
                   onClick={() => setActiveTab("sizeChart")}
                 >
                   Size Chart
@@ -264,11 +269,11 @@ const addToCart = (product) => {
                       Rs {product.Sales_Price}.00
                     </span>
                     <button
-  className="flex ml-auto text-white bg-indigo-500 border-0 py-2 px-6 focus:outline-none hover:bg-indigo-600 rounded font-sans"
-  onClick={() => addToCart(product)}
->
-  Add to Cart
-</button>
+                      className="flex ml-auto text-white bg-indigo-500 border-0 py-2 px-6 focus:outline-none hover:bg-indigo-600 rounded font-sans"
+                      onClick={() => addToCart(product)}
+                    >
+                      Add to Cart
+                    </button>
 
                     <button className="rounded-full w-10 h-10 bg-gray-200 p-0 border-0 inline-flex items-center justify-center text-red-500 ml-4">
                       <svg
