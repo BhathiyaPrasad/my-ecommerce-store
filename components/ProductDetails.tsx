@@ -4,13 +4,13 @@ import { useEffect, useState } from "react";
 import { doc, getDoc, collection } from "firebase/firestore";
 import { db } from "../utils/firebase";
 import Image from "next/image";
-import test from "../assests/images/product13.13.jpg";
-import test2 from "../assests/images/test2.jpg";
 import SizeChart from "./common/SizeChart";
 import "./Styles/productDetails.css";
 import { formatPrice } from '../utils/price';
+import { ref, getStorage, getDownloadURL } from 'firebase/storage';
 
 const orgDocId = "20240711-1011-SaluniFashion";
+const storage = getStorage();
 
 type ProductDetailsProps = {
   productId: string;
@@ -26,16 +26,29 @@ type Product = {
   quantity: number;
   Cat_Name: string;
   src: string;
-  UUID: string; // Assuming UUID is a property of Product
+  UUID: string;
+  imageUrl?: string;
+  imageUrl2?: string;
 };
+
+async function getImageDownloadURL(imagePath: string) {
+  try {
+    const imageRef = ref(storage, imagePath);
+    const imageUrl = await getDownloadURL(imageRef);
+    return imageUrl;
+  } catch (error) {
+    console.error("Error getting image download URL:", error);
+    return ''; 
+  }
+}
 
 const ProductDetails = ({ productId }: ProductDetailsProps) => {
   const [product, setProduct] = useState<Product | null>(null);
-  const [activeTab, setActiveTab] = useState<"description" | "sizeChart">(
-    "description"
-  );
-  const [mainImage, setMainImage] = useState(test); // Initial main image
-  const router = useRouter(); // Initialize useRouter
+  const [activeTab, setActiveTab] = useState<"description" | "sizeChart">("description");
+  const [mainImage, setMainImage] = useState<string>(''); 
+  const [thumbnail1, setThumbnail1] = useState<string>(''); 
+  const [thumbnail2, setThumbnail2] = useState<string>(''); 
+  const router = useRouter();
 
   useEffect(() => {
     const fetchProduct = async () => {
@@ -44,9 +57,17 @@ const ProductDetails = ({ productId }: ProductDetailsProps) => {
         productId
       );
       const productDoc = await getDoc(productDocRef);
-
       if (productDoc.exists()) {
-        setProduct(productDoc.data() as Product);
+        const productData = productDoc.data() as Product;
+        const imageUrl = await getImageDownloadURL(`gs://freidea-pos-img/20240711-1011-SaluniFashion/Images/Products/Product_${productData.Item_ID_Auto}.png`);
+        const imageUrl2 = await getImageDownloadURL(`gs://freidea-pos-img/20240711-1011-SaluniFashion/Images/Products/Product2_${productData.Item_ID_Auto}.png`);
+        const imageUrl3 = await getImageDownloadURL(`gs://freidea-pos-img`)
+        productData.imageUrl = imageUrl;
+        productData.imageUrl2 = imageUrl2;
+        setProduct(productData);
+        setMainImage(imageUrl);
+        setThumbnail1(imageUrl);
+        setThumbnail2(imageUrl2);
       }
     };
 
@@ -63,11 +84,9 @@ const ProductDetails = ({ productId }: ProductDetailsProps) => {
   const addToCart = (product: Product) => {
     console.log("Order is processing", product);
 
-    // Retrieve existing items from localStorage
     let existingItems = localStorage.getItem('Items');
-
-    // Parse the existing items or start with an empty array if none exist
     let itemsArray;
+
     try {
       itemsArray = existingItems ? JSON.parse(existingItems) : [];
     } catch (error) {
@@ -75,25 +94,20 @@ const ProductDetails = ({ productId }: ProductDetailsProps) => {
       itemsArray = [];
     }
 
-    // Ensure itemsArray is an array
     if (!Array.isArray(itemsArray)) {
       itemsArray = [];
     }
 
-    // Check if the product already exists in the array based on its UUID
     const productIndex = itemsArray.findIndex(item => item.UUID === product.UUID);
 
     if (productIndex > -1) {
-      // Increment quantity if product with matching UUID exists
       itemsArray[productIndex].quantity += 1;
       console.log("Product quantity incremented");
     } else {
-      // Add new product with quantity 1 if it doesn't exist
       itemsArray.push({ ...product, quantity: 1 });
       console.log("Product added to cart");
     }
 
-    // Save updated items back to localStorage
     localStorage.setItem('Items', JSON.stringify(itemsArray));
     router.push('/product/cart');
   };
@@ -101,7 +115,6 @@ const ProductDetails = ({ productId }: ProductDetailsProps) => {
   const buyNow = () => {
     router.push('/product/cart');
   };
-
 
   return (
     <>
@@ -115,51 +128,35 @@ const ProductDetails = ({ productId }: ProductDetailsProps) => {
                 className="w-full sm:w-3/4 md:w-2/3 lg:w-full h-auto object-cover object-center rounded"
                 src={mainImage}
                 style={{ maxHeight: "500px", objectFit: "contain" }}
+                width={500}
+                height={500}
               />
               <div className="mainDiv mt-4">
                 <Image
-                  src={test2}
+                  src={thumbnail1}
                   alt="Thumbnail 1"
-                  onClick={() => handleImageClick(test2)}
+                  onClick={() => handleImageClick(thumbnail1)}
                   className="w-24 h-auto cursor-pointer border-2 border-gray-300 mr-2 rounded"
                   style={{
                     width: "100px",
                     marginRight: "10px",
                     borderRadius: "10px",
                   }}
+                  width={100}
+                  height={100}
                 />
                 <Image
-                  src={test}
+                  src={thumbnail2}
                   alt="Thumbnail 2"
-                  onClick={() => handleImageClick(test)}
+                  onClick={() => handleImageClick(thumbnail2)}
                   className="w-24 h-auto cursor-pointer border-2 border-gray-300 mr-2 rounded"
                   style={{
                     width: "100px",
                     marginRight: "10px",
                     borderRadius: "10px",
                   }}
-                />
-                <Image
-                  src={test2}
-                  alt="Thumbnail 3"
-                  onClick={() => handleImageClick(test2)}
-                  className="w-24 h-auto cursor-pointer border-2 border-gray-300 mr-2 rounded"
-                  style={{
-                    width: "100px",
-                    marginRight: "10px",
-                    borderRadius: "10px",
-                  }}
-                />
-                <Image
-                  src={test}
-                  alt="Thumbnail 4"
-                  onClick={() => handleImageClick(test)}
-                  className="w-24 h-auto cursor-pointer border-2 border-gray-300 mr-2 rounded"
-                  style={{
-                    width: "100px",
-                    marginRight: "10px",
-                    borderRadius: "10px",
-                  }}
+                  width={100}
+                  height={100}
                 />
               </div>
             </div>
@@ -194,9 +191,7 @@ const ProductDetails = ({ productId }: ProductDetailsProps) => {
               {activeTab === "description" && (
                 <>
                   <p className="leading-relaxed mb-4 font-sans">
-                    Luxury Collection by Saluni Fashion - Hurry Up Product
-                    Colour May Slightly vary Due to Photographic Lightning or
-                    your Device Settings
+                    {product.Remark}
                   </p>
                   <div className="flex border-t border-gray-200 py-2">
                     <span className="text-gray-500 font-Roboto">Size</span>
@@ -264,23 +259,16 @@ const ProductDetails = ({ productId }: ProductDetailsProps) => {
                       ></button>
                     </span>
                   </div>
-                  <div className="flex border-t  mb-6 border-gray-200 py-2">
-
-                  </div>
+                  <div className="flex border-t mb-6 border-gray-200 py-2"></div>
                   <div className="flex items-center justify-between mt-4">
                     <span className="title-font font-medium text-2xl text-black-900 font-Roboto">
                       {formatPrice(product.Sales_Price)}
                     </span>
                     <div className="flex space-x-5">
-                      <button className="btn btn-primary"
-                        onClick={() => buyNow()}
-                      >
+                      <button className="btn btn-primary" onClick={() => buyNow()}>
                         Buy Now
                       </button>
-                      <button
-                        className="btn btn-primary"
-                        onClick={() => addToCart(product)}
-                      >
+                      <button className="btn btn-primary" onClick={() => addToCart(product)}>
                         Add To
                         <svg
                           xmlns="http://www.w3.org/2000/svg"

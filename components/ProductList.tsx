@@ -13,7 +13,8 @@ type Product = {
   email: string;
   Discount: string;
   UUID: string;
-  imageUrl?: string; // Optional imageUrl property
+  imageUrl?: string;
+  imageUrl2?: string; // Optional imageUrl property
 };
 
 const orgDocId = "20240711-1011-SaluniFashion";
@@ -58,7 +59,9 @@ const ProductList = (props) => {
         for (const doc of querySnapshot.docs) {
           const product = { id: doc.id, ...doc.data() } as Product;
           const imageUrl = await getImageDownloadURL(`gs://freidea-pos-img/20240711-1011-SaluniFashion/Images/Products/Product_${product.Item_ID_Auto}.png`);
+          const imageUrl2 = await getImageDownloadURL(`gs://freidea-pos-img/20240711-1011-SaluniFashion/Images/Products/Product2_${product.Item_ID_Auto}.png`)
           product.imageUrl = imageUrl;
+          product.imageUrl2 = imageUrl2
           productsArray.push(product);
         }
 
@@ -92,6 +95,7 @@ const ProductList = (props) => {
           Eng_Name={product.Eng_Name}
           UUID={product.UUID}
           imageUrl={product.imageUrl}
+          imageUrl2={product.imageUrl2}
           width={200} // Example width
           height={200} // Example height
         />
