@@ -1,5 +1,5 @@
 'use client'
-import { useRouter } from "next/router";
+import { useRouter } from 'next/navigation'
 import { useEffect, useState } from "react";
 import { doc, getDoc, collection } from "firebase/firestore";
 import { db } from "../utils/firebase";
@@ -8,7 +8,7 @@ import test from "../assests/images/product13.13.jpg";
 import test2 from "../assests/images/test2.jpg";
 import SizeChart from "./common/SizeChart";
 import "./Styles/productDetails.css";
-import { formatPrice } from "../utils/price";
+import { formatPrice } from '../utils/price';
 
 const orgDocId = "20240711-1011-SaluniFashion";
 
@@ -26,6 +26,7 @@ type Product = {
   quantity: number;
   Cat_Name: string;
   src: string;
+  UUID: string; // Assuming UUID is a property of Product
 };
 
 const ProductDetails = ({ productId }: ProductDetailsProps) => {
@@ -52,18 +53,20 @@ const ProductDetails = ({ productId }: ProductDetailsProps) => {
     fetchProduct();
   }, [productId]);
 
-  const handleImageClick = (src) => {
+  const handleImageClick = (src: string) => {
     setMainImage(src);
   };
 
   if (!product)
     return <span className="loading loading-dots loading-md"></span>;
 
-  const addToCart = (product) => {
-    console.log("order is processing", product);
+  const addToCart = (product: Product) => {
+    console.log("Order is processing", product);
 
+    // Retrieve existing items from localStorage
     let existingItems = localStorage.getItem('Items');
 
+    // Parse the existing items or start with an empty array if none exist
     let itemsArray;
     try {
       itemsArray = existingItems ? JSON.parse(existingItems) : [];
@@ -72,29 +75,32 @@ const ProductDetails = ({ productId }: ProductDetailsProps) => {
       itemsArray = [];
     }
 
+    // Ensure itemsArray is an array
     if (!Array.isArray(itemsArray)) {
       itemsArray = [];
     }
 
-    const productIndex = itemsArray.findIndex(item => item.id === product.id);
+    // Check if the product already exists in the array based on its UUID
+    const productIndex = itemsArray.findIndex(item => item.UUID === product.UUID);
 
     if (productIndex > -1) {
-      // Increment quantity if product exists
+      // Increment quantity if product with matching UUID exists
       itemsArray[productIndex].quantity += 1;
+      console.log("Product quantity incremented");
     } else {
       // Add new product with quantity 1 if it doesn't exist
       itemsArray.push({ ...product, quantity: 1 });
+      console.log("Product added to cart");
     }
 
+    // Save updated items back to localStorage
     localStorage.setItem('Items', JSON.stringify(itemsArray));
-    console.log("Product added to cart");
-
-   
   };
 
   const buyNow = () => {
     router.push('/product/cart');
   };
+
 
   return (
     <>
@@ -266,7 +272,7 @@ const ProductDetails = ({ productId }: ProductDetailsProps) => {
                     </span>
                     <div className="flex space-x-5">
                       <button className="btn btn-primary"
-                        onClick={() => buyNow()}
+                        onClick={() => addToCart(product)}
                       >
                         Buy Now
                       </button>
