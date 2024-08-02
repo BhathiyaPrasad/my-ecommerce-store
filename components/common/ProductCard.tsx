@@ -23,7 +23,7 @@ const ProductCard = ({ UUID, imageUrl, height, width, Eng_Name, Discount, Sales_
   return (
     <div className="custom-card" onClick={() => router.push(`/product/${UUID}`)}>
       <figure onMouseOver={handleMouseOver} onMouseOut={handleMouseOut}>
-        <Image src={currentImageUrl} alt="product image" priority={false} loading="lazy" height={height} width={width} />
+        <Image src={currentImageUrl} alt="product image" priority={false} loading="lazy" height='200' width='200' />
       </figure>
       <div className="custom-card-body">
         <h2 className="custom-card-title">

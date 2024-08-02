@@ -4,6 +4,7 @@ import { ref, getStorage, getDownloadURL } from 'firebase/storage';
 import { db } from '../utils/firebase';
 import ProductCard from './common/ProductCard';
 import './Styles/productlist.css';
+import test from '../assests/images/product13.13.png'
 
 type Product = {
   id: string;
@@ -15,6 +16,7 @@ type Product = {
   UUID: string;
   imageUrl?: string;
   imageUrl2?: string; // Optional imageUrl property
+  Item_ID_Auto: number
 };
 
 const orgDocId = "20240711-1011-SaluniFashion";
@@ -46,7 +48,7 @@ const ProductList = (props) => {
           where("ItemActiveMode", "==", 1),
           where("Deleted", "==", 0),
           where("ShowInSaleInvoice", "==", 1),
-          where("Manufacturer", "==", props.category),
+          where("Manufacturer", "==", "t"),
           where("Discount", props.order, "0"),
           where("Brand", "==", props.type),
           orderBy(props.group, "desc"),

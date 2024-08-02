@@ -32,6 +32,7 @@ type Product = {
   imageUrl3?: string;
   imageUrl4?: string;
   Remark:string;
+  Item_ID_Auto: number
 };
 
 async function getImageDownloadURL(imagePath: string) {
@@ -301,7 +302,7 @@ const ProductDetails = ({ productId }: ProductDetailsProps) => {
                   </div>
                   <div className="flex border-t mb-6 border-gray-200 py-2"></div>
                   <div className="flex items-center justify-between mt-4">
-                    <span className="title-font font-medium text-2xl text-black-900 font-Roboto">
+                    <span className="title-font font-medium text-2xl font-Roboto">
                       {formatPrice(product.Sales_Price)}
                     </span>
                     <div className="flex space-x-5">
