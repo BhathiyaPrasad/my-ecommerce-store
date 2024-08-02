@@ -24,7 +24,7 @@ const Cart = () => {
         name: item.Item_Name,
         price: item.Sales_Price, // Use number here
         quantity: item.quantity ? item.quantity : 1, // Default quantity
-        imageSrc: `https://firebasestorage.googleapis.com/v0/b/freidea-pos-img/o/20240711-1011-SaluniFashion%2FImages%2FProducts%2FProduct_${item.Item_ID_Auto}.png?alt=media&token=7bee14af-2324-4a25-b6e3-13f75d7034b9`, // Placeholder image
+        imageSrc: item.imageUrl, // Placeholder image
         imageAlt: item.Item_Name,
       }));
       setCartItems(formattedItems);
@@ -41,6 +41,7 @@ const Cart = () => {
 
   const handleRemoveItem = (id: number) => {
     setCartItems(prevItems => prevItems.filter(item => item.id !== id));
+
   };
 
   const calculateTotalPrice = () => {
