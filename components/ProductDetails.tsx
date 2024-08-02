@@ -29,6 +29,9 @@ type Product = {
   UUID: string;
   imageUrl?: string;
   imageUrl2?: string;
+  imageUrl3?: string;
+  imageUrl4?: string;
+  Remark:string;
 };
 
 async function getImageDownloadURL(imagePath: string) {
@@ -47,7 +50,11 @@ const ProductDetails = ({ productId }: ProductDetailsProps) => {
   const [activeTab, setActiveTab] = useState<"description" | "sizeChart">("description");
   const [mainImage, setMainImage] = useState<string>(''); 
   const [thumbnail1, setThumbnail1] = useState<string>(''); 
-  const [thumbnail2, setThumbnail2] = useState<string>(''); 
+  const [thumbnail2, setThumbnail2] = useState<string>('');
+  const [thumbnail3, setThumbnail3] = useState<string>('');
+  const [thumbnail4, setThumbnail4] = useState<string>(''); 
+
+
   const router = useRouter();
 
   useEffect(() => {
@@ -61,13 +68,20 @@ const ProductDetails = ({ productId }: ProductDetailsProps) => {
         const productData = productDoc.data() as Product;
         const imageUrl = await getImageDownloadURL(`gs://freidea-pos-img/20240711-1011-SaluniFashion/Images/Products/Product_${productData.Item_ID_Auto}.png`);
         const imageUrl2 = await getImageDownloadURL(`gs://freidea-pos-img/20240711-1011-SaluniFashion/Images/Products/Product2_${productData.Item_ID_Auto}.png`);
-        const imageUrl3 = await getImageDownloadURL(`gs://freidea-pos-img`)
+        const imageUrl3 = await getImageDownloadURL(`gs://freidea-pos-img/20240711-1011-SaluniFashion/Images/Products/Product3_${productData.Item_ID_Auto}.png`);
+        const imageUrl4 = await getImageDownloadURL(`gs://freidea-pos-img/20240711-1011-SaluniFashion/Images/Products/Product4_${productData.Item_ID_Auto}.png`);
         productData.imageUrl = imageUrl;
         productData.imageUrl2 = imageUrl2;
+        productData.imageUrl3 = imageUrl3;
+        productData.imageUrl4 = imageUrl4;
+
         setProduct(productData);
         setMainImage(imageUrl);
         setThumbnail1(imageUrl);
         setThumbnail2(imageUrl2);
+        setThumbnail3(imageUrl3);
+        setThumbnail4(imageUrl4);
+
       }
     };
 
@@ -149,6 +163,32 @@ const ProductDetails = ({ productId }: ProductDetailsProps) => {
                   src={thumbnail2}
                   alt="Thumbnail 2"
                   onClick={() => handleImageClick(thumbnail2)}
+                  className="w-24 h-auto cursor-pointer border-2 border-gray-300 mr-2 rounded"
+                  style={{
+                    width: "100px",
+                    marginRight: "10px",
+                    borderRadius: "10px",
+                  }}
+                  width={100}
+                  height={100}
+                />
+                   <Image
+                  src={thumbnail3}
+                  alt="Thumbnail 2"
+                  onClick={() => handleImageClick(thumbnail3)}
+                  className="w-24 h-auto cursor-pointer border-2 border-gray-300 mr-2 rounded"
+                  style={{
+                    width: "100px",
+                    marginRight: "10px",
+                    borderRadius: "10px",
+                  }}
+                  width={100}
+                  height={100}
+                />
+                   <Image
+                  src={thumbnail4}
+                  alt="Thumbnail 2"
+                  onClick={() => handleImageClick(thumbnail4)}
                   className="w-24 h-auto cursor-pointer border-2 border-gray-300 mr-2 rounded"
                   style={{
                     width: "100px",
