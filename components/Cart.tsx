@@ -1,7 +1,8 @@
 'use client';
 import React, { useEffect, useState } from 'react';
 import { formatPrice } from "@utils/price"; // Ensure this path is correct
-
+import test from '../assests/images/product13.13.png'
+import Image from 'next/image';
 interface CartItem {
   id: number;
   name: string;
@@ -23,7 +24,7 @@ const Cart = () => {
         name: item.Item_Name,
         price: item.Sales_Price, // Use number here
         quantity: item.quantity ? item.quantity : 1, // Default quantity
-        imageSrc: 'https://via.placeholder.com/150', // Placeholder image
+        imageSrc: item.imageUrl, // Placeholder image
         imageAlt: item.Item_Name,
       }));
       setCartItems(formattedItems);
@@ -40,6 +41,7 @@ const Cart = () => {
 
   const handleRemoveItem = (id: number) => {
     setCartItems(prevItems => prevItems.filter(item => item.id !== id));
+
   };
 
   const calculateTotalPrice = () => {
@@ -58,7 +60,7 @@ const Cart = () => {
           <ul className="space-y-4">
             {cartItems.map(item => (
               <li key={item.id} className="flex items-center border-b py-4">
-                <img src={item.imageSrc} alt={item.imageAlt} className="w-24 h-24 object-cover mr-4" />
+                <Image src={item.imageSrc} alt={item.imageAlt} className="w-24 h-24 object-cover mr-4" width={200} height={200} />
                 <div className="flex-1">
                   <p className="text-lg font-semibold">{item.name}</p>
                   <p className="text-gray-600">Price: {formatPrice(item.price)}</p>
