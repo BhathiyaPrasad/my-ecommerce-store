@@ -8,13 +8,13 @@ import { formatPrice } from "@utils/price";
 
 
 
-function ProductCard({ Sales_Price, Eng_Name, Discount, UUID }) {
+function ProductCard({ Sales_Price, Eng_Name, Discount, UUID , imageUrl, height , width }) {
 
   const router = useRouter()
   return (
     <div className="custom-card" onClick={() => router.push(`/product/${UUID}`)}>
       <figure>
-        <Image src={product} alt="car!" priority={false} loading="lazy" />
+        <Image src={imageUrl} alt="car!" priority={false} loading="lazy" height={height} width={width} />
       </figure>
       <div className="custom-card-body">
         <h2 className="custom-card-title">

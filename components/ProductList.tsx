@@ -1,9 +1,10 @@
 import { useEffect, useState } from 'react';
 import { collection, getDocs, where, doc, query, orderBy, limit } from 'firebase/firestore';
-import { ref, getStorage, getDownloadURL } from 'firebase/storage'
+import { ref, getStorage, getDownloadURL } from 'firebase/storage';
 import { db } from '../utils/firebase';
 import ProductCard from './common/ProductCard';
-import './Styles/productlist.css'
+import './Styles/productlist.css';
+
 type Product = {
   id: string;
   name: string;
@@ -12,22 +13,22 @@ type Product = {
   email: string;
   Discount: string;
   UUID: string;
+  imageUrl?: string; // Optional imageUrl property
 };
 
 const orgDocId = "20240711-1011-SaluniFashion";
 const storage = getStorage();
 
-async function getImageDownloadURL(imagePath) {
+async function getImageDownloadURL(imagePath: string) {
   try {
     const imageRef = ref(storage, imagePath);
     const imageUrl = await getDownloadURL(imageRef);
     return imageUrl;
   } catch (error) {
     console.error("Error getting image download URL:", error);
-    return '.\assests\images\collection.jpg';  // Replace with the actual path to your default image
+    return ''; 
   }
 }
-
 
 const ProductList = (props) => {
   const [products, setProducts] = useState<Product[]>([]);
@@ -46,17 +47,20 @@ const ProductList = (props) => {
           where("ShowInSaleInvoice", "==", 1),
           where("Manufacturer", "==", props.category),
           where("Discount", props.order, "0"),
-          where("Brand" ,"==",props.type),
+          where("Brand", "==", props.type),
           orderBy(props.group, "desc"),
-          
           limit(props.limits)
         );
 
         const querySnapshot = await getDocs(itemsQuery);
-        const productsArray = querySnapshot.docs.map(doc => ({
-          id: doc.id,
-          ...doc.data()
-        } as Product));
+        const productsArray: Product[] = [];
+
+        for (const doc of querySnapshot.docs) {
+          const product = { id: doc.id, ...doc.data() } as Product;
+          const imageUrl = await getImageDownloadURL(`gs://freidea-pos-img/20240711-1011-SaluniFashion/Images/Products/Product_${product.Item_ID_Auto}.png`);
+          product.imageUrl = imageUrl;
+          productsArray.push(product);
+        }
 
         setProducts(productsArray);
       } catch (err) {
@@ -68,7 +72,7 @@ const ProductList = (props) => {
     };
 
     fetchProducts();
-  },  [props.category, props.group, props.limits, props.order, props.type]);
+  }, [props.category, props.group, props.limits, props.order, props.type , props.width]);
 
   if (loading) {
     return <span className="loading loading-dots loading-md"></span>;
@@ -83,20 +87,16 @@ const ProductList = (props) => {
       {products.map(product => (
         <ProductCard
           key={product.id}
-
           Discount={product.Discount}
           Sales_Price={product.Sales_Price}
           Eng_Name={product.Eng_Name}
           UUID={product.UUID}
-
-        // imageUrl={product.imageUrl}
+          imageUrl={product.imageUrl}
+          width={200} // Example width
+          height={200} // Example height
         />
       ))}
     </div>
-
-
-
-
   );
 };
 

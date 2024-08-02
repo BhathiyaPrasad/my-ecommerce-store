@@ -95,6 +95,7 @@ const ProductDetails = ({ productId }: ProductDetailsProps) => {
 
     // Save updated items back to localStorage
     localStorage.setItem('Items', JSON.stringify(itemsArray));
+    router.push('/product/cart');
   };
 
   const buyNow = () => {
@@ -272,7 +273,7 @@ const ProductDetails = ({ productId }: ProductDetailsProps) => {
                     </span>
                     <div className="flex space-x-5">
                       <button className="btn btn-primary"
-                        onClick={() => addToCart(product)}
+                        onClick={() => buyNow()}
                       >
                         Buy Now
                       </button>
