@@ -59,34 +59,41 @@ const Cart = () => {
         <>
           <ul className="space-y-4">
             {cartItems.map(item => (
-              <li key={item.id} className="flex items-center border-b py-4">
-                <Image src={item.imageSrc} alt={item.imageAlt} className="w-24 h-24 object-cover mr-4" width={200} height={200} />
-                <div className="flex-1">
-                  <p className="text-lg font-semibold">{item.name}</p>
-                  <p className="text-gray-600">Price: {formatPrice(item.price)}</p>
-                  <div className="flex items-center mt-2">
-                    <button
-                      className="px-2 py-1 bg-gray-200 rounded"
-                      onClick={() => handleQuantityChange(item.id, item.quantity - 1)}
-                    >
-                      -
-                    </button>
-                    <span className="mx-2">{item.quantity}</span>
-                    <button
-                      className="px-2 py-1 bg-gray-200 rounded"
-                      onClick={() => handleQuantityChange(item.id, item.quantity + 1)}
-                    >
-                      +
-                    </button>
-                    <button
-                      className="ml-4 px-2 py-1 bg-red-500 text-white rounded"
-                      onClick={() => handleRemoveItem(item.id)}
-                    >
-                      Remove
-                    </button>
-                  </div>
-                </div>
-              </li>
+             <li key={item.id} className="flex items-center border-b py-4">
+             <Image
+               src={item.imageSrc}
+               alt={item.imageAlt}
+               className="w-30 h-30 object-cover mr-4"
+               width={100}  // Fixed width
+               height={200} // Fixed height
+             />
+             <div className="flex-1">
+               <p className="text-lg font-semibold">{item.name}</p>
+               <p className="text-gray-600">Price: {formatPrice(item.price)}</p>
+               <div className="flex items-center mt-2">
+                 <button
+                   className="px-3 py-1 bg-gray-200 rounded hover:bg-gray-300 focus:outline-none focus:ring-2 focus:ring-gray-500"
+                   onClick={() => handleQuantityChange(item.id, item.quantity - 1)}
+                 >
+                   -
+                 </button>
+                 <span className="mx-3">{item.quantity}</span>
+                 <button
+                   className="px-3 py-1 bg-gray-200 rounded hover:bg-gray-300 focus:outline-none focus:ring-2 focus:ring-gray-500"
+                   onClick={() => handleQuantityChange(item.id, item.quantity + 1)}
+                 >
+                   +
+                 </button>
+                 <button
+                   className="ml-4 px-3 py-1 bg-red-500 text-white rounded hover:bg-red-600 focus:outline-none focus:ring-2 focus:ring-red-500"
+                   onClick={() => handleRemoveItem(item.id)}
+                 >
+                   Remove
+                 </button>
+               </div>
+             </div>
+           </li>
+           
             ))}
           </ul>
           <div className="mt-4">

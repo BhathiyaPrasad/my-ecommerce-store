@@ -1,6 +1,6 @@
 'use client'
 import { useRouter } from 'next/navigation'
-import { useEffect, useState } from "react";
+import { lazy, useEffect, useState } from "react";
 import { doc, getDoc, collection } from "firebase/firestore";
 import { db } from "../utils/firebase";
 import Image from "next/image";
@@ -145,6 +145,8 @@ const ProductDetails = ({ productId }: ProductDetailsProps) => {
                 style={{ maxHeight: "500px", objectFit: "contain" }}
                 width={500}
                 height={500}
+                
+                priority
               />
               <div className="mainDiv mt-4">
                 <Image
@@ -159,6 +161,8 @@ const ProductDetails = ({ productId }: ProductDetailsProps) => {
                   }}
                   width={100}
                   height={100}
+                  loading="lazy"
+                  
                 />
                 <Image
                   src={thumbnail2}
@@ -172,6 +176,8 @@ const ProductDetails = ({ productId }: ProductDetailsProps) => {
                   }}
                   width={100}
                   height={100}
+                  loading="lazy"
+                  
                 />
                    <Image
                   src={thumbnail3}
@@ -185,6 +191,8 @@ const ProductDetails = ({ productId }: ProductDetailsProps) => {
                   }}
                   width={100}
                   height={100}
+                  loading="lazy"
+                  
                 />
                    <Image
                   src={thumbnail4}
@@ -198,6 +206,8 @@ const ProductDetails = ({ productId }: ProductDetailsProps) => {
                   }}
                   width={100}
                   height={100}
+                  loading="lazy"
+                  
                 />
               </div>
             </div>
