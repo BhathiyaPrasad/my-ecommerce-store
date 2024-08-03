@@ -1,11 +1,5 @@
-/* Card.css */
-/* .card-container {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 1rem;
-} */
-
 @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap');
+
 .custom-card {
   @apply card bg-base-100 shadow-xl;
   width: calc(25% - 1rem); /* Four cards per row on desktop */
@@ -43,13 +37,9 @@
   right: 0.5rem;
 }
 
-
 @media (min-width: 768px) and (max-width: 1024px) {
   .custom-card {
     width: calc(25% - 1rem); /* Three cards per row for medium screens */
-  }
-  .card-container {
-    width: fit-content;
   }
   .custom-card-title {
     font-size: 0.8rem;
@@ -59,13 +49,9 @@
   }
 }
 
-/* Media Queries */
 @media (min-width: 600px) and (max-width: 768px) {
   .custom-card {
     width: calc(40.33% - 1rem); /* Three cards per row for medium screens */
-  }
-  .card-container {
-    width: fit-content;
   }
   .custom-card-title {
     font-size: 0.8rem;
@@ -78,11 +64,6 @@
 @media (max-width: 600px) {
   .custom-card {
     width: calc(47% - 1rem); /* Two cards per row for small screens */
-    margin-left: auto;
-    margin-right: auto;
-  }
-  .card-container {
-    width: fit-content;
     margin-left: auto;
     margin-right: auto;
   }
@@ -100,11 +81,6 @@
     margin-left: auto;
     margin-right: auto;
   }
-  .card-container {
-    width: fit-content;
-    margin-left: auto;
-    margin-right: auto;
-  }
   .custom-card-title {
     font-size: 0.6rem;
   }
@@ -116,9 +92,6 @@
   }
 }
 
-/* Card.css */
-
-/* Common Styles */
 .card-container {
   display: flex;
   flex-wrap: wrap;
@@ -162,35 +135,34 @@
 
 /* Dark Theme */
 [data-theme="dark"] .custom-card {
-  background-color: hsl(
-    215,
-    28%,
-    17%
-  ); /* Adjust to your preferred dark color */
+  background-color: hsl(215, 28%, 17%);
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.5);
 }
 
-[data-theme="dark"] .custom-card-title {
+[data-theme="dark"] .custom-card-title,
+[data-theme="dark"] .custom-card-sale-price,
+[data-theme="light"] .custom-card-sale-price {
   color: #ffffff;
 }
-[data-theme="dark"] .custom-card-sale-price {
-  color: #ffffff;
-}
+
 [data-theme="light"] .custom-card-sale-price {
   color: #0f0f0f;
 }
+
 .custom-card-sale-price {
   color: #ff6347;
   font-size: 1.25rem;
   font-weight: 700;
   text-decoration: line-through;
 }
+
 .custom-card-real-price {
   color: #ff6347;
   font-size: 1.25rem;
   font-weight: 700;
-  font-family: Roboto;
+  font-family: 'Roboto', sans-serif;
 }
+
 /* Media Queries */
 @media (min-width: 768px) and (max-width: 1024px) {
   .custom-card {
@@ -199,12 +171,7 @@
   .custom-card-title {
     font-size: 0.8rem;
   }
-  .custom-card-sale-price {
-    color: rgb(168, 62, 62);
-    font-weight: 600;
-    font-family: sans-serif;
-    font-size: 1rem;
-  }
+  .custom-card-sale-price,
   .custom-card-real-price {
     color: #ff6347;
     font-weight: 600;
@@ -212,9 +179,6 @@
     font-size: 1rem;
   }
   .card-container {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 1.28rem;
     margin-left: 3rem;
     margin-right: 3rem;
   }
@@ -227,12 +191,7 @@
   .custom-card-title {
     font-size: 0.9rem;
   }
-  .custom-card-sale-price {
-    color: rgb(168, 62, 62);
-    font-weight: 600;
-    font-family: sans-serif;
-    font-size: 1rem;
-  }
+  .custom-card-sale-price,
   .custom-card-real-price {
     color: #ff6347;
     font-weight: 600;
@@ -240,9 +199,6 @@
     font-size: 1rem;
   }
   .card-container {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 1.28rem;
     margin-left: 2rem;
     margin-right: 2rem;
   }
@@ -257,12 +213,7 @@
   .custom-card-title {
     font-size: 0.7rem;
   }
-  .custom-card-sale-price {
-    color: rgb(168, 62, 62);
-    font-weight: 600;
-    font-family: sans-serif;
-    font-size: 1rem;
-  }
+  .custom-card-sale-price,
   .custom-card-real-price {
     color: #ff6347;
     font-weight: 600;
@@ -270,8 +221,6 @@
     font-size: 1rem;
   }
   .card-container {
-    display: flex;
-    flex-wrap: wrap;
     gap: 1.2rem;
     margin-left: 1.5rem;
     margin-right: 1rem;
@@ -285,12 +234,7 @@
   .custom-card-title {
     font-size: 0.6rem;
   }
-  .custom-card-sale-price {
-    color: rgb(168, 62, 62);
-    font-weight: 600;
-    font-family: sans-serif;
-    font-size: 0.9rem;
-  }
+  .custom-card-sale-price,
   .custom-card-real-price {
     color: #ff6347;
     font-weight: 600;
@@ -299,35 +243,26 @@
   }
 }
 
-@media (min-width: 320) {
+@media (min-width: 250px) and (max-width: 320px) {
   .custom-card {
     width: calc(100% - 1rem); /* Full width for very small screens */
   }
   .custom-card-title {
     font-size: 0.6rem;
   }
-  .custom-card-sale-price {
-    color: rgb(168, 62, 62);
-    font-weight: 600;
-    font-family: sans-serif;
-    font-size: 0.9rem;
-  }
+  .custom-card-sale-price,
   .custom-card-real-price {
     color: #ff6347;
     font-weight: 600;
     font-family: sans-serif;
-    font-size: 0.9rem;
+    font-size: 0.5rem;
   }
   .tag {
     font-size: 0.5rem;
   }
 }
 
-
+[data-theme="dark"] .title-font,
 [data-theme="dark"] .title-font {
-  color: #ffffff;
-}
-
-[data-theme="dark"] .title-font{
   color: #ffffff;
 }
