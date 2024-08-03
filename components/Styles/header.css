@@ -25,3 +25,10 @@
   padding: 1rem; /* Padding inside the dropdown */
   width: 200px; /* Width of the dropdown */
 }
+
+.navbars {
+  background-color: Black;
+  color:white;
+  text-align: center;
+  font-size:0.5rem
+}

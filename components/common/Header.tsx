@@ -17,7 +17,8 @@ const Header = () => {
 
   return (
     <>
-      <div className="navbar bg-base-100" style={{ height: '120px' }}>
+      <div className="navbars">Island wide cash on delivery</div>
+      <div className="navbar" style={{ margin: '10px' }}>
         <div className="navbar-start">
           <div className="dropdown">
             <div tabIndex={0} role="button" className="btn btn-ghost lg:hidden">
