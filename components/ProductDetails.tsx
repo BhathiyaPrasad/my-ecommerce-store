@@ -31,7 +31,7 @@ type Product = {
   imageUrl2?: string;
   imageUrl3?: string;
   imageUrl4?: string;
-  Remark:string;
+  Remark: string;
   Item_ID_Auto: number
 };
 
@@ -42,18 +42,20 @@ async function getImageDownloadURL(imagePath: string) {
     return imageUrl;
   } catch (error) {
     console.error("Error getting image download URL:", error);
-    return ''; 
+    return '';
   }
 }
 
 const ProductDetails = ({ productId }: ProductDetailsProps) => {
   const [product, setProduct] = useState<Product | null>(null);
   const [activeTab, setActiveTab] = useState<"description" | "sizeChart">("description");
-  const [mainImage, setMainImage] = useState<string>(''); 
-  const [thumbnail1, setThumbnail1] = useState<string>(''); 
+  const [mainImage, setMainImage] = useState<string>('');
+  const [thumbnail1, setThumbnail1] = useState<string>('');
   const [thumbnail2, setThumbnail2] = useState<string>('');
   const [thumbnail3, setThumbnail3] = useState<string>('');
-  const [thumbnail4, setThumbnail4] = useState<string>(''); 
+  const [thumbnail4, setThumbnail4] = useState<string>('');
+  const [size, setSize] = useState('');
+  const [color, setColor] = useState('');
 
 
   const router = useRouter();
@@ -92,7 +94,12 @@ const ProductDetails = ({ productId }: ProductDetailsProps) => {
   const handleImageClick = (src: string) => {
     setMainImage(src);
   };
-
+  const handleSizeClick = (selectedSize) => {
+    setSize(selectedSize);
+  };
+  const handleColorClick = (selectedColor) => {
+    setColor(selectedColor)
+  }
   if (!product)
     return <span className="loading loading-dots loading-md"></span>;
 
@@ -117,9 +124,11 @@ const ProductDetails = ({ productId }: ProductDetailsProps) => {
 
     if (productIndex > -1) {
       itemsArray[productIndex].quantity += 1;
+      itemsArray[productIndex].selectedsize = size
+      itemsArray[productIndex].selectedcolor = color
       console.log("Product quantity incremented");
     } else {
-      itemsArray.push({ ...product, quantity: 1 });
+      itemsArray.push({ ...product, quantity: 1,selectedsize: size, selectedcolor: color });
       console.log("Product added to cart");
     }
 
@@ -130,7 +139,7 @@ const ProductDetails = ({ productId }: ProductDetailsProps) => {
   const buyNow = () => {
     router.push('/product/cart');
   };
-
+console.log(size)
   return (
     <>
       <section className="text-gray-600 body-font overflow-hidden">
@@ -145,7 +154,7 @@ const ProductDetails = ({ productId }: ProductDetailsProps) => {
                 style={{ maxHeight: "500px", objectFit: "contain" }}
                 width={500}
                 height={500}
-                
+
                 priority
               />
               <div className="mainDiv mt-4">
@@ -162,7 +171,7 @@ const ProductDetails = ({ productId }: ProductDetailsProps) => {
                   width={100}
                   height={100}
                   loading="lazy"
-                  
+
                 />
                 <Image
                   src={thumbnail2}
@@ -177,9 +186,9 @@ const ProductDetails = ({ productId }: ProductDetailsProps) => {
                   width={100}
                   height={100}
                   loading="lazy"
-                  
+
                 />
-                   <Image
+                <Image
                   src={thumbnail3}
                   alt="Thumbnail 2"
                   onClick={() => handleImageClick(thumbnail3)}
@@ -192,9 +201,9 @@ const ProductDetails = ({ productId }: ProductDetailsProps) => {
                   width={100}
                   height={100}
                   loading="lazy"
-                  
+
                 />
-                   <Image
+                <Image
                   src={thumbnail4}
                   alt="Thumbnail 2"
                   onClick={() => handleImageClick(thumbnail4)}
@@ -207,7 +216,7 @@ const ProductDetails = ({ productId }: ProductDetailsProps) => {
                   width={100}
                   height={100}
                   loading="lazy"
-                  
+
                 />
               </div>
             </div>
@@ -247,67 +256,36 @@ const ProductDetails = ({ productId }: ProductDetailsProps) => {
                   <div className="flex border-t border-gray-200 py-2">
                     <span className="text-gray-500 font-Roboto">Size</span>
                     <span className="ml-auto text-gray-900 flex space-x-2">
-                      <button
-                        className="w-8 h-8 rounded-full border-2 border-gray-300 hover:border-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-600"
-                        style={{ backgroundColor: "white", fontSize: 10 }}
-                      >
-                        UK 6
-                      </button>
-                      <button
-                        className="w-8 h-8 rounded-full border-2 border-gray-300 hover:border-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-600"
-                        style={{ backgroundColor: "white", fontSize: 10 }}
-                      >
-                        UK 8
-                      </button>
-                      <button
-                        className="w-8 h-8 rounded-full border-2 border-gray-300 hover:border-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-600"
-                        style={{ backgroundColor: "white", fontSize: 10 }}
-                      >
-                        UK 10
-                      </button>
-                      <button
-                        className="w-8 h-8 rounded-full border-2 border-gray-300 hover:border-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-600"
-                        style={{ backgroundColor: "white", fontSize: 10 }}
-                      >
-                        UK 12
-                      </button>
-                      <button
-                        className="w-8 h-8 rounded-full border-2 border-gray-300 hover:border-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-600"
-                        style={{ backgroundColor: "white", fontSize: 10 }}
-                      >
-                        UK 14
-                      </button>
-                      <button
-                        className="w-8 h-8 rounded-full border-2 border-gray-300 hover:border-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-600"
-                        style={{ backgroundColor: "white", fontSize: 10 }}
-                      >
-                        UK 16
-                      </button>
+                      {["UK 6", "UK 8", "UK 10", "UK 12", "UK 14", "UK 16"].map((sizeOption) => (
+                        <button
+                          key={sizeOption}
+                          className={`w-8 h-8 rounded-full border-2 ${size === sizeOption ? 'border-blue-600' : 'border-gray-300'} hover:border-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-600`}
+                          style={{ backgroundColor: "white", fontSize: 10 }}
+                          onClick={() => handleSizeClick(sizeOption)}
+                        >
+                          {sizeOption}
+                        </button>
+                      ))}
                     </span>
                   </div>
                   <div className="flex border-t border-gray-200 py-2">
                     <span className="text-gray-500 font-Roboto">Color</span>
                     <span className="ml-auto text-gray-900 flex space-x-2">
-                      <button
-                        className="w-8 h-8 rounded-full border-2 border-gray-300 hover:border-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-600"
-                        style={{ backgroundColor: "#FFC0CB" }}
-                      ></button>
-                      <button
-                        className="w-8 h-8 rounded-full border-2 border-gray-300 hover:border-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-600"
-                        style={{ backgroundColor: "#B76E79" }}
-                      ></button>
-                      <button
-                        className="w-8 h-8 rounded-full border-2 border-gray-300 hover:border-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-600"
-                        style={{ backgroundColor: "#663399" }}
-                      ></button>
-                      <button
-                        className="w-8 h-8 rounded-full border-2 border-gray-300 hover:border-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-600"
-                        style={{ backgroundColor: "#FFDAB9" }}
-                      ></button>
-                      <button
-                        className="w-8 h-8 rounded-full border-2 border-gray-300 hover:border-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-600"
-                        style={{ backgroundColor: "#ADD8E6" }}
-                      ></button>
+                      {[
+                        { color: "#FFC0CB", label: "Pink" },
+                        { color: "#B76E79", label: "Rose" },
+                        { color: "#663399", label: "Purple" },
+                        { color: "#FFDAB9", label: "Peach" },
+                        { color: "#ADD8E6", label: "Light Blue" }
+                      ].map((colorOption, index) => (
+                        <button
+                          key={index}
+                          className={`w-8 h-8 rounded-full border-2 ${color === colorOption.label ? 'border-blue-600' : 'border-gray-300'} hover:border-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-600`}
+                          style={{ backgroundColor: colorOption.color }}
+                          onClick={() => handleColorClick(colorOption.label)}
+                          aria-label={colorOption.label}
+                        />
+                      ))}
                     </span>
                   </div>
                   <div className="flex border-t mb-6 border-gray-200 py-2"></div>
