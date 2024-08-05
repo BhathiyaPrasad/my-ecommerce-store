@@ -1,53 +1,65 @@
 'use client';
 import React, { useEffect, useState } from 'react';
 import { formatPrice } from "@utils/price"; // Ensure this path is correct
-import test from '../assests/images/product13.13.png'
 import Image from 'next/image';
+
 interface CartItem {
-  id: number;
-  name: string;
-  price: number; // Changed to number to better work with formatting
+  Item_Id_Auto: string;
+  Item_Name: string;
+  Sales_Price: number;
   quantity: number;
-  imageSrc: string;
+  imageUrl: string;
   imageAlt: string;
+  selectedcolor: string;
+  selectedsize: string;
 }
 
 const Cart = () => {
   const [cartItems, setCartItems] = useState<CartItem[]>([]);
+  const [paymentMethod, setPaymentMethod] = useState<'cod' | 'gateway'>('cod'); // State to manage payment method
 
   useEffect(() => {
     const itemsString = localStorage.getItem('Items');
     if (itemsString) {
       const storedItems = JSON.parse(itemsString);
-      const formattedItems: CartItem[] = storedItems.map((item: any) => ({
-        id: item.Item_ID_Auto,
-        name: item.Item_Name,
-        price: item.Sales_Price, // Use number here
-        quantity: item.quantity ? item.quantity : 1, // Default quantity
-        imageSrc: item.imageUrl, // Placeholder image
-        imageAlt: item.Item_Name,
-      }));
-      setCartItems(formattedItems);
+      setCartItems(storedItems); // Directly use the stored items
     }
   }, []);
 
-  const handleQuantityChange = (id: number, quantity: number) => {
-    setCartItems(prevItems =>
-      prevItems.map(item =>
-        item.id === id ? { ...item, quantity: Math.max(1, quantity) } : item
-      )
-    );
+  const updateLocalStorage = (items: CartItem[]) => {
+    localStorage.setItem('Items', JSON.stringify(items));
   };
 
-  const handleRemoveItem = (id: number) => {
-    setCartItems(prevItems => prevItems.filter(item => item.id !== id));
+  const handleQuantityChange = (Item_Id_Auto: string, quantity: number) => {
+    setCartItems(prevItems => {
+      const updatedItems = prevItems.map(item =>
+        item.Item_Id_Auto === Item_Id_Auto ? { ...item, quantity: Math.max(1, quantity) } : item
+      );
+      updateLocalStorage(updatedItems); // Update localStorage with updated items
+      return updatedItems;
+    });
+  };
 
+  const handleRemoveItem = (id: string) => {
+    setCartItems(prevItems => {
+      const updatedItems = prevItems.filter(item => item.Item_Id_Auto !== id);
+      updateLocalStorage(updatedItems); // Update localStorage with updated items
+      return updatedItems;
+    });
   };
 
   const calculateTotalPrice = () => {
     return formatPrice(
-      cartItems.reduce((total, item) => total + item.price * item.quantity, 0)
+      cartItems.reduce((total, item) => total + item.Sales_Price * item.quantity, 0)
     );
+  };
+
+  const handlePlaceOrder = () => {
+    if (paymentMethod === 'cod') {
+      alert('Order placed successfully with Cash on Delivery!');
+    } else {
+      window.location.href = '/payment-gateway'; // Replace with your actual payment gateway URL
+    }
   };
 
   return (
@@ -59,45 +71,79 @@ const Cart = () => {
         <>
           <ul className="space-y-4">
             {cartItems.map(item => (
-             <li key={item.id} className="flex items-center border-b py-4">
-             <Image
-               src={item.imageSrc}
-               alt={item.imageAlt}
-               className="w-30 h-30 object-cover mr-4"
-               width={100}  // Fixed width
-               height={200} // Fixed height
-             />
-             <div className="flex-1">
-               <p className="text-lg font-semibold">{item.name}</p>
-               <p className="text-gray-600">Price: {formatPrice(item.price)}</p>
-               <div className="flex items-center mt-2">
-                 <button
-                   className="px-3 py-1 bg-gray-200 rounded hover:bg-gray-300 focus:outline-none focus:ring-2 focus:ring-gray-500"
-                   onClick={() => handleQuantityChange(item.id, item.quantity - 1)}
-                 >
-                   -
-                 </button>
-                 <span className="mx-3">{item.quantity}</span>
-                 <button
-                   className="px-3 py-1 bg-gray-200 rounded hover:bg-gray-300 focus:outline-none focus:ring-2 focus:ring-gray-500"
-                   onClick={() => handleQuantityChange(item.id, item.quantity + 1)}
-                 >
-                   +
-                 </button>
-                 <button
-                   className="ml-4 px-3 py-1 bg-red-500 text-white rounded hover:bg-red-600 focus:outline-none focus:ring-2 focus:ring-red-500"
-                   onClick={() => handleRemoveItem(item.id)}
-                 >
-                   Remove
-                 </button>
-               </div>
-             </div>
-           </li>
-           
+              <li key={item.Item_Id_Auto} className="flex items-center border-b-2 border-gray-200 py-4">
+                <Image
+                  src={item.imageUrl}
+                  alt={item.imageAlt}
+                  className="w-30 h-40 object-cover mr-4"
+                  width={100}
+                  height={100}
+                  loading='lazy'
+                   // Or use layout="responsive"
+                />
+                <div className="flex-1">
+                  <p className="text-lg font-semibold">{item.Item_Name}</p>
+                  <p className="text-gray-600">Price: {formatPrice(item.Sales_Price)}</p>
+                  <p className="text-gray-600">Color: {item.selectedcolor}</p>
+                  <p className="text-gray-600">Size: {item.selectedsize}</p>
+                  <div className="flex items-center mt-2">
+                    <button
+                      className="btn btn-sm"
+                      onClick={() => handleQuantityChange(item.Item_Id_Auto, item.quantity - 1)}
+                    >
+                      -
+                    </button>
+                    <span className="mx-3">{item.quantity}</span>
+                    <button
+                      className="btn btn-sm"
+                      onClick={() => handleQuantityChange(item.Item_Id_Auto, item.quantity + 1)}
+                    >
+                      +
+                    </button>
+                    <button
+                      className="ml-10 btn btn-error text-white"
+                      onClick={() => handleRemoveItem(item.Item_Id_Auto)}
+                    >
+                      Remove
+                    </button>
+                  </div>
+                </div>
+              </li>
             ))}
           </ul>
           <div className="mt-4">
             <p className="text-lg font-bold">Total: {calculateTotalPrice()}</p>
+          </div>
+          <div className="mt-4">
+            <h2 className="text-lg font-semibold mb-2">Select Payment Method</h2>
+            <div className="flex items-center mb-4">
+              <input
+                type="radio"
+                id="cod"
+                name="paymentMethod"
+                value="cod"
+                checked={paymentMethod === 'cod'}
+                onChange={() => setPaymentMethod('cod')}
+                className="radio radio-accent"
+              />
+              <label htmlFor="cod" className="mr-4">Cash on Delivery</label>
+              <input
+                type="radio"
+                id="gateway"
+                name="paymentMethod"
+                value="gateway"
+                checked={paymentMethod === 'gateway'}
+                onChange={() => setPaymentMethod('gateway')}
+                className="radio radio-accent"
+              />
+              <label htmlFor="gateway">Online Payment</label>
+            </div>
+            <button
+              className="btn btn-outline btn-primary"
+              onClick={handlePlaceOrder}
+            >
+              Place Order
+            </button>
           </div>
         </>
       )}

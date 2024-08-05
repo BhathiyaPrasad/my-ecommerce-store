@@ -25,3 +25,15 @@
   padding: 1rem; /* Padding inside the dropdown */
   width: 200px; /* Width of the dropdown */
 }
+
+.navbars {
+  background-color: pink;
+  color:rgb(15, 14, 14);
+  text-align: center;
+  font-size:0.6rem;
+  font-family:'Times New Roman', Times, serif; /* Specified a font family for a cleaner look */
+  height: auto;
+  font-weight: 900;
+  text-transform: uppercase;
+}
+

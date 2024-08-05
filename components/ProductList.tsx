@@ -48,7 +48,7 @@ const ProductList = (props) => {
           where("ItemActiveMode", "==", 1),
           where("Deleted", "==", 0),
           where("ShowInSaleInvoice", "==", 1),
-          where("Manufacturer", "==", props.category),
+          where("Manufacturer", "==", "t"),
           where("Discount", props.order, "0"),
           where("Brand", "==", props.type),
           orderBy(props.group, "desc"),
