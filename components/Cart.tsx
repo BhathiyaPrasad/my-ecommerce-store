@@ -74,11 +74,12 @@ const Cart = () => {
               <li key={item.UUID} className="flex items-center border-b-2 border-gray-200 py-4">
                 <Image
                   src={item.imageUrl}
-                  alt={item.imageAlt}
-                  className="w-30 h-30 object-cover mr-4"
+                  alt={item.Item_Name}
+                  className="object-cover mr-4"
                   width={100}
                   height={100}
                   priority // Add priority property
+                  style={{ width: 'auto', height: 'auto' }} // Maintain aspect ratio
                 />
                 <div className="flex-1">
                   <p className="text-lg font-semibold">{item.Item_Name}</p>
