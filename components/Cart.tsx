@@ -4,7 +4,7 @@ import { formatPrice } from "@utils/price"; // Ensure this path is correct
 import Image from 'next/image';
 
 interface CartItem {
-  Item_Id_Auto: string;
+  UUID: string;
   Item_Name: string;
   Sales_Price: number;
   quantity: number;
@@ -30,19 +30,19 @@ const Cart = () => {
     localStorage.setItem('Items', JSON.stringify(items));
   };
 
-  const handleQuantityChange = (Item_Id_Auto: string, quantity: number) => {
+  const handleQuantityChange = (UUID: string, quantity: number) => {
     setCartItems(prevItems => {
       const updatedItems = prevItems.map(item =>
-        item.Item_Id_Auto === Item_Id_Auto ? { ...item, quantity: Math.max(1, quantity) } : item
+        item.UUID === UUID ? { ...item, quantity: Math.max(1, quantity) } : item
       );
       updateLocalStorage(updatedItems); // Update localStorage with updated items
       return updatedItems;
     });
   };
 
-  const handleRemoveItem = (id: string) => {
+  const handleRemoveItem = (UUID: string) => {
     setCartItems(prevItems => {
-      const updatedItems = prevItems.filter(item => item.Item_Id_Auto !== id);
+      const updatedItems = prevItems.filter(item => item.UUID !== UUID);
       updateLocalStorage(updatedItems); // Update localStorage with updated items
       return updatedItems;
     });
@@ -71,15 +71,14 @@ const Cart = () => {
         <>
           <ul className="space-y-4">
             {cartItems.map(item => (
-              <li key={item.Item_Id_Auto} className="flex items-center border-b-2 border-gray-200 py-4">
+              <li key={item.UUID} className="flex items-center border-b-2 border-gray-200 py-4">
                 <Image
                   src={item.imageUrl}
                   alt={item.imageAlt}
-                  className="w-30 h-40 object-cover mr-4"
+                  className="w-30 h-30 object-cover mr-4"
                   width={100}
                   height={100}
-                  loading='lazy'
-                   // Or use layout="responsive"
+                  priority // Add priority property
                 />
                 <div className="flex-1">
                   <p className="text-lg font-semibold">{item.Item_Name}</p>
@@ -89,20 +88,20 @@ const Cart = () => {
                   <div className="flex items-center mt-2">
                     <button
                       className="btn btn-sm"
-                      onClick={() => handleQuantityChange(item.Item_Id_Auto, item.quantity - 1)}
+                      onClick={() => handleQuantityChange(item.UUID, item.quantity - 1)}
                     >
                       -
                     </button>
                     <span className="mx-3">{item.quantity}</span>
                     <button
                       className="btn btn-sm"
-                      onClick={() => handleQuantityChange(item.Item_Id_Auto, item.quantity + 1)}
+                      onClick={() => handleQuantityChange(item.UUID, item.quantity + 1)}
                     >
                       +
                     </button>
                     <button
                       className="ml-10 btn btn-error text-white"
-                      onClick={() => handleRemoveItem(item.Item_Id_Auto)}
+                      onClick={() => handleRemoveItem(item.UUID)}
                     >
                       Remove
                     </button>
