@@ -11,6 +11,7 @@
     "test": "jest"
   },
   "dependencies": {
+    "@clerk/nextjs": "^5.2.13",
     "@headlessui/react": "^2.1.2",
     "@heroicons/react": "^2.1.5",
     "@tailwindcss/aspect-ratio": "^0.4.2",
