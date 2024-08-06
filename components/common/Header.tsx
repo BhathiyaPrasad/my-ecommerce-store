@@ -3,7 +3,7 @@ import Link from 'next/link';
 import Image from 'next/image';
 import avatar from '../../assests/images/COVER WEB.jpg';
 import '../Styles/header.css';
-import { SignInButton, SignedIn, SignedOut, UserButton } from '@clerk/nextjs';
+import { ClerkProvider, SignInButton, SignedIn, SignedOut, UserButton } from '@clerk/nextjs';
 
 const Header = () => {
   const [items, setItems] = useState([]);
@@ -128,13 +128,15 @@ const Header = () => {
               </div>
             </div>
           </div>
-          <div className="dropdown dropdown-end">
-           <SignedOut>
-            <SignInButton mode="modal" />
-           </SignedOut>
-           <SignedIn>
-            <UserButton />
-           </SignedIn>
+         <div className="clerk-buttons">
+          <ClerkProvider>
+            <SignedOut>
+              <SignInButton mode="modal" />
+            </SignedOut>
+            <SignedIn>
+              <UserButton />
+            </SignedIn>
+            </ClerkProvider>
           </div>
         </div>
       </div>
