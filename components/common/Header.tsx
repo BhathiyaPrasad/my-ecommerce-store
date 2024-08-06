@@ -3,6 +3,7 @@ import Link from 'next/link';
 import Image from 'next/image';
 import avatar from '../../assests/images/COVER WEB.jpg';
 import '../Styles/header.css';
+import { SignInButton, SignedIn, SignedOut, UserButton } from '@clerk/nextjs';
 
 const Header = () => {
   const [items, setItems] = useState([]);
@@ -128,24 +129,12 @@ const Header = () => {
             </div>
           </div>
           <div className="dropdown dropdown-end">
-            <div tabIndex={0} role="button" className="btn btn-ghost btn-circle avatar">
-              <div className="w-10 rounded-full">
-                <Image src={avatar} alt='' />
-              </div>
-            </div>
-            <ul
-              tabIndex={0}
-              className="menu menu-sm dropdown-content bg-base-100 rounded-box z-50 mt-3 w-52 p-2 shadow"
-            >
-              <li>
-                <a className="justify-between">
-                  Profile
-                  <span className="badge">New</span>
-                </a>
-              </li>
-              <li><a>Settings</a></li>
-              <li><a>Logout</a></li>
-            </ul>
+           <SignedOut>
+            <SignInButton mode="modal" />
+           </SignedOut>
+           <SignedIn>
+            <UserButton />
+           </SignedIn>
           </div>
         </div>
       </div>
