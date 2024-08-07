@@ -5,12 +5,30 @@ const orgDocId = "20240711-1011-SaluniFashion";
 const orderItemsRef = collection(db, 'organizations', orgDocId, 'order_items');
 const ordersRef = collection(db, 'organizations', orgDocId, 'orders');
 
+let orderCounter = 0;
+let currentDate = new Date().toISOString().slice(0, 10).replace(/-/g, '');
+
+const generateOrderId = () => {
+  const date = new Date().toISOString().slice(0, 10).replace(/-/g, '');
+  
+  if (date !== currentDate) {
+    currentDate = date;
+    orderCounter = 0;
+  }
+
+  orderCounter += 1;
+  const newOrderId = `OR-${date}-${orderCounter.toString().padStart(4, '0')}`;
+  return newOrderId;
+};
+
 export const productOrder = async (cartItems) => {
   try {
+    const orderId = generateOrderId();
+    
     for (const item of cartItems) {
       await addDoc(orderItemsRef, {
         orderAutoID: "",
-        orderID: "",
+        orderID: orderId,
         lineOrder: 0,
         itemAutoID: "",
         itemID: item.Item_ID, // Assuming UUID is the item ID
@@ -25,21 +43,20 @@ export const productOrder = async (cartItems) => {
       });
       console.log('Order item added for item UUID:', item.UUID);
     }
-    console.log('All order items added successfully');
+
+    await addDoc(ordersRef, {
+      orderAutoID: "", // Add appropriate auto ID if needed
+      orderID: orderId,
+      orderDate: new Date(),
+      
+    });
+    
+    console.log('Order added successfully with ID:', orderId);
   } catch (error) {
     console.error('Order item error:', error); // Log errors for debugging
   }
 
-  try{
-    await addDoc(ordersRef, {
-        orderAutoID: "",
-        orderID: "",
-    
-    });
-    console.log('order added succeffuly')
-  }
-catch (error){
-  console.log('Error In Order', error)
-}
   console.log("Order processed", cartItems);
 };
+
+
