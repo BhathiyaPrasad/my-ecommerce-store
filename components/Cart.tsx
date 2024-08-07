@@ -3,6 +3,7 @@ import React, { useEffect, useState } from 'react';
 import { formatPrice } from "@utils/price"; // Ensure this path is correct
 import Image from 'next/image';
 import './Styles/cart.css'
+import { productOrder } from '@utils/productorder';
 interface CartItem {
   UUID: string;
   Item_Name: string;
@@ -56,7 +57,9 @@ const Cart = () => {
 
   const handlePlaceOrder = () => {
     if (paymentMethod === 'cod') {
+      productOrder(cartItems);
       alert('Order placed successfully with Cash on Delivery!');
+      
     } else {
       window.location.href = '/payment-gateway'; // Replace with your actual payment gateway URL
     }
