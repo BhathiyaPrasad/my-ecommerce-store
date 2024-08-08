@@ -5,14 +5,14 @@ import Hero from '@components/Hero';
 export default function Home() {
   return (
     <MainLayout>
-  <Hero />
+      <Hero />
       <ProductList
-      category=""
-      order=">="
-      limit={12}
-      group='Brand'
-      type=''
-       />
+        category=""
+        order=">="
+        limit={12}
+        group='Brand'
+        type=''
+      />
     </MainLayout>
   );
 }
