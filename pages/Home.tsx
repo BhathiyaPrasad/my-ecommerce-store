@@ -6,6 +6,7 @@ export default function Home() {
   return (
     <MainLayout>
   <Hero />
+  <title />
       <ProductList
       category=""
       order=">="

@@ -215,3 +215,37 @@ border-bottom: 2px solid transparent;
     font-size:1rem ;
   }
 }
+
+
+/* General Styles */
+.title-font {
+  /* Your existing styles for title-font */
+}
+
+/* Button Styles */
+.btn {
+  /* Your existing button styles */
+}
+
+.btn-primary {
+  /* Your existing primary button styles */
+}
+
+/* Responsive Styles */
+@media (max-width: 399px) {
+  .flex-col {
+    flex-direction: column;
+  }
+
+  .items-start {
+    align-items: flex-start;
+  }
+
+  .space-y-2 > * + * {
+    margin-top: 0.5rem; /* Space between buttons */
+  }
+
+  .mt-2 {
+    margin-top: 0.5rem;
+  }
+}
