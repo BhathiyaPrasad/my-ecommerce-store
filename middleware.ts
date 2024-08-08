@@ -1,13 +1,6 @@
 import { clerkMiddleware } from "@clerk/nextjs/server";
 
-export default clerkMiddleware((auth, request: NextRequest) => {
-  if (isProtectedRoute(request)) auth().protect();
 
-  const headers = new Headers(request.headers);
-  headers.set("x-current-path", request.nextUrl.pathname);
-
-  return NextResponse.next({ headers });
-});
 
 export const config = {
   matcher: [
