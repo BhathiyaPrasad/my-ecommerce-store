@@ -129,14 +129,14 @@ const Header = () => {
   </div>
   <div className="dropdown dropdown-end">
     <div className="clerk-buttons" style={{ marginRight: '10px' }}>
-      <ClerkProvider>
+     
         <SignedOut>
           <SignInButton mode="modal" />
         </SignedOut>
         <SignedIn>
           <UserButton />
         </SignedIn>
-      </ClerkProvider>
+     
     </div>
   </div>
 </div>

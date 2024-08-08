@@ -15,7 +15,8 @@ export default function ImageSlider() {
     infinite: true,
     speed: 100,
     slidesToShow: 1,
-    slidesToScroll: 1
+    slidesToScroll: 1,
+    easing: 'linear'
   };
   return (
     <Slider {...settings}>
