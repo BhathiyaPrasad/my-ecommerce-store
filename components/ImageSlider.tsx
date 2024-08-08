@@ -1,46 +1,44 @@
-"use client";
-
-import React, { useState, useEffect } from 'react';
-import Image from 'next/image';
+import React from "react";
+import Slider from "react-slick";
+import '../src/app/globals.css'
+import Image from "next/image";
 import sliderOne from '../assests/images/Slider01.jpg';
 import sliderTwo from '../assests/images/Slider02.jpg';
 import sliderThree from '../assests/images/Slider03.jpg';
-import sliderFour from '../assests/images/Slider04.jpg';  // Add more images as needed
-import './Styles/hero.css';
+import sliderFour from '../assests/images/Slider04.jpg';
+import "slick-carousel/slick/slick.css";
+import "slick-carousel/slick/slick-theme.css";
 
-const images = [
-  sliderOne,
-  sliderTwo,
-  sliderThree,
-  sliderFour
-  
-];
-
-const ImageSlider = () => {
-  const [currentImageIndex, setCurrentImageIndex] = useState(0);
-  const [key, setKey] = useState(0);
-
-  useEffect(() => {
-    const interval = setInterval(() => {
-      setCurrentImageIndex((prevIndex) => (prevIndex + 1) % images.length);
-      setKey((prevKey) => prevKey + 1); // Update the key to force re-render
-    }, 10000); // Change image every 10 seconds
-    return () => clearInterval(interval);
-  }, []);
-
+export default function ImageSlider() {
+  var settings = {
+    dots: true,
+    infinite: true,
+    speed: 100,
+    slidesToShow: 1,
+    slidesToScroll: 1
+  };
   return (
-    <div className="slider-container">
-      <figure className="herofigure">
-        <Image
-          key={key} // Use key to force re-render
-          src={images[currentImageIndex]}
-          alt={`Slide ${currentImageIndex + 1}`}
-          className="slider active wipe-in-bottom-left"
-          priority={true}
-        />
-      </figure>
-    </div>
-  );
-};
+    <Slider {...settings}>
+      <div>
+       <Image src={sliderOne} alt="one"></Image>
+      </div>
+      <div>
+      <Image src={sliderTwo} alt="one"></Image>
+      </div>
+      <div>
+      <Image src={sliderThree} alt="one"></Image>
 
-export default ImageSlider;
+      </div>
+      <div>
+      <Image src={sliderFour} alt="one"></Image>
+
+      </div>
+      <div>
+        <h3>5</h3>
+      </div>
+      <div>
+        <h3>6</h3>
+      </div>
+    </Slider>
+  );
+}
