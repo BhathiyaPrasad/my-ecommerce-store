@@ -1,6 +1,6 @@
 import React from "react";
 import Slider from "react-slick";
-import '../src/app/globals.css'
+import '../../src/app/globals.css'
 import Image from "next/image";
 import sliderOne from '../assests/images/COVER 2.jpg';
 import sliderTwo from '../assests/images/COVER 2.jpg';
