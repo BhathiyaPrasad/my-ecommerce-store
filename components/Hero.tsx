@@ -1,22 +1,26 @@
 "use client";
 
 import React from "react";
-import { collection, getDocs } from 'firebase/firestore';
-import { db } from '../utils/firebase';
+import { EmblaOptionsType } from 'embla-carousel';
 import Image from "next/image";
 import sliderOne from '../assests/images/test.webp';
-import "./Styles/hero.css";
-import ImageSlider from "./ImageSlider";
-import  ImageSliderTwo  from "./ImageSliderTwo";
-import "./Styles/imageslider.css"
+import sliderTwo from '../assests/images/COVER 2.jpg';
+import EmblaCarousel from './Carousel/EmblaCarousal';
+import './Styles/hero.css';
+import '../components/SliderTwo/imageslider.css';
+//  import './Carousel/embla.css';
+import ImageSliderTwo from "./SliderTwo/ImageSliderTwo";
+
+const OPTIONS: EmblaOptionsType = { align: 'start', loop: true };
+const SLIDES = [sliderOne, sliderTwo]; // Add more images here if needed
 
 function Hero() {
   return (
-
- 
-   <ImageSliderTwo/>
-
-  )
+    <>
+    {/* <EmblaCarousel slides={SLIDES} options={OPTIONS} /> */}
+    <ImageSliderTwo/>
+    </>
+  );
 }
 
-export default Hero;    
+export default Hero;

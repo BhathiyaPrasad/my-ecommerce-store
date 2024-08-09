@@ -1,11 +1,11 @@
-'use client'
-import { useRouter } from 'next/navigation'
-import { lazy, useEffect, useState } from "react";
-import { doc, getDoc, collection } from "firebase/firestore";
-import { db } from "../utils/firebase";
-import Image from "next/image";
-import SizeChart from "./common/SizeChart";
-import "./Styles/productDetails.css";
+'use client';
+import { useRouter } from 'next/navigation';
+import { useEffect, useState } from 'react';
+import { doc, getDoc, collection } from 'firebase/firestore';
+import { db } from '../utils/firebase';
+import Image from 'next/image';
+import SizeChart from './common/SizeChart';
+import './Styles/productDetails.css';
 import { formatPrice } from '../utils/price';
 import { ref, getStorage, getDownloadURL } from 'firebase/storage';
 
@@ -31,8 +31,9 @@ type Product = {
   imageUrl2?: string;
   imageUrl3?: string;
   imageUrl4?: string;
+  SizeChart?: string;
   Remark: string;
-  Item_ID_Auto: number
+  Item_ID_Auto: number;
 };
 
 async function getImageDownloadURL(imagePath: string) {
@@ -57,7 +58,6 @@ const ProductDetails = ({ productId }: ProductDetailsProps) => {
   const [size, setSize] = useState('');
   const [color, setColor] = useState('');
 
-
   const router = useRouter();
 
   useEffect(() => {
@@ -73,6 +73,7 @@ const ProductDetails = ({ productId }: ProductDetailsProps) => {
         const imageUrl2 = await getImageDownloadURL(`gs://freidea-pos-img/20240711-1011-SaluniFashion/Images/Products/Product2_${productData.Item_ID_Auto}.png`);
         const imageUrl3 = await getImageDownloadURL(`gs://freidea-pos-img/20240711-1011-SaluniFashion/Images/Products/Product3_${productData.Item_ID_Auto}.png`);
         const imageUrl4 = await getImageDownloadURL(`gs://freidea-pos-img/20240711-1011-SaluniFashion/Images/Products/Product4_${productData.Item_ID_Auto}.png`);
+        const sizeChart = await getImageDownloadURL(`gs://freidea-pos-img/20240711-1011-SaluniFashion/Images/SizeChart/SizeChart_${productData.Item_ID_Auto}.png`);
         productData.imageUrl = imageUrl;
         productData.imageUrl2 = imageUrl2;
         productData.imageUrl3 = imageUrl3;
@@ -84,7 +85,6 @@ const ProductDetails = ({ productId }: ProductDetailsProps) => {
         setThumbnail2(imageUrl2);
         setThumbnail3(imageUrl3);
         setThumbnail4(imageUrl4);
-
       }
     };
 
@@ -94,14 +94,18 @@ const ProductDetails = ({ productId }: ProductDetailsProps) => {
   const handleImageClick = (src: string) => {
     setMainImage(src);
   };
-  const handleSizeClick = (selectedSize) => {
+
+  const handleSizeClick = (selectedSize: string) => {
     setSize(selectedSize);
   };
-  const handleColorClick = (selectedColor) => {
-    setColor(selectedColor)
-  }
-  if (!product)
+
+  const handleColorClick = (selectedColor: string) => {
+    setColor(selectedColor);
+  };
+
+  if (!product) {
     return <span className="loading loading-dots loading-md"></span>;
+  }
 
   const addToCart = (product: Product) => {
     console.log("Order is processing", product);
@@ -124,11 +128,11 @@ const ProductDetails = ({ productId }: ProductDetailsProps) => {
 
     if (productIndex > -1) {
       itemsArray[productIndex].quantity += 1;
-      itemsArray[productIndex].selectedsize = size
-      itemsArray[productIndex].selectedcolor = color
+      itemsArray[productIndex].selectedsize = size;
+      itemsArray[productIndex].selectedcolor = color;
       console.log("Product quantity incremented");
     } else {
-      itemsArray.push({ ...product, quantity: 1,selectedsize: size, selectedcolor: color });
+      itemsArray.push({ ...product, quantity: 1, selectedsize: size, selectedcolor: color });
       console.log("Product added to cart");
     }
 
@@ -139,7 +143,7 @@ const ProductDetails = ({ productId }: ProductDetailsProps) => {
   const buyNow = () => {
     router.push('/product/cart');
   };
-console.log(size)
+
   return (
     <>
       <section className="text-gray-600 body-font overflow-hidden">
@@ -154,7 +158,6 @@ console.log(size)
                 style={{ maxHeight: "500px", objectFit: "contain" }}
                 width={500}
                 height={500}
-
                 priority
               />
               <div className="mainDiv mt-4">
@@ -163,60 +166,40 @@ console.log(size)
                   alt="Thumbnail 1"
                   onClick={() => handleImageClick(thumbnail1)}
                   className="w-24 h-auto cursor-pointer border-2 border-gray-300 mr-2 rounded"
-                  style={{
-                    width: "100px",
-                    marginRight: "10px",
-                    borderRadius: "10px",
-                  }}
+                  style={{ width: "100px", marginRight: "10px", borderRadius: "10px" }}
                   width={100}
                   height={100}
                   loading="lazy"
-
                 />
                 <Image
                   src={thumbnail2}
                   alt="Thumbnail 2"
                   onClick={() => handleImageClick(thumbnail2)}
                   className="w-24 h-auto cursor-pointer border-2 border-gray-300 mr-2 rounded"
-                  style={{
-                    width: "100px",
-                    marginRight: "10px",
-                    borderRadius: "10px",
-                  }}
+                  style={{ width: "100px", marginRight: "10px", borderRadius: "10px" }}
                   width={100}
                   height={100}
                   loading="lazy"
-
                 />
                 <Image
                   src={thumbnail3}
-                  alt="Thumbnail 2"
+                  alt="Thumbnail 3"
                   onClick={() => handleImageClick(thumbnail3)}
                   className="w-24 h-auto cursor-pointer border-2 border-gray-300 mr-2 rounded"
-                  style={{
-                    width: "100px",
-                    marginRight: "10px",
-                    borderRadius: "10px",
-                  }}
+                  style={{ width: "100px", marginRight: "10px", borderRadius: "10px" }}
                   width={100}
                   height={100}
                   loading="lazy"
-
                 />
                 <Image
                   src={thumbnail4}
-                  alt="Thumbnail 2"
+                  alt="Thumbnail 4"
                   onClick={() => handleImageClick(thumbnail4)}
                   className="w-24 h-auto cursor-pointer border-2 border-gray-300 mr-2 rounded"
-                  style={{
-                    width: "100px",
-                    marginRight: "10px",
-                    borderRadius: "10px",
-                  }}
+                  style={{ width: "100px", marginRight: "10px", borderRadius: "10px" }}
                   width={100}
                   height={100}
                   loading="lazy"
-
                 />
               </div>
             </div>

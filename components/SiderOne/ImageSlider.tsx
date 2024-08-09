@@ -1,11 +1,11 @@
 import React from "react";
 import Slider from "react-slick";
-import '../src/app/globals.css'
+import '../../src/app/globals.css'
 import Image from "next/image";
-import sliderOne from '../assests/images/Slider01.jpg';
-import sliderTwo from '../assests/images/Slider02.jpg';
-import sliderThree from '../assests/images/Slider03.jpg';
-import sliderFour from '../assests/images/Slider04.jpg';
+import sliderOne from '../assests/images/COVER 2.jpg';
+import sliderTwo from '../assests/images/COVER 2.jpg';
+import sliderThree from '../assests/images/COVER 2.jpg';
+import sliderFour from '../assests/images/COVER 2.jpg';
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 
