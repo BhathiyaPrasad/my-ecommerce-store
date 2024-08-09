@@ -57,6 +57,7 @@ const ProductDetails = ({ productId }: ProductDetailsProps) => {
   const [thumbnail4, setThumbnail4] = useState<string>('');
   const [size, setSize] = useState('');
   const [color, setColor] = useState('');
+  const [colors, useColors] = useState([])
 
   const router = useRouter();
 
@@ -74,10 +75,12 @@ const ProductDetails = ({ productId }: ProductDetailsProps) => {
         const imageUrl3 = await getImageDownloadURL(`gs://freidea-pos-img/20240711-1011-SaluniFashion/Images/Products/Product3_${productData.Item_ID_Auto}.png`);
         const imageUrl4 = await getImageDownloadURL(`gs://freidea-pos-img/20240711-1011-SaluniFashion/Images/Products/Product4_${productData.Item_ID_Auto}.png`);
         const sizeChart = await getImageDownloadURL(`gs://freidea-pos-img/20240711-1011-SaluniFashion/Images/SizeChart/SizeChart_${productData.Item_ID_Auto}.png`);
+        const colorsarray = ${productData.color}
         productData.imageUrl = imageUrl;
         productData.imageUrl2 = imageUrl2;
         productData.imageUrl3 = imageUrl3;
         productData.imageUrl4 = imageUrl4;
+        productData.colorsarray = colorsarray;
 
         setProduct(productData);
         setMainImage(imageUrl);
@@ -85,6 +88,7 @@ const ProductDetails = ({ productId }: ProductDetailsProps) => {
         setThumbnail2(imageUrl2);
         setThumbnail3(imageUrl3);
         setThumbnail4(imageUrl4);
+        useColors(colorsarray);
       }
     };
 
