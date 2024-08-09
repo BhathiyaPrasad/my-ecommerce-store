@@ -21,17 +21,17 @@ export default function ImageSlider() {
   return (
     <Slider {...settings}>
       <div>
-       <Image src={sliderOne} alt="one"></Image>
+        <Image src={sliderOne} alt="one"></Image>
       </div>
       <div>
-      <Image src={sliderTwo} alt="one"></Image>
+        <Image src={sliderTwo} alt="one"></Image>
       </div>
       <div>
-      <Image src={sliderThree} alt="one"></Image>
+        <Image src={sliderThree} alt="one"></Image>
 
       </div>
       <div>
-      <Image src={sliderFour} alt="one"></Image>
+        <Image src={sliderFour} alt="one"></Image>
 
       </div>
       <div>
